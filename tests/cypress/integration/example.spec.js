@@ -4,7 +4,7 @@ describe('App', () => {
   })
 
   it('displays default text', () => {
-    cy.contains('Learn React!')
+    cy.contains('Learn React')
 
   })
 })
