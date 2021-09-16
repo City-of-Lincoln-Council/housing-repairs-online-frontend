@@ -10,7 +10,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Page
       header={<TopNav company= "COLC" serviceTitle="Housing Repairs Online" />}
-      beforeChildren={<PhaseBanner level="beta" data-test-id="PhaseBanner">This service is still in beta</PhaseBanner>}
+      beforeChildren={<PhaseBanner level="beta" data-testid="phase-banner">This service is still in beta</PhaseBanner>}
       footer={<Footer />}
     >
       <App />
