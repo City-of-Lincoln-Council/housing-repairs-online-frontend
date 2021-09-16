@@ -6427,6 +6427,11 @@ govuk-colours@^1.1.0:
   resolved "https://registry.yarnpkg.com/govuk-colours/-/govuk-colours-1.1.0.tgz#71afae4ed7e9d61c5e230cb61f0f00fa410a76a7"
   integrity sha512-EcwnP9PsWubmTcsJtLF8w0D5b69j43LwYtSqGyPtO3903J0bbwB2t5ujWZ9UhsbLamuUmigBkNpLItU3/KuFqw==
 
+govuk-frontend@^3.13.1:
+  version "3.13.1"
+  resolved "https://registry.yarnpkg.com/govuk-frontend/-/govuk-frontend-3.13.1.tgz#81a68ca940cf6348911294bb5ec28e7ecdb47cdc"
+  integrity sha512-OlbAVVpJfZ8tEhkScVoNFA+27RUfMDslN4uxtJyASfXwg4QZYHTX8RqmKBbgVJWaybpa5RsYDuRKQNJe3qN8gw==
+
 govuk-react@^0.9.1:
   version "0.9.1"
   resolved "https://registry.yarnpkg.com/govuk-react/-/govuk-react-0.9.1.tgz#792c7d3dc1b02a8e2221653b05469a13c05aa05b"
