@@ -1,7 +1,7 @@
 import './App.css';
 import {
   H1,
-  H2,
+  H4,
   H3,
   Paragraph,
   WarningText,
@@ -9,6 +9,7 @@ import {
   Button,
   ButtonArrow,
   UnorderedList,
+  OrderedList,
   ListItem,
   Link,
   RelatedItems,
@@ -27,36 +28,33 @@ function App() {
             We provide housing repairs for council tenants through this online
             service.
           </Paragraph>
-
           <WarningText>
             If you can smell gas, please call the gas emergency number on: 0800 111
             999.
           </WarningText>
-          <Details summary="What to do now if you smell gas" className="govuk-!-margin-top-4">
-            <ol>
-              <li>Turn off the gas supply at the gas meter</li>
-              <li>Extinguish all sources of ignition</li>
-              <li>Do not smoke</li>
-              <li>Do not operate electrical light switches and power sockets</li>
-              <li>
+          <Details summary="What to do now if you smell gas" className="govuk-!-margin-top-6">
+            <OrderedList>
+              <ListItem>Turn off the gas supply at the gas meter</ListItem>
+              <ListItem>Extinguish all sources of ignition</ListItem>
+              <ListItem>Do not smoke</ListItem>
+              <ListItem>Do not operate electrical light switches and power sockets</ListItem>
+              <ListItem>
                 Do not use the door entry system - if you need to let someone in, go
                 down to the entrance door to open it
-              </li>
-              <li>Open doors and windows to ventilate the area</li>
-              <li>
+              </ListItem>
+              <ListItem>Open doors and windows to ventilate the area</ListItem>
+              <ListItem>
                 Contact National Grid on 0800 111 999 from outside the property
-              </li>
-            </ol>
+              </ListItem>
+            </OrderedList>
           </Details>
-          <br/>
-          <br/>
           <Button icon={<ButtonArrow />} start='true' >Start now</Button>
-          <H2>Before you start</H2>
+          <H3>Before you start</H3>
           <Paragraph>
             Reports can be made without signing up for a council account. If you
             have an account you will be able to see your report there.
           </Paragraph>
-          <H2>Emergency repairs</H2>
+          <H4>Emergency repairs</H4>
           <Paragraph>
             An emergency repair is when there&apos;s immediate danger to you or the
             structure of the building. In an emergency we&apos;ll make the situation
@@ -70,10 +68,13 @@ function App() {
         </GridCol>
         <GridCol setWidth="one-third">
           <RelatedItems>
-            <H3>Example heading</H3>
+            <H4>Related pages</H4>
             <UnorderedList listStyleType="none">
               <ListItem>
-                <Link href="https://example.com">Link A</Link>
+                <Link href="#">Report a communal repair</Link>
+              </ListItem>
+              <ListItem>
+                <Link href="#">Fix it yourself videos</Link>
               </ListItem>
             </UnorderedList>
           </RelatedItems>

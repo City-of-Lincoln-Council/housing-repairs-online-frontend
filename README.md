@@ -67,3 +67,11 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `yarn build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+# General note dump
+
+- Testing:
+  - [Jest](https://jestjs.io/docs/getting-started) is used for unit testing `yarn test`
+  - [Cypress](https://docs.cypress.io/) is used for integration testing `yarn test:integration`
+- Frontend components:
+  https://govuk-react.github.io/govuk-react/?path=/docs/welcome--page
