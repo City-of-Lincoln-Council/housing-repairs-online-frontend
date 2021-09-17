@@ -18,6 +18,10 @@ describe('App', () => {
     );
   });
 
+  it('displays a start button', () => {
+    cy.get("button").contains('Start now');
+  });
+
   context('smell gas prompt', () => {
     it('displays text', () => {
       cy.get('[data-testid=landing-page-gas-prompt]').should(

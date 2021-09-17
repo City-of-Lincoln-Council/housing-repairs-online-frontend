@@ -29,8 +29,10 @@ function LandingPage() {
             service.
           </Paragraph>
           <WarningText data-testid="landing-page-warning">
+            If you can smell gas, please call the gas emergency number on: 0800 111
+            999.
           </WarningText>
-            data-testid="landing-page-gas-prompt"
+          <Details summary="What to do now if you smell gas" className="govuk-!-margin-top-6" data-testid="landing-page-gas-prompt">
             <OrderedList>
               <ListItem data-testid="first-emergency-gas-option">Turn off the gas supply at the gas meter</ListItem>
               <ListItem>Extinguish all sources of ignition</ListItem>
