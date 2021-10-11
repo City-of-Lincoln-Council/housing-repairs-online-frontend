@@ -1,14 +1,11 @@
 import {
   H1,
+  H2,
   H4,
-  H3,
   Paragraph,
   WarningText,
   Details,
-  Button,
-  ButtonArrow,
   UnorderedList,
-  OrderedList,
   ListItem,
   Link,
   RelatedItems,
@@ -19,37 +16,75 @@ import { Fragment } from 'react';
 
 
 function LandingPage() {
-  const start=()=>{
-    window.location.hash='/report-repairs'
-  }
+  const contactDetailsPageLink = (
+    <Link href="https://www.lincoln.gov.uk/contact-1/get-touch">
+      contact details page
+    </Link>
+  )
+
   return (
     <Fragment>
       <GridRow>
         <GridCol setWidth="two-thirds">
           <H1>Report a repair</H1>
-          <Paragraph>
-            We provide housing repairs for council tenants through this online
-            service.
-          </Paragraph>
-          <WarningText data-testid="landing-page-warning">
-            If you can smell gas, please call the gas emergency number on: 0800 111
-            999.
+          <H2>Before you start</H2>
+          <WarningText data-testid="landing-page-gas-warning">
+            If you suspect you have a gas leak, you must report it immediately
+            to the Gas Emergency Service on 0800 111 999 or via textphone
+            (minicom) on 0800 371 787
           </WarningText>
-          <Details summary="What to do now if you smell gas" className="govuk-!-margin-top-6" data-testid="landing-page-gas-prompt">
-            <OrderedList>
-              <ListItem data-testid="first-emergency-gas-option">Turn off the gas supply at the gas meter</ListItem>
-              <ListItem>Extinguish all sources of ignition</ListItem>
-              <ListItem>Do not smoke</ListItem>
-              <ListItem>Do not operate electrical light switches and power sockets</ListItem>
-              <ListItem>
-                Do not use the door entry system - if you need to let someone in, go
-                down to the entrance door to open it
-              </ListItem>
-              <ListItem>Open doors and windows to ventilate the area</ListItem>
-              <ListItem>
-                Contact National Grid on 0800 111 999 from outside the property
-              </ListItem>
-            </OrderedList>
+          <WarningText data-testid="landing-page-emergency-warning" className="govuk-!-margin-top-4">
+            For other emergency repairs, please see customer services {contactDetailsPageLink}.
+          </WarningText>
+          <Details summary="What is an emergency?" className="govuk-!-margin-top-6" data-testid="landing-page-emergency-prompt">
+            <div data-testid='landing-page-emergency-info'>
+              <Paragraph>
+                An emergency is defined as something which could cause danger to
+                someone’s health or safety or cause serious damage and destruction
+                to property.
+              </Paragraph>
+              <Paragraph>
+                Emergency Out of Hours Repairs, please call **01522 534747**
+              </Paragraph>
+              <Paragraph>
+                For emergencies in normal hours, please call **01522 873333**
+              </Paragraph>
+              <Paragraph>
+                Opening times:
+              </Paragraph>
+              <unOrderedList>
+                <ListItem>Monday 9am - 5pm</ListItem>
+                <ListItem>Tuesday 9am - 5pm</ListItem>
+                <ListItem>Wednesday 9am - 4.30pm</ListItem>
+                <ListItem>Thursday 10am - 5pm</ListItem>
+                <ListItem>Friday 9am - 4.30pm</ListItem>
+              </unOrderedList>
+            </div>
+          </Details>
+          <Paragraph>
+            This service can only be used by **council tenants** to request a repair.
+          </Paragraph>
+          <Paragraph>
+            To request a repair for a **communal area**, please see customer
+            services [contact details page](https://www.lincoln.gov.uk/contact-1/get-touch).
+          </Paragraph>
+          <Details summary="Which areas are communal?" className="govuk-!-margin-top-6" data-testid="landing-page-communal-prompt">
+            <div data-testid='landing-page-communal-info'>
+              <Paragraph>
+                Communal repairs are usually in areas that people share.
+              </Paragraph>
+              <Paragraph>
+                They can include:
+              </Paragraph>
+              <unOrderedList>
+                <ListItem>repairs to door entry systems</ListItem>
+                <ListItem>lock repairs to communal doors</ListItem>
+                <ListItem>lighting repairs to shared areas</ListItem>
+                <ListItem>glazing repairs to shared doors or stairway windows</ListItem>
+                <ListItem>roof and gutter repairs</ListItem>
+                <ListItem>structure and external walls to your block</ListItem>
+              </unOrderedList>
+            </div>
           </Details>
           <a href="/report-repair" role="button" draggable="false"
             className="govuk-button govuk-button--start"
@@ -59,22 +94,6 @@ function LandingPage() {
               <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
             </svg>
           </a>
-          <H3>Before you start</H3>
-          <Paragraph>
-            Reports can be made without signing up for a council account. If you
-            have an account you will be able to see your report there.
-          </Paragraph>
-          <H4>Emergency repairs</H4>
-          <Paragraph>
-            An emergency repair is when there&apos;s immediate danger to you or the
-            structure of the building. In an emergency we&apos;ll make the situation
-            safe; we may need to return another day to complete the full repair.
-          </Paragraph>
-          <Paragraph>
-            All emergency repairs can be reported 24 hours a day, 7 days a week by
-            calling **0800 952 4444** or **020 7525 2600**. You may experience
-            longer waiting times due to a high volume of calls.
-          </Paragraph>
         </GridCol>
         <GridCol setWidth="one-third">
           <RelatedItems>
@@ -82,6 +101,9 @@ function LandingPage() {
             <UnorderedList listStyleType="none">
               <ListItem>
                 <Link href="#">Report a communal repair</Link>
+              </ListItem>
+              <ListItem>
+                <Link href="#">Leaseholder repairs</Link>
               </ListItem>
               <ListItem>
                 <Link href="#">Fix it yourself videos</Link>
