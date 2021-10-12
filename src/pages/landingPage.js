@@ -26,7 +26,7 @@ function LandingPage() {
     <Fragment>
       <GridRow>
         <GridCol setWidth="two-thirds">
-          <H1>Report a repair</H1>
+          <H1>Request a repair</H1>
           <H2>Before you start</H2>
           <WarningText data-testid="landing-page-gas-warning">
             If you suspect you have a gas leak, you must report it immediately
