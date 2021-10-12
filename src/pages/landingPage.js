@@ -17,7 +17,7 @@ import { Fragment } from 'react';
 
 function LandingPage() {
   const contactDetailsPageLink = (
-    <Link href="https://www.lincoln.gov.uk/contact-1/get-touch">
+    <Link href="https://www.lincoln.gov.uk/contact-1/get-touch" target="_blank">
       contact details page
     </Link>
   )
