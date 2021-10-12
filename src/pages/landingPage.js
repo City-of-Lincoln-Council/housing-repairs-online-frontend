@@ -22,6 +22,12 @@ function LandingPage() {
     </Link>
   )
 
+  const newTabLinkRenderer = ({href, children}) => (
+    <Link href={href} target="_blank">
+      {children}
+    </Link>
+  )
+
   return (
     <Fragment>
       <GridRow>
@@ -64,7 +70,7 @@ function LandingPage() {
           <Paragraph>
             This service can only be used by **council tenants** to request a repair.
           </Paragraph>
-          <Paragraph>
+          <Paragraph linkRenderer={newTabLinkRenderer}>
             To request a repair for a **communal area**, please see customer
             services [contact details page](https://www.lincoln.gov.uk/contact-1/get-touch).
           </Paragraph>
