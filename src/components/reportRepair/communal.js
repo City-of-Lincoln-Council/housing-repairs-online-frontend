@@ -2,7 +2,10 @@ import PropTypes from 'prop-types';
 import {
   GridRow,
   GridCol,
-  Details
+  Details,
+  Paragraph,
+  UnorderedList,
+  ListItem
 } from 'govuk-react'
 import RadioFieldSet from '../radioFieldSet';
 
@@ -16,9 +19,17 @@ const Communal = ({handleChange, nextStep, values}) => {
   const beforeButton =  (
     <Details summary="Which areas are communal?" data-testid="communal-area-prompt">
       <span data-testid="communal-area-info">
-          Communal areas are any spaces that are shared with other residents. <br/>
-          For example, this would include gardens, lifts, corridors, or car parks.
-      </span>
+        Communal repairs are usually in areas that people share.
+      </span><br/><br/>
+      <Paragraph>They can include:</Paragraph>
+      <UnorderedList>
+        <ListItem>repairs to door entry systems</ListItem>
+        <ListItem>lock repairs to communal doors</ListItem>
+        <ListItem>lighting repairs to shared areas</ListItem>
+        <ListItem>glazing repairs to shared doors or stairway windows</ListItem>
+        <ListItem>roof and gutter repairs</ListItem>
+        <ListItem>structure and external walls to your block</ListItem>
+      </UnorderedList>
     </Details>
   );
 
