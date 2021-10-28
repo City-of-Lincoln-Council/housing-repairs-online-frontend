@@ -29,6 +29,13 @@ describe('App', () => {
     cy.get('[data-testid=landing-page-emergency-warning] a').should('have.attr', 'href', 'https://www.lincoln.gov.uk/contact-1/get-touch');;
   });
 
+  it('displays a report limit warning on the landing page', () => {
+    cy.get('[data-testid=landing-page-report-limit-warning]').should(
+      'have.contain',
+      'Please note, you can only report one problem at a time.'
+    );
+  });
+
   context('emergency prompt', () => {
     it('displays text', () => {
       cy.get('[data-testid=landing-page-emergency-prompt]').should(

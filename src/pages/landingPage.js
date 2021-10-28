@@ -42,6 +42,9 @@ function LandingPage() {
           <WarningText data-testid="landing-page-emergency-warning" className="govuk-!-margin-top-4">
             For other emergency repairs, please see customer services {contactDetailsPageLink}.
           </WarningText>
+          <WarningText  data-testid="landing-page-report-limit-warning" className="govuk-!-margin-top-4">
+          Please note, you can only report one problem at a time.
+          </WarningText>
           <Details summary="What is an emergency?" className="govuk-!-margin-top-6" data-testid="landing-page-emergency-prompt">
             <div data-testid='landing-page-emergency-info'>
               <Paragraph>
@@ -69,6 +72,9 @@ function LandingPage() {
           </Details>
           <Paragraph>
             This service can only be used by **council tenants** to request a repair.
+          </Paragraph>
+          <Paragraph>
+          To request a repair as a leaseholder, please call **XXXX XXX XXX**
           </Paragraph>
           <Paragraph linkRenderer={newTabLinkRenderer}>
             To request a repair for a **communal area**, please see customer
@@ -100,22 +106,6 @@ function LandingPage() {
               <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
             </svg>
           </a>
-        </GridCol>
-        <GridCol setWidth="one-third">
-          <RelatedItems>
-            <H4>Related pages</H4>
-            <UnorderedList listStyleType="none">
-              <ListItem>
-                <Link href="#">Report a communal repair</Link>
-              </ListItem>
-              <ListItem>
-                <Link href="#">Leaseholder repairs</Link>
-              </ListItem>
-              <ListItem>
-                <Link href="#">Fix it yourself videos</Link>
-              </ListItem>
-            </UnorderedList>
-          </RelatedItems>
         </GridCol>
       </GridRow>
     </Fragment>
