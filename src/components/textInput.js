@@ -12,6 +12,7 @@ class TextInput extends Component {
     this.label = this.props.label;
     this.onSubmit = this.props.onSubmit;
     this.validation = this.props.validation;
+    this.buttonText = this.props.buttonText;
     this.state = {
       value: this.props.value || '',
       error: {}
@@ -67,7 +68,7 @@ class TextInput extends Component {
           <FormGroup>
             <InputField name={this.name} input={this.input} meta={this.state.error}>{this.label}</InputField>
           </FormGroup>
-          <Button onClick={this.formSubmit} >Continue</Button>
+          <Button onClick={this.formSubmit} >{this.buttonText}</Button>
         </form>
       </Fieldset>
     )
@@ -79,6 +80,7 @@ TextInput.propTypes = {
   name: PropTypes.string,
   onSubmit: PropTypes.func.isRequired,
   label: PropTypes.string,
+  buttonText: PropTypes.string,
   title:  PropTypes.string.isRequired,
   validation: PropTypes.shape({
     errorMessage: PropTypes.string,

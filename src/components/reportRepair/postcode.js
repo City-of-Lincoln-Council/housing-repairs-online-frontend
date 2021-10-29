@@ -28,7 +28,7 @@ const Postcode = ({handleChange, values, storeAddresses}) => {
   }
 
   return <GridRow>
-    <GridCol setWidth="two-thirds">
+    <GridCol >
       <TextInput
         value={values.postcode}
         name={'postcode'}
@@ -36,6 +36,7 @@ const Postcode = ({handleChange, values, storeAddresses}) => {
         validation={Validation}
         label="Postcode"
         title="What is the property address?"
+        buttonText={'Select your addresses'}
       ></TextInput>
     </GridCol>
   </GridRow>
