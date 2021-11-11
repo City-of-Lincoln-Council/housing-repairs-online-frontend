@@ -34,7 +34,8 @@ const Address = ({handleChange, values, addresses}) => {
   return <GridRow>
     <GridCol setWidth="two-thirds">
       <Fieldset>
-        <Fieldset.Legend size="XL" isPageHeading>Where is the repair located?</Fieldset.Legend>
+        <Fieldset.Legend size="XL" isPageHeading>Select an address</Fieldset.Legend>
+        <br/>
         <form action="">
           <FormGroup>
             <Select
@@ -42,6 +43,7 @@ const Address = ({handleChange, values, addresses}) => {
                 name: 'address',
                 onChange: onChange
               }}
+              label="Select an address"
               meta={state.error}
             >
               <option value="null">
