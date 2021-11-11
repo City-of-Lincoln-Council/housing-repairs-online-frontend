@@ -32,7 +32,7 @@ describe('App', () => {
   it('displays a report limit warning on the landing page', () => {
     cy.get('[data-testid=landing-page-report-limit-warning]').should(
       'have.contain',
-      'Please note, you can only report one problem at a time.'
+      'This service can only be used to request one repair at a time to a council property.'
     );
   });
 

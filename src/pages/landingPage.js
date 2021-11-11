@@ -1,6 +1,6 @@
 import {
   H1,
-  H2,
+  H3,
   H4,
   Paragraph,
   WarningText,
@@ -33,17 +33,45 @@ function LandingPage() {
       <GridRow>
         <GridCol setWidth="two-thirds">
           <H1>Request a repair</H1>
-          <H2>Before you start</H2>
+          <H3>Before you start</H3>
+          <WarningText  data-testid="landing-page-report-limit-warning" className="govuk-!-margin-top-4">
+            This service can only be used to request one repair at a time to a council property.
+          </WarningText>
+          <br/>
+          <br/>
+          <Paragraph>
+            To request a repair for a **leaseholder**, please see our [leaseholder contact details page](https://www.lincoln.gov.uk/council-housing/council-leaseholders/3).
+          </Paragraph>
+          <Paragraph>
+            To request a repair for a **communal area**, please see customer services contact [details page](https://www.lincoln.gov.uk/contact-1/get-touch).
+          </Paragraph>
+          <Details summary="Which areas are communal?" className="govuk-!-margin-top-6" data-testid="landing-page-communal-prompt">
+            <div data-testid='landing-page-communal-info'>
+              <Paragraph>
+                Communal repairs are usually in areas that people share.
+              </Paragraph>
+              <Paragraph>
+                They can include:
+              </Paragraph>
+              <UnorderedList>
+                <ListItem>repairs to door entry systems</ListItem>
+                <ListItem>lock repairs to communal doors</ListItem>
+                <ListItem>lighting repairs to shared areas</ListItem>
+                <ListItem>glazing repairs to shared doors or stairway windows</ListItem>
+                <ListItem>roof and gutter repairs</ListItem>
+                <ListItem>structure and external walls to your block</ListItem>
+              </UnorderedList>
+            </div>
+          </Details>
+          <br/>
           <WarningText data-testid="landing-page-gas-warning">
             If you suspect you have a gas leak, you must report it immediately
             to the Gas Emergency Service on 0800 111 999 or via textphone
             (minicom) on 0800 371 787
           </WarningText>
+          <br/>
           <WarningText data-testid="landing-page-emergency-warning" className="govuk-!-margin-top-4">
             For other emergency repairs, please see customer services {contactDetailsPageLink}.
-          </WarningText>
-          <WarningText  data-testid="landing-page-report-limit-warning" className="govuk-!-margin-top-4">
-          Please note, you can only report one problem at a time.
           </WarningText>
           <Details summary="What is an emergency?" className="govuk-!-margin-top-6" data-testid="landing-page-emergency-prompt">
             <div data-testid='landing-page-emergency-info'>
@@ -70,34 +98,7 @@ function LandingPage() {
               </UnorderedList>
             </div>
           </Details>
-          <Paragraph>
-            This service can only be used by **council tenants** to request a repair.
-          </Paragraph>
-          <Paragraph>
-          To request a repair as a leaseholder, please call **XXXX XXX XXX**
-          </Paragraph>
-          <Paragraph linkRenderer={newTabLinkRenderer}>
-            To request a repair for a **communal area**, please see customer
-            services [contact details page](https://www.lincoln.gov.uk/contact-1/get-touch).
-          </Paragraph>
-          <Details summary="Which areas are communal?" className="govuk-!-margin-top-6" data-testid="landing-page-communal-prompt">
-            <div data-testid='landing-page-communal-info'>
-              <Paragraph>
-                Communal repairs are usually in areas that people share.
-              </Paragraph>
-              <Paragraph>
-                They can include:
-              </Paragraph>
-              <UnorderedList>
-                <ListItem>repairs to door entry systems</ListItem>
-                <ListItem>lock repairs to communal doors</ListItem>
-                <ListItem>lighting repairs to shared areas</ListItem>
-                <ListItem>glazing repairs to shared doors or stairway windows</ListItem>
-                <ListItem>roof and gutter repairs</ListItem>
-                <ListItem>structure and external walls to your block</ListItem>
-              </UnorderedList>
-            </div>
-          </Details>
+          <hr></hr>
           <a href="/report-repair" role="button" draggable="false"
             className="govuk-button govuk-button--start"
             data-module="govuk-button">
