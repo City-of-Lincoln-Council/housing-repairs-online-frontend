@@ -1,7 +1,7 @@
 const {SearchPropertiesGateway} = require('../../../api/gateways');
-jest.mock('node-fetch');
+jest.mock('axios');
 
-import fetch, {Response} from 'node-fetch';
+import axios from 'axios';
 
 describe('SearchProperties', () => {
   let mockedFetch;
@@ -9,23 +9,25 @@ describe('SearchProperties', () => {
   const api_url = 'https://repairs.api'
   const api_key = 'magic key'
   const postcode = 'M3 0W'
+  let mockedPost;
 
-  beforeEach(() => {
+  beforeAll(() => {
     process.env.REPAIRS_API = api_url
     process.env.REPAIRS_API_KEY = api_key
 
-    mockedFetch = {
-      status: status,
-      json: () => {}
-    };
+    mockedPost = jest.fn().mockImplementation(() => Promise.resolve());
 
-    fetch.mockReturnValue(Promise.resolve(mockedFetch));
+    axios.create = jest.fn(()=>{
+      return {
+        post: mockedPost
+      }
+    })
   });
 
   test('api gets called appropriately', async () => {
     await SearchPropertiesGateway(postcode);
 
-    expect(fetch).toHaveBeenCalledWith(
+    expect(mockedPost).toHaveBeenCalledWith(
       `${api_url}/addresses?postcode=${postcode}`,
       {'headers': {'X-API-Key': api_key}}
     )
@@ -38,7 +40,7 @@ describe('SearchProperties', () => {
         status: status,
         json: () => {}
       };
-      fetch.mockReturnValue(Promise.resolve(mockedFetch));
+      axios.mockReturnValue(Promise.resolve(mockedFetch));
     })
     test('an error gets raised', async () => {
       await SearchPropertiesGateway(postcode).then((res)=>{
