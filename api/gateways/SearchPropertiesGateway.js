@@ -8,7 +8,7 @@ module.exports = async postcode => {
   const axiosInstance = axios.create({
     baseURL: baseUrl
   })
-  console.log(axiosInstance)
+
   result = await axiosInstance.post(`/authentication?identifier=${identifier}`)
     .then(response => {
       var jwt = response.data;
@@ -16,11 +16,10 @@ module.exports = async postcode => {
       return axiosInstance.get(`/addresses?postcode=${postcode}`);
     })
     .then(response => {
-      console.log(response);
       return response.data;
     })
     .catch(error => {
-      console.log(error);
+      console.error(error);
       if (error.status >= 400) {
         return new Error('Error searching');
       }
