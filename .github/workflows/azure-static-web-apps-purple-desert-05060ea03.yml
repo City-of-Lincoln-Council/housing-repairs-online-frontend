@@ -38,10 +38,6 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: true
-      - name: Set env
-        run: cd api && touch .env |
-          echo "REPAIRS_API=${{ secrets.REPAIRS_API }}" >> .env |
-          echo "REPAIRS_API_KEY=${{ secrets.REPAIRS_API_KEY }}" >> .env
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
@@ -58,7 +54,7 @@ jobs:
           ###### End of Repository/Build Configurations ######
         env:
           REPAIRS_API: ${{ secrets.REPAIRS_API }}
-          REPAIRS_API_KEY: ${{ secrets.REPAIRS_API_KEY }}
+          REPAIRS_API_IDENTIFIER: ${{ secrets.REPAIRS_API_IDENTIFIER }}
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
