@@ -19,7 +19,7 @@ const Address = ({handleChange, values}) => {
   const addresses = data.map((a) => {
     return {
       obj: a,
-      display: `${a.addressLine1}, ${a.addressLine2}, ${a.postCode}`
+      display: [a.addressLine1, a.addressLine2, a.postCode].filter(x=>x).join(', ')
     }
   })
 
