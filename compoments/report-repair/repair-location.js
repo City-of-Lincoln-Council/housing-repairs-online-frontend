@@ -26,6 +26,7 @@ const RepairLocation = ({handleChange, values}) => {
         options={options}
         onSubmit={Continue}
         checked={values[name]}
+        buttonText='Continue'
       />
     </div>
   </div>

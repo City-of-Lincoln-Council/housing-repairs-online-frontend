@@ -4,7 +4,7 @@ describe('priorityList', () => {
   });
 
   it('displays the question title', () => {
-    cy.contains('What is the problem?');
+    cy.contains('Are you having one of the emergencies below?');
   });
 
   context('When a user doesn\'t select any option', ()=>{

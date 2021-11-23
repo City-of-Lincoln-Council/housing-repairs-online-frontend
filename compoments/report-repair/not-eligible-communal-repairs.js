@@ -20,7 +20,7 @@ const NotEligibleCommunalRepairs = () => {
         </p>
         <p>
           If you are a leaseholder you can still report communal repairs on
-          <strong>01522 873333</strong>.
+          <strong>01522 873 333</strong>.
         </p>
       </div>
     </div>
