@@ -32,7 +32,7 @@ const PriorityList = ({handleChange, values}) => {
         onSubmit={Continue}
         buttonText={'Continue'}
         checked={values[name]}
-        includeOrDivider={true}
+        orDivider={true}
       ></RadioFieldSet>
     </div>
   </div>)
