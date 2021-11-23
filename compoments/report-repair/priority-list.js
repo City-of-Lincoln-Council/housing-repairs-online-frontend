@@ -7,15 +7,15 @@ const PriorityList = ({handleChange, values}) => {
   const name =  'priority-list';
   const title =  'What is the problem?';
   const options =  [
-    { value: 'gas-emergency/1', title: 'I can smell gas'},
-    { value: 'emergency/2', title: 'I have no heating'},
-    { value: 'emergency/3', title: 'I have no water'},
-    { value: 'emergency/4', title: 'I have no electricity'},
+    { value: 'gas-emergency/1', title: 'I can smell gas in or near the property in or near the property'},
+    { value: 'emergency/2', title: 'I have no heating in the property'},
+    { value: 'emergency/3', title: 'I have no water in the property'},
+    { value: 'emergency/4', title: 'I have no electricity in the property'},
     { value: 'emergency/5', title: 'I have water leaking on to electrics'},
     { value: 'emergency/6', title: 'I can\'t secure my property'},
     { value: 'emergency/7', title: 'I have exposed wiring or sockets'},
     { value: 'emergency/8', title: 'My carbon monoxide or smoke alarm is beeping'},
-    { value: 'non-emergency/9', title: 'Something else'},
+    { value: 'non-emergency/9', title: 'No, I want to request a non-emergency repair'},
   ];
 
   const Continue = val => {
@@ -31,7 +31,9 @@ const PriorityList = ({handleChange, values}) => {
         options={options}
         onSubmit={Continue}
         buttonText={'Continue'}
-        checked={values[name]}></RadioFieldSet>
+        checked={values[name]}
+        includeOrDivider={true}
+      ></RadioFieldSet>
     </div>
   </div>)
 

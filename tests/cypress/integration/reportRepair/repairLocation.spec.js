@@ -4,7 +4,7 @@ describe('repairLocation', () => {
   beforeEach(() => {
     intercept_address_search();
     cy.visit('http://localhost:3000/report-repair/');
-    cy.contains('Something else').click();
+    cy.contains('No, I want to request a non-emergency repair').click();
     cy.get('button').click();
     cy.contains('No').click();
     cy.get('button').click().then(()=>{

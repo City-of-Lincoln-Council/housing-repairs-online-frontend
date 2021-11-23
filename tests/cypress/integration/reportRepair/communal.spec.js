@@ -3,7 +3,7 @@ import {intercept_address_search} from "../../support/helpers";
 describe('communal', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000/report-repair/');
-    cy.contains('Something else').click();
+    cy.contains('No, I want to request a non-emergency repair').click();
     cy.get('button').click()
   });
 
