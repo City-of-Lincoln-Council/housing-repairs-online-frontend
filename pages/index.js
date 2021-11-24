@@ -88,20 +88,6 @@ export default function Home() {
           </a>
         </Link>
       </div>
-      <div className="govuk-grid-column-one-third">
-        <h4>Related pages</h4>
-        <ul listStyleType="none">
-          <li>
-            <TextLink href="#">Report a communal repair</TextLink>
-          </li>
-          <li>
-            <TextLink href="#">Leaseholder repairs</TextLink>
-          </li>
-          <li>
-            <TextLink href="#">Fix it yourself videos</TextLink>
-          </li>
-        </ul>
-      </div>
     </div>
   );
 }
