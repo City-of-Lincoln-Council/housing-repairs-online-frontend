@@ -14,6 +14,7 @@ import Flow from '../../flow';
 import {useEffect, useState} from 'react';
 import React from 'react';
 import BackLink from '../../compoments/backLink';
+import RepairDescription from '../../compoments/report-repair/repair-description';
 
 function ReportRepair() {
   const [state, setState] = useState({data:{}, step: 'priority-list'});
@@ -96,6 +97,13 @@ function ReportRepair() {
       return (
         <SmellGas/>
       )
+    case 'repair-description':
+      return (
+        <RepairDescription
+          handleChange={handleChange}
+          values={values}
+        />
+      )
     default:
       return <div>Not found</div>;
     }
@@ -120,6 +128,7 @@ export async function getStaticPaths() {
     {params: { route: 'postcode'} },
     {params: { route: 'priority-list'} },
     {params: { route: 'repair-location'} },
+    {params: { route: 'repair-description'} },
     {params: { route: 'smell-gas'} }
   ]
 
