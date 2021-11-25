@@ -15,23 +15,37 @@ describe('repairProblem', () => {
       cy.get('select').select('1 Downing Street, London, SW1A 2AA')
       cy.get('button').click();
     });
+  });
+
+  it('displays the repair issue question', () => {
     cy.contains('Kitchen').click();
     cy.get('button').click();
     cy.contains('Cupboards, including damaged cupboard doors').click();
     cy.get('button').click();
-  });
-
-  it('displays the repair issue question', () => {
     cy.contains('What is the problem?');
   });
 
   context('kitchen', () => {
-    it('displays a "Hanging door" option', () => {
-      cy.contains('Hanging door');
+    beforeEach(()=>{
+      cy.contains('Kitchen').click();
+      cy.get('button').click();
     });
 
-    it('displays a "Missing door" option', () => {
-      cy.contains('Missing door');
-    });
+    context('cupboards', () => {
+      beforeEach(()=>{
+
+        cy.contains('Cupboards, including damaged cupboard doors').click();
+        cy.get('button').click();
+      })
+
+      it('displays a "Hanging door" option', () => {
+        cy.contains('Hanging door');
+      });
+
+      it('displays a "Missing door" option', () => {
+        cy.contains('Missing door');
+      });
+    })
+
   });
 });

@@ -15,15 +15,20 @@ describe('repairProblem', () => {
       cy.get('select').select('1 Downing Street, London, SW1A 2AA')
       cy.get('button').click();
     });
-    cy.contains('Kitchen').click();
-    cy.get('button').click();
   });
 
   it('displays the repair problem question', () => {
+    cy.contains('Kitchen').click();
+    cy.get('button').click();
     cy.contains('What does your problem relate to?');
   });
 
   context('kitchen', () => {
+    beforeEach(() => {
+      cy.contains('Kitchen').click();
+      cy.get('button').click();
+    });
+
     it('displays a "cupboards" option', () => {
       cy.contains('Cupboards, including damaged cupboard doors');
     });
