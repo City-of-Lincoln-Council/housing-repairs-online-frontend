@@ -69,7 +69,7 @@ class TextInput extends Component {
               className="govuk-error-message">
               {this.state.error.msg}
             </span>
-            <label className="govuk-label" htmlFor="this.input.id">
+            <label className="govuk-label" htmlFor={this.input.id}>
               {this.label}
             </label>
             <input className="govuk-input govuk-input--width-10 govuk-!-margin-bottom-6" id={this.input.id}
