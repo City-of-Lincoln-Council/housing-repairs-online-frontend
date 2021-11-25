@@ -14,6 +14,8 @@ import Flow from '../../flow';
 import {useEffect, useState} from 'react';
 import React from 'react';
 import BackLink from '../../compoments/backLink';
+import RepairProblemRelatedTo from '../../compoments/report-repair/repair-problem-related-to';
+import RepairProblem from '../../compoments/report-repair/repair-problem';
 import RepairDescription from '../../compoments/report-repair/repair-description';
 
 function ReportRepair() {
@@ -93,6 +95,25 @@ function ReportRepair() {
           values={values}
         />
       )
+    case 'repair-kitchen-problems':
+      return (
+        <RepairProblemRelatedTo
+          handleChange={handleChange}
+          values={values}
+          options = {[{ value: 'cupboards', title: 'Cupboards, including damaged cupboard doors'}]}
+        />
+      )
+    case 'repair-kitchen-cupboard-problems':
+      return (
+        <RepairProblem
+          handleChange={handleChange}
+          values={values}
+          options = {[
+            { value: 'doorHangingOff', title: 'Hanging door'},
+            { value: 'doorMissing', title: 'Missing door'},
+          ]}
+        />
+      )
     case 'smell-gas':
       return (
         <SmellGas/>
@@ -130,6 +151,9 @@ export async function getStaticPaths() {
     {params: { route: 'postcode'} },
     {params: { route: 'priority-list'} },
     {params: { route: 'repair-location'} },
+    {params: { route: 'smell-gas'} },
+    {params: { route: 'repair-kitchen-problems'} },
+    {params: { route: 'repair-kitchen-cupboard-problems'} },
     {params: { route: 'repair-description'} },
     {params: { route: 'smell-gas'} }
   ]

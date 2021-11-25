@@ -22,10 +22,10 @@ class Flow {
       'postcode': {prevStep: 'communal', nextStep: 'address'},
       'address': {prevStep: 'postcode', nextStep: 'repair-location'},
       'repair-location': { prevStep: 'address', nextStep: [
-        {condition: 'kitchen', nextStep: 'repair-kitchen-types'}
+        {condition: 'kitchen', nextStep: 'repair-kitchen-problems'}
       ]},
-      'repair-kitchen-types': { prevStep: 'repair-location', nextStep: [
-        {condition: 'cupboards-or-worktops', nextStep: 'repair-description'},
+      'repair-kitchen-problems': { prevStep: 'repair-location', nextStep: [
+        {condition: 'cupboards', nextStep: 'repair-kitchen-cupboard-problems'},
         {condition: 'damp-or-mould', nextStep: 'repair-description-damp'},
         {condition: 'electrical', nextStep: 'repair-description'},
         {condition: 'heating-or-hot-water', nextStep: 'repair-description'},
@@ -33,6 +33,7 @@ class Flow {
         {condition: 'drip-or-leak', nextStep: 'repair-description-leak'},
         {condition: 'something-else', nextStep: 'repair-description'}
       ]},
+      'repair-kitchen-cupboard-problems': {prevStep: 'cupboards', nextStep: 'repair-description'},
       'repair-description-damp': {prevStep: 'repair-kitchen-types', nextStep: [
         {condition: 'damp', nextStep: 'repair-damp'},
         {condition: 'mould', nextStep: 'repair-description-damp-mold'},
