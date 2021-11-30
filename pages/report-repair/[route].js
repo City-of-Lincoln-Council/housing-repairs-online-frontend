@@ -15,6 +15,7 @@ import {useEffect, useState} from 'react';
 import React from 'react';
 import BackLink from '../../compoments/backLink';
 import RepairDescription from '../../compoments/report-repair/repair-description';
+import RepairAvailability from '../../compoments/report-repair/repair-availability';
 
 function ReportRepair() {
   const [state, setState] = useState({data:{}, step: 'priority-list'});
@@ -104,6 +105,14 @@ function ReportRepair() {
           values={values}
         />
       )
+    case 'repair-availability':
+      return (
+        <RepairAvailability
+          handleChange={handleChange}
+          values={values}
+          nextAvailability={router.query.next}
+        />
+      )
     default:
       return <div>Not found</div>;
     }
@@ -131,6 +140,7 @@ export async function getStaticPaths() {
     {params: { route: 'priority-list'} },
     {params: { route: 'repair-location'} },
     {params: { route: 'repair-description'} },
+    {params: { route: 'repair-availability'} },
     {params: { route: 'smell-gas'} }
   ]
 

@@ -1,12 +1,10 @@
 import PropTypes from 'prop-types';
-import {useState} from 'react';
+import React, {useState} from 'react';
 import Select from '../select';
 import TextLink from '../textLink';
 import Button from '../button';
-import React from 'react';
 import useSWR from 'swr'
-
-const fetcher = (...args) => fetch(...args).then(res => res.json())
+import {fetcher} from '../../helpers/fetcher';
 
 const Address = ({handleChange, values}) => {
   const [state, setState] = useState({error: {}, value: 'null'});
