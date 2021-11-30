@@ -2,22 +2,10 @@ import {intercept_address_search} from '../../support/helpers';
 
 function setup_addresses_search(setup_addresses_API) {
   setup_addresses_API();
-  cy.get('button').click().then(()=>{
-    cy.get('input.govuk-input').type('SW1A 2AA');
-    cy.get('button').click();
-  });
-  cy.get('[data-cy=SectionLoaded]', { timeout: 10000 }).then(($loadedSection) => {});
+  cy.visit('http://localhost:3000/report-repair/address');
 }
 
 describe('address', () => {
-  beforeEach(() => {
-    cy.visit('http://localhost:3000/report-repair/');
-    cy.contains('No, I want to request a non-emergency repair').click();
-    cy.get('button').click();
-    cy.get('[data-cy=SectionLoaded]', { timeout: 10000 }).then(($loadedSection) => {
-      cy.contains('No').click();
-    });
-  });
 
   describe('Content and interaction', () => {
     beforeEach(() => {
@@ -41,14 +29,6 @@ describe('address', () => {
       it('an error should be shown',  () => {
         cy.get('button').click()
         cy.contains('Required');
-      });
-    });
-
-    context('When a user selects an option', ()=>{
-      it('next page is shown',  () => {
-        cy.get('select').select('1 Downing Street, London, SW1A 2AA')
-        cy.get('button').click()
-        cy.url().should('include', '/report-repair/repair-location');
       });
     });
   });
