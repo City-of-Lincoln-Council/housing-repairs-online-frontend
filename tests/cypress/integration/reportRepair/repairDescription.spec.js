@@ -1,5 +1,5 @@
 describe('repair description', () => {
-  beforeEach(() => {
+  before(() => {
     cy.visit('http://localhost:3000/report-repair/repair-description');
   });
 
@@ -31,6 +31,10 @@ describe('repair description', () => {
   });
 
   context('When a types a description that\'s too long', ()=>{
+    before(() => {
+      cy.visit('http://localhost:3000/report-repair/repair-description');
+    });
+
     it('an error is shown',  () => {
       cy.get('textarea').type('Eius postea venit saepius arcessitus. dein ' +
         'syria per speciosam interpatet diffusa planitiem. hanc nobilitat ' +
@@ -56,6 +60,10 @@ describe('repair description', () => {
   });
 
   context('When a user uploads a good image', ()=>{
+    beforeEach(() => {
+      cy.visit('http://localhost:3000/report-repair/repair-description');
+    });
+
     it('the image is shown', () => {
       cy.get('input').attachFile('good.jpg');
       cy.get('img').should('be.visible');
