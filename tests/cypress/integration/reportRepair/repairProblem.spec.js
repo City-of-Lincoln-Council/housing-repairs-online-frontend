@@ -17,35 +17,20 @@ describe('repairProblem', () => {
     });
   });
 
-  it('displays the repair issue question', () => {
+  it('displays the repair problem question', () => {
     cy.contains('Kitchen').click();
-    cy.get('button').click();
-    cy.contains('Cupboards, including damaged cupboard doors').click();
     cy.get('button').click();
     cy.contains('What is the problem?');
   });
 
   context('kitchen', () => {
-    beforeEach(()=>{
+    beforeEach(() => {
       cy.contains('Kitchen').click();
       cy.get('button').click();
     });
 
-    context('cupboards', () => {
-      beforeEach(()=>{
-
-        cy.contains('Cupboards, including damaged cupboard doors').click();
-        cy.get('button').click();
-      })
-
-      it('displays a "Hanging door" option', () => {
-        cy.contains('Hanging door');
-      });
-
-      it('displays a "Missing door" option', () => {
-        cy.contains('Missing door');
-      });
-    })
-
+    it('displays a "cupboards" option', () => {
+      cy.contains('Cupboards, including damaged cupboard doors');
+    });
   });
 });

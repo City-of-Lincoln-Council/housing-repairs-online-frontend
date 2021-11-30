@@ -14,8 +14,8 @@ import Flow from '../../flow';
 import {useEffect, useState} from 'react';
 import React from 'react';
 import BackLink from '../../compoments/backLink';
-import RepairProblemRelatedTo from '../../compoments/report-repair/repair-problem-related-to';
 import RepairProblem from '../../compoments/report-repair/repair-problem';
+import RepairProblemBestDescription from '../../compoments/report-repair/repair-problem-best-description';
 import RepairDescription from '../../compoments/report-repair/repair-description';
 
 function ReportRepair() {
@@ -97,7 +97,7 @@ function ReportRepair() {
       )
     case 'repair-kitchen-problems':
       return (
-        <RepairProblemRelatedTo
+        <RepairProblem
           handleChange={handleChange}
           values={values}
           options = {[{ value: 'cupboards', title: 'Cupboards, including damaged cupboard doors'}]}
@@ -105,7 +105,7 @@ function ReportRepair() {
       )
     case 'repair-kitchen-cupboard-problems':
       return (
-        <RepairProblem
+        <RepairProblemBestDescription
           handleChange={handleChange}
           values={values}
           options = {[

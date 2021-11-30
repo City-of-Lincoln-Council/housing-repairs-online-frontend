@@ -1,6 +1,6 @@
 import {intercept_address_search} from '../../support/helpers';
 
-describe('repairProblem', () => {
+describe('repairProblemBestDescription', () => {
   beforeEach(() => {
     intercept_address_search();
     cy.visit('http://localhost:3000/report-repair/');
@@ -17,20 +17,35 @@ describe('repairProblem', () => {
     });
   });
 
-  it('displays the repair problem question', () => {
+  it('displays the repair issue question', () => {
     cy.contains('Kitchen').click();
     cy.get('button').click();
-    cy.contains('What does your problem relate to?');
+    cy.contains('Cupboards, including damaged cupboard doors').click();
+    cy.get('button').click();
+    cy.contains('What best describes the problem?');
   });
 
   context('kitchen', () => {
-    beforeEach(() => {
+    beforeEach(()=>{
       cy.contains('Kitchen').click();
       cy.get('button').click();
     });
 
-    it('displays a "cupboards" option', () => {
-      cy.contains('Cupboards, including damaged cupboard doors');
-    });
+    context('cupboards', () => {
+      beforeEach(()=>{
+
+        cy.contains('Cupboards, including damaged cupboard doors').click();
+        cy.get('button').click();
+      })
+
+      it('displays a "Hanging door" option', () => {
+        cy.contains('Hanging door');
+      });
+
+      it('displays a "Missing door" option', () => {
+        cy.contains('Missing door');
+      });
+    })
+
   });
 });

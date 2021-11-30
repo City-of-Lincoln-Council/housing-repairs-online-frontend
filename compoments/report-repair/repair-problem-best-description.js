@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import RadioFieldSet from '../radioFieldSet';
 
-const RepairProblemRelatedTo = ({handleChange, values, options}) => {
-  const name =  'repairProblemRelatedTo';
-  const title =  'What does your problem relate to?';
+const RepairProblemBestDescription = ({handleChange, values, options}) => {
+  const name =  'repairProblemBestDescription';
+  const title =  'What best describes the problem?';
 
   const Continue = val => {
     const selected = val[name];
@@ -25,10 +25,10 @@ const RepairProblemRelatedTo = ({handleChange, values, options}) => {
   </div>
 };
 
-RepairProblemRelatedTo.propTypes = {
+RepairProblemBestDescription.propTypes = {
   values: PropTypes.object,
   handleChange: PropTypes.func,
   options: PropTypes.array,
 }
 
-export default RepairProblemRelatedTo;
+export default RepairProblemBestDescription;
