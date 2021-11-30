@@ -87,7 +87,7 @@ describe('priorityList', () => {
   })
 
   context('User uses back buttons to navigate out of an exit page and selects a different option', ()=>{
-    it.only('should redirect the user to a different exit page',  () => {
+    it('should redirect the user to a different exit page',  () => {
       cy.contains('I can smell gas in or near the property').click();
       cy.get('button').click();
       cy.go('back')
