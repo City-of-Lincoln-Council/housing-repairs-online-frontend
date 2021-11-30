@@ -1,13 +1,6 @@
 describe('postcode', () => {
-  beforeEach(() => {
-    cy.visit('http://localhost:3000/report-repair/');
-    cy.contains('No, I want to request a non-emergency repair').click();
-    cy.get('button').click();
-    cy.get('[data-cy=SectionLoaded]', { timeout: 10000 }).then(($loadedSection) => {
-      cy.contains('No').click();
-      cy.get('button').click()
-      cy.wait(300)
-    });
+  before(() => {
+    cy.visit('http://localhost:3000/report-repair/postcode');
   });
 
   it('displays the question', () => {
@@ -36,19 +29,12 @@ describe('postcode', () => {
     });
   });
 
-  context('When a user type a valid postcode', ()=>{
-    it('the user proceeds to the address selection',  () => {
-      cy.get('input').type('SW1A 2AA');
-      cy.get('button').click()
-      cy.url().should('include', '/report-repair/address');
-    });
-  });
-
   context('When a user type a valid postcode and returns to change it', ()=>{
     it('the field is changeable',  () => {
       cy.get('input.govuk-input').type('SW1A 2AA');
       cy.get('button').click()
       cy.contains('Back').click();
+      cy.go(-1)
       cy.get('input').type('hello');
     });
   });
