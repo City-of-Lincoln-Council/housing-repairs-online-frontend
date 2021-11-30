@@ -69,8 +69,10 @@ describe('Kitchen cupboard door repair', () => {
   it('displays availability page', () => {
     intercept_availability_search();
     cy.url().should('include', '/report-repair/repair-availability');
-    cy.contains('When are you available?');
-    cy.contains('1:00pm to 6:00pm').click();
-    cy.get('button').click();
+    cy.get('[data-cy=SectionLoaded]', {timeout: 10000}).then(() => {
+      cy.contains('When are you available?');
+      cy.contains('1:00pm to 6:00pm').click();
+      cy.get('button').click();
+    });
   });
 });
