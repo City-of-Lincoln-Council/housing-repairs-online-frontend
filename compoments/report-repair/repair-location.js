@@ -5,7 +5,7 @@ import RadioFieldSet from '../radioFieldSet';
 
 const RepairLocation = ({handleChange, values}) => {
   const name =  'repairLocation';
-  const title =  'Where is the problem located?';
+  const title =  'Where is the problem?';
   const options =  [
     { value: 'kitchen', title: 'Kitchen'},
     { value: 'bedroom', title: 'Bedroom'},

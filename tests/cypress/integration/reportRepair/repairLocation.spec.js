@@ -21,7 +21,7 @@ describe('repairLocation', () => {
   });
 
   it('displays the repair location question', () => {
-    cy.contains('Where is the problem located?');
+    cy.contains('Where is the problem?');
   });
 
   context('repair location options', () => {

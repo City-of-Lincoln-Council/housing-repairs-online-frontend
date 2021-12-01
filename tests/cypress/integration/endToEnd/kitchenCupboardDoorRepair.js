@@ -40,7 +40,7 @@ describe('Kitchen cupboard door repair', () => {
 
   it('displays repair location page', () => {
     cy.url().should('include', '/report-repair/repair-location');
-    cy.contains('Where is the problem located?');
+    cy.contains('Where is the problem?');
     cy.contains('Kitchen').click();
     cy.get('button').click();
   });
