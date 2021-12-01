@@ -3,7 +3,7 @@ import {
   intercept_availability_search
 } from '../../support/helpers';
 
-describe('Kitchen cupboard door repair', () => {
+xdescribe('Kitchen cupboard door repair', () => {
   before(()=>{
     cy.visit('http://localhost:3000/report-repair/');
   })
