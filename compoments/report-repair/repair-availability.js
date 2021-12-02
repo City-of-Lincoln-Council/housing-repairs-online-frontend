@@ -16,9 +16,6 @@ const RepairAvailability = ({handleChange, values, nextAvailability}) => {
     repairIssue: values.repairProblemBestDescription,
     uprn: values.uprn,
     next: nextAvailability
-  //  repairLocation: "kitchen"
-    // repairProblem: "cupboards"
-    // repairProblemBestDescription: "doorHangingOff"
   }
   const apiUrl = `${baseURL}?${new URLSearchParams(params).toString()}`
   const { data, dataError } = useSWR(apiUrl, fetcher)

@@ -14,7 +14,7 @@ describe('SearchProperties', () => {
   const jwt = '~~~jwt~~~'
 
   beforeAll(() => {
-    process.env.REPAIRS_API = api_url
+    process.env.REPAIRS_API_BASE_URL = api_url
     process.env.REPAIRS_API_IDENTIFIER = api_identifier
 
     mockedPost = jest.fn().mockImplementation(() => Promise.resolve({data: jwt}));
@@ -52,7 +52,7 @@ describe('SearchProperties', () => {
     expect(mockedAxiosInstance.defaults.headers.common['Authorization']).toEqual(`Bearer ${jwt}`);
 
     expect(mockedGet).toHaveBeenCalledWith(
-      `/addresses?postcode=${postcode}`
+      `/addresses?postcode=${postcode}`, {'params': {}}
     )
 
     expect(result).toEqual(dummyData)
