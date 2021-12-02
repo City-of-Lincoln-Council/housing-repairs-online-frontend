@@ -12,6 +12,7 @@ class TextInput extends Component {
     this.onSubmit = this.props.onSubmit;
     this.buttonText = this.props.buttonText;
     this.validation = this.props.validation;
+    this.inputTextWidthClass = this. props.inputTextWidthClass;
     this.state = {
       value: this.props.value || '',
       error: {}
@@ -72,7 +73,7 @@ class TextInput extends Component {
             <label className="govuk-label" htmlFor={this.input.id}>
               {this.label}
             </label>
-            <input className="govuk-input govuk-input--width-10 govuk-!-margin-bottom-6" id={this.input.id}
+            <input className="govuk-input {inputTextWidthClass} govuk-!-margin-bottom-6" id={this.input.id}
               name={this.name} type="text" onChange={this.input.onChange} defaultValue={this.input.defaultValue}/>
             <Button onClick={this.formSubmit} >{this.buttonText}</Button>
           </form>
