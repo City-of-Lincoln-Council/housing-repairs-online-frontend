@@ -1,4 +1,6 @@
-const {SearchPropertiesGateway} = require('../../../api/gateways');
+const {AvailableAppointmentsGateway} = require('../../../api/gateways');
+import dummyData from '../../fixtures/availableAppointments.json'
+
 jest.mock('axios');
 
 import axios from 'axios';
@@ -7,11 +9,14 @@ describe('SearchProperties', () => {
   let mockedGet;
   const api_url = 'https://repairs.api'
   const api_identifier = 'magic key'
-  const postcode = 'M3 0W'
+  const repairLocation = 'Kitchen'
+  const repairProblem = 'Cupboards, including damaged cupboard doors'
+  const repairIssue = 'Missing door'
+  const uprn = '100023336956'
   let mockedPost;
   let mockedAxiosInstance;
-  const dummyData = {postcode: postcode}
-  const jwt = '~~~jwt~~~'
+  const dummyData = dummyData;
+  const jwt = '~~~jwt~~~';
 
   beforeAll(() => {
     process.env.REPAIRS_API_BASE_URL = api_url
@@ -35,7 +40,12 @@ describe('SearchProperties', () => {
   });
 
   test('axios gets instantiated with the api url', async () => {
-    await SearchPropertiesGateway(postcode);
+    await AvailableAppointmentsGateway({
+      repairLocation,
+      repairProblem,
+      repairIssue,
+      uprn
+    });
 
     expect(axios.create).toHaveBeenCalledWith(
       {'baseURL': api_url}
@@ -43,7 +53,12 @@ describe('SearchProperties', () => {
   });
 
   test('api gets called appropriately', async () => {
-    const result = await SearchPropertiesGateway(postcode);
+    const result = await AvailableAppointmentsGateway({
+      repairLocation,
+      repairProblem,
+      repairIssue,
+      uprn
+    });
 
     expect(mockedPost).toHaveBeenCalledWith(
       `/authentication?identifier=${api_identifier}`
@@ -52,9 +67,15 @@ describe('SearchProperties', () => {
     expect(mockedAxiosInstance.defaults.headers.common['Authorization']).toEqual(`Bearer ${jwt}`);
 
     expect(mockedGet).toHaveBeenCalledWith(
-      `/addresses?postcode=${postcode}`, {'params': {}}
+      '/Appointments/AvailableAppointments', {
+        params: {
+          repairIssue: repairIssue,
+          repairLocation: repairLocation,
+          repairProblem: repairProblem,
+          uprn: uprn
+        }
+      }
     )
-
     expect(result).toEqual(dummyData)
   });
 
@@ -67,7 +88,12 @@ describe('SearchProperties', () => {
       })
     })
     test('an error gets raised', async () => {
-      await SearchPropertiesGateway(postcode).then((res)=>{
+      await AvailableAppointmentsGateway({
+        repairLocation,
+        repairProblem,
+        repairIssue,
+        uprn
+      }).then((res)=>{
         expect(res).toEqual(Error('Error searching'));
       });
     })

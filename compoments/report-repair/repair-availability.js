@@ -8,8 +8,16 @@ import moment from 'moment';
 const RepairAvailability = ({handleChange, values, nextAvailability}) => {
   const [error, setError] = useState();
   const [value, setValue] = useState();
+  console.log(values)
   const baseURL = '/api/availability';
-  const apiUrl = nextAvailability ? `${baseURL}?next=true` : baseURL
+  const params =  {
+    repairLocation:  values.repairLocation,
+    repairProblem:  values.repairProblem,
+    repairIssue: values.repairProblemBestDescription,
+    uprn: values.uprn,
+    next: nextAvailability
+  }
+  const apiUrl = `${baseURL}?${new URLSearchParams(params).toString()}`
   const { data, dataError } = useSWR(apiUrl, fetcher)
 
   if (dataError) return <div>failed to load</div>
