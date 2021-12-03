@@ -1,35 +1,46 @@
 import PropTypes from 'prop-types';
+import TextInput from '../textInput';
 import React from 'react';
-import TextInput from "../textInput";
+import parsePhoneNumber from 'libphonenumber-js'
 
 
-const ContactPerson = ({ values }) => {
+const ContactPerson = ({handleChange, values}) => {
   const Continue = val => {
     handleChange('contactPersonNumber', val);
   }
+
   const Validation = {
     errorMessage: 'Not a valid uk number',
-    isValid: (contactPersonNumber) =>{
-      const regexp = /^((((\(?0\d{4}\)?\s?\d{3}\s?\d{3})|(\(?0\d{3}\)?\s?\d{3}\s?\d{4})|(\(?0\d{2}\)?\s?\d{4}\s?\d{4}))(\s?\(\d{4}|\d{3}))?)|((\+44\s?7\d{3}|\(?07\d{3}\)?)\s?\d{3}\s?\d{3})|((((\+44\s?\d{4}|\(?0\d{4}\)?)\s?\d{3}\s?\d{3})|((\+44\s?\d{3}|\(?0\d{3}\)?)\s?\d{3}\s?\d{4})|((\+44\s?\d{2}|\(?0\d{2}\)?)\s?\d{4}\s?\d{4}))(\s?\(\d{4}|\d{3}))?$/;
-      return regexp.test(contactPersonNumber);
+    isValid: (val) =>{
+      const phoneNumber = parsePhoneNumber(val, 'GB')
+      if (phoneNumber) {
+        return phoneNumber.isValid()
+      }
+      return false
     }
   }
-  return (
+
+  return <div className="govuk-grid-row">
     <div>
       <TextInput
         value={values.contactPersonNumber}
-        name={'number'}
+        name={'phone-number'}
         onSubmit={Continue}
         validation={Validation}
+        type="number"
         label="UK telephone number"
         title="What number should we call, if we need to get in touch?"
         buttonText={'Provide contact details'}
         inputTextWidthClass={'govuk-input--width-20'}
       ></TextInput>
     </div>
-  );
+  </div>
 };
+
 ContactPerson.propTypes = {
+  storeAddresses: PropTypes.func,
   values: PropTypes.object,
-};
+  handleChange: PropTypes.func,
+}
+
 export default ContactPerson;
