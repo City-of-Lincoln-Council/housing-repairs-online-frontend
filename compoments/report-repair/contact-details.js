@@ -12,7 +12,7 @@ const ContactDetails = ({handleChange, values}) => {
   const options =  [
     { value: 'text', title: 'Text message (recommended)', conditional: {
       label: 'Please enter a UK mobile (preferred) or landline phone number',
-      type: 'number', validator: phoneValidator
+      type: 'tel', validator: phoneValidator
     }},
     { value: 'email', title: 'Email', conditional: {
       label: 'Please enter your email address',

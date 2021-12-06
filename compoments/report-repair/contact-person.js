@@ -16,7 +16,7 @@ const ContactPerson = ({handleChange, values}) => {
         name={'phone-number'}
         onSubmit={Continue}
         validation={phoneValidator}
-        type="number"
+        type="tel"
         label="Please enter a UK landline or mobile phone number"
         title="What number should we call, if we need to get in touch?"
         buttonText={'Continue'}
