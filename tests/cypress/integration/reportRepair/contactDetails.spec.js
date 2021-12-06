@@ -35,6 +35,13 @@ describe('postcode', () => {
       cy.get('input#contactDetails-email').should('not.be.visible');
     });
 
+    context('When a user doesn\'t type anything', ()=>{
+      it('an error is displayed', () => {
+        cy.get('button').click()
+        cy.contains('Required');
+      });
+    });
+
     context('When a user types in an invalid number', ()=>{
       it('an error is displayed', () => {
         cy.get('input#contactDetails-text').type('12345');
@@ -51,9 +58,16 @@ describe('postcode', () => {
       cy.get('input#contactDetails-email').should('be.visible');
     });
 
+    context('When a user doesn\'t type anything', ()=>{
+      it('an error is displayed', () => {
+        cy.get('button').click()
+        cy.contains('Required');
+      });
+    });
+
     context('When a user types in an invalid number', ()=>{
       it('an error is displayed', () => {
-        cy.get('input#contactDetails-email').type('12345');
+        cy.get('input#contactDetails-email').type('abcde');
         cy.get('button').click()
         cy.contains('Not a valid email');
       });
