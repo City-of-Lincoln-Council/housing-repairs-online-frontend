@@ -1,20 +1,11 @@
 import PropTypes from 'prop-types';
 import TextInput from '../textInput';
 import React from 'react';
-
+import {postCodeValidator} from '../validators';
 
 const Postcode = ({handleChange, values}) => {
   const Continue = val => {
     handleChange('postcode', val);
-  }
-
-  const Validation = {
-    errorMessage: 'Not a valid postcode',
-    isValid: (postcode) =>{
-      const str = postcode.toUpperCase();
-      const regexp = /^[A-Z]{1,2}[0-9][0-9A-Z]?\s?[0-9][A-Z]{2}$|^[A-Z]{2}-?[0-9]{4}$/;
-      return regexp.test(str);
-    }
   }
 
   return <div className="govuk-grid-row">
@@ -23,7 +14,7 @@ const Postcode = ({handleChange, values}) => {
         value={values.postcode}
         name={'postcode'}
         onSubmit={Continue}
-        validation={Validation}
+        validation={postCodeValidator}
         type="text"
         label="Postcode"
         title="What is the property address?"

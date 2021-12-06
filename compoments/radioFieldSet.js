@@ -39,6 +39,9 @@ class RadioFieldSet extends Component {
     if (value) {
       const selectedOption = this.options.find(o => o.value === value);
       if (selectedOption.conditional) {
+        if (selectedOption.conditional.validator && !selectedOption.conditional.validator.isValid(this.conditionalValue[value])) {
+          return this.setState({error: selectedOption.conditional.validator.errorMessage})
+        }
         if (this.conditionalValue[value]) {
           return this.onSubmit(this.state.value)
         }

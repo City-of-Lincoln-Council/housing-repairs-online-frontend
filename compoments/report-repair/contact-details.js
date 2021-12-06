@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
-import TextInput from '../textInput';
 import React from 'react';
-import parsePhoneNumber from 'libphonenumber-js'
+import {phoneValidator, emailValidator} from '../validators';
 import RadioFieldSet from '../radioFieldSet';
 
 
@@ -10,24 +9,14 @@ const ContactDetails = ({handleChange, values}) => {
     handleChange('ContactDetailsNumber', val);
   }
 
-  const Validation = {
-    errorMessage: 'Not a valid uk number',
-    isValid: (val) =>{
-      const phoneNumber = parsePhoneNumber(val, 'GB')
-      if (phoneNumber) {
-        return phoneNumber.isValid()
-      }
-      return false
-    }
-  }
   const options =  [
     { value: 'text', title: 'Text message (recommended)', conditional: {
       label: 'Please enter a UK mobile (preferred) or landline phone number',
-      type: 'number'
+      type: 'number', validator: phoneValidator
     }},
     { value: 'email', title: 'Email', conditional: {
       label: 'Please enter your email address',
-      type: 'email'
+      type: 'email', validator: emailValidator
     }}
   ];
 
