@@ -5,9 +5,9 @@ import parsePhoneNumber from 'libphonenumber-js'
 import RadioFieldSet from '../radioFieldSet';
 
 
-const ContactPerson = ({handleChange, values}) => {
+const ContactDetails = ({handleChange, values}) => {
   const Continue = val => {
-    handleChange('contactPersonNumber', val);
+    handleChange('ContactDetailsNumber', val);
   }
 
   const Validation = {
@@ -33,19 +33,8 @@ const ContactPerson = ({handleChange, values}) => {
 
   return <div className="govuk-grid-row">
     <div>
-      <TextInput
-        value={values.contactPersonNumber}
-        name={'phone-number'}
-        onSubmit={Continue}
-        validation={Validation}
-        type="number"
-        label="UK telephone number"
-        title="What number should we call, if we need to get in touch?"
-        buttonText={'Provide contact details'}
-        inputTextWidthClass={'govuk-input--width-20'}
-      ></TextInput>
       <RadioFieldSet name={'name'}
-        title={'title'}
+        title={'How should we confirm\n the appointment?'}
         options={options}
         onSubmit={Continue} buttonText={'Continue'}
         conditional={false}
@@ -54,10 +43,10 @@ const ContactPerson = ({handleChange, values}) => {
   </div>
 };
 
-ContactPerson.propTypes = {
+ContactDetails.propTypes = {
   storeAddresses: PropTypes.func,
   values: PropTypes.object,
   handleChange: PropTypes.func,
 }
 
-export default ContactPerson;
+export default ContactDetails;

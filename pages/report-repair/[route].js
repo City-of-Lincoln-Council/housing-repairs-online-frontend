@@ -19,6 +19,7 @@ import RepairProblemBestDescription from '../../compoments/report-repair/repair-
 import RepairDescription from '../../compoments/report-repair/repair-description';
 import RepairAvailability from '../../compoments/report-repair/repair-availability';
 import ContactPerson from '../../compoments/report-repair/contact-person';
+import ContactDetails from '../../compoments/report-repair/contact-details';
 
 function ReportRepair() {
   const [state, setState] = useState({data:{}, step: 'priority-list'});
@@ -57,6 +58,13 @@ function ReportRepair() {
     case 'contact-person':
       return (
         <ContactPerson
+          handleChange={handleChange}
+          values={values}
+        />
+      )
+    case 'contact-details':
+      return (
+        <ContactDetails
           handleChange={handleChange}
           values={values}
         />
@@ -164,6 +172,7 @@ export async function getStaticPaths() {
     {params: { route: 'communal'} },
     {params: { route: 'emergency-repair'} },
     {params: { route: 'contact-person'} },
+    {params: { route: 'contact-details'} },
     {params: { route: 'not-eligible'} },
     {params: { route: 'not-eligible-communal-repairs'} },
     {params: { route: 'postcode'} },
