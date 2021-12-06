@@ -6,7 +6,7 @@ import RadioFieldSet from '../radioFieldSet';
 
 const ContactDetails = ({handleChange, values}) => {
   const Continue = val => {
-    handleChange('ContactDetailsNumber', val);
+    handleChange('contactDetails', val);
   }
 
   const options =  [
@@ -22,7 +22,7 @@ const ContactDetails = ({handleChange, values}) => {
 
   return <div className="govuk-grid-row">
     <div>
-      <RadioFieldSet name={'name'}
+      <RadioFieldSet name={'contactDetails'}
         title={'How should we confirm\n the appointment?'}
         options={options}
         onSubmit={Continue} buttonText={'Continue'}

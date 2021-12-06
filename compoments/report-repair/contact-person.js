@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import TextInput from '../textInput';
 import React from 'react';
-import RadioFieldSet from '../radioFieldSet';
 import {phoneValidator} from '../validators';
 
 
@@ -9,17 +8,6 @@ const ContactPerson = ({handleChange, values}) => {
   const Continue = val => {
     handleChange('contactPersonNumber', val);
   }
-
-  const options =  [
-    { value: 'text', title: 'Text message (recommended)', conditional: {
-      label: 'Please enter a UK mobile (preferred) or landline phone number',
-      type: 'number'
-    }},
-    { value: 'email', title: 'Email', conditional: {
-      label: 'Please enter your email address',
-      type: 'email'
-    }}
-  ];
 
   return <div className="govuk-grid-row">
     <div>
@@ -34,12 +22,6 @@ const ContactPerson = ({handleChange, values}) => {
         buttonText={'Provide contact details'}
         inputTextWidthClass={'govuk-input--width-20'}
       ></TextInput>
-      <RadioFieldSet name={'name'}
-        title={'title'}
-        options={options}
-        onSubmit={Continue} buttonText={'Continue'}
-        conditional={false}
-      ></RadioFieldSet>
     </div>
   </div>
 };

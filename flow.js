@@ -79,13 +79,13 @@ class Flow {
       'repair-leak-description-electrics-emergency': {prevStep: 'repair-description-leak-electrics'},
       'repair-description': {prevStep:'' , nextStep: 'contact-person'},//need to investigate this as there are numerous prev steps, but it might just work
       'contact-person': {prevStep: 'repair-description', nextStep:'contact-details'},
-      'repair-availability': {prevStep: 'personal-details', nextStep: 'contact-details-appointment'},
-      'contact-details-appointment': { prevStep: 'repair-availability', nextStep: 'appointment-playback'},
-      'appointment-playback': {prevStep: 'contact-details-appointment', nextStep: [
-        {condition: 'change-appointment', nextStep:'repair-availability'},
-        {condition: 'keep-appointment', nextStep: 'contact-details'}
-      ]},
-      'contact-details': {prevStep: 'appointment-playback', nextStep: 'summary'},
+      'contact-details': {prevStep: 'contact-person', nextStep: 'repair-availability'},
+      'repair-availability': {prevStep: 'personal-details', nextStep: 'summary'},
+      // 'contact-details-appointment': { prevStep: 'repair-availability', nextStep: 'appointment-playback'},
+      // 'appointment-playback': {prevStep: 'contact-details-appointment', nextStep: [
+      //   {condition: 'change-appointment', nextStep:'repair-availability'},
+      //   {condition: 'keep-appointment', nextStep: 'contact-details'}
+      // ]},
       'summary': {prevStep: 'appointment-playback', nextStep: [
         {condition: 'change-repair-address', nextStep: 'postcode'},
         {condition: 'change-contact-details', nextStep: 'contact-details'},
