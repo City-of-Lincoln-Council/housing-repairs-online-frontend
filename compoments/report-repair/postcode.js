@@ -19,7 +19,6 @@ const Postcode = ({handleChange, values}) => {
         label="Postcode"
         title="What is the property address?"
         buttonText={'Select your address'}
-        inputTextWidthClass={'govuk-input--width-10'}
       ></TextInput>
     </div>
   </div>

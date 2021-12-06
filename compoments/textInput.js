@@ -9,11 +9,11 @@ class TextInput extends Component {
     this.name = this.props.name;
     this.title = this.props.title;
     this.label = this.props.label;
+    this.long = this.props.long;
     this.onSubmit = this.props.onSubmit;
     this.buttonText = this.props.buttonText;
     this.validation = this.props.validation;
     this.type = this.props.type;
-    this.inputTextWidthClass = this. props.inputTextWidthClass;
     this.state = {
       value: this.props.value || '',
       error: {}
@@ -66,7 +66,7 @@ class TextInput extends Component {
       <>
         <h1 className="govuk-heading-xl">{this.title}</h1>
         <div className={this.state.error.msg ? 'govuk-form-group--error' : 'govuk-form-group'}>
-          <form action="" className='govuk-grid-column-one-third govuk-!-padding-0'>
+          <form action="" className={(this.long ? 'govuk-grid-column-two-thirds':'govuk-grid-column-one-third')+' govuk-!-padding-0'}>
             <span id={`${this.name}-error`}
               className="govuk-error-message">
               {this.state.error.msg}
@@ -74,7 +74,7 @@ class TextInput extends Component {
             <label className="govuk-label" htmlFor={this.input.id}>
               {this.label}
             </label>
-            <input className="govuk-input {inputTextWidthClass} govuk-!-margin-bottom-6" id={this.input.id}
+            <input className="govuk-input govuk-!-margin-bottom-6" id={this.input.id}
               name={this.name} type={this.type} onChange={this.input.onChange} defaultValue={this.input.defaultValue}/>
             <Button onClick={this.formSubmit} >{this.buttonText}</Button>
           </form>

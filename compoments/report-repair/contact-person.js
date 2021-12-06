@@ -17,10 +17,10 @@ const ContactPerson = ({handleChange, values}) => {
         onSubmit={Continue}
         validation={phoneValidator}
         type="number"
-        label="UK telephone number"
+        label="Please enter a UK landline or mobile phone number"
         title="What number should we call, if we need to get in touch?"
-        buttonText={'Provide contact details'}
-        inputTextWidthClass={'govuk-input--width-20'}
+        buttonText={'Continue'}
+        long={true}
       ></TextInput>
     </div>
   </div>
