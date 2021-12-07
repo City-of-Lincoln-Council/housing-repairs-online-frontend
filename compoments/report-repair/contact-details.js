@@ -5,10 +5,12 @@ import RadioFieldSet from '../radioFieldSet';
 
 
 const ContactDetails = ({handleChange, values}) => {
+  const name = 'contactDetails'
   const Continue = val => {
-    handleChange('contactDetails', val);
+    handleChange(name, val);
   }
-
+  console.log('ooo')
+  console.log(values)
   const options =  [
     { value: 'text', title: 'Text message (recommended)', conditional: {
       label: 'Please enter a UK mobile (preferred) or landline phone number',
@@ -22,11 +24,13 @@ const ContactDetails = ({handleChange, values}) => {
 
   return <div className="govuk-grid-row">
     <div>
-      <RadioFieldSet name={'contactDetails'}
+      <RadioFieldSet name={name}
         title={'How should we confirm\n the appointment?'}
         options={options}
-        onSubmit={Continue} buttonText={'Continue'}
-        conditional={false}
+        onSubmit={Continue}
+        checked={values[name]?.selected}
+        buttonText={'Continue'}
+        conditionalValue={{[values[name]?.selected]: values[name]?.input}}
       ></RadioFieldSet>
     </div>
   </div>
