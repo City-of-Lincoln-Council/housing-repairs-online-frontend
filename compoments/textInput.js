@@ -9,6 +9,7 @@ class TextInput extends Component {
     this.name = this.props.name;
     this.title = this.props.title;
     this.label = this.props.label;
+    this.hint = this.props.hint;
     this.long = this.props.long;
     this.onSubmit = this.props.onSubmit;
     this.buttonText = this.props.buttonText;
@@ -74,6 +75,9 @@ class TextInput extends Component {
             <label className="govuk-label" htmlFor={this.input.id}>
               {this.label}
             </label>
+            <div id="event-name-hint" className="govuk-hint">
+              {this.hint}
+            </div>
             <input className="govuk-input govuk-!-margin-bottom-6" id={this.input.id}
               name={this.name} type={this.type} onChange={this.input.onChange} defaultValue={this.input.defaultValue}/>
             <Button onClick={this.formSubmit} >{this.buttonText}</Button>

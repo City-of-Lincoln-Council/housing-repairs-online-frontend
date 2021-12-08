@@ -9,8 +9,6 @@ const ContactDetails = ({handleChange, values}) => {
   const Continue = val => {
     handleChange(name, val);
   }
-  console.log('ooo')
-  console.log(values)
   const options =  [
     { value: 'text', title: 'Text message (recommended)', conditional: {
       label: 'Please enter a UK mobile (preferred) or landline phone number',
@@ -25,7 +23,7 @@ const ContactDetails = ({handleChange, values}) => {
   return <div className="govuk-grid-row">
     <div>
       <RadioFieldSet name={name}
-        title={'How should we confirm\n the appointment?'}
+        title={'How should we confirm the appointment?'}
         options={options}
         onSubmit={Continue}
         checked={values[name]?.selected}
