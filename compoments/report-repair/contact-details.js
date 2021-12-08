@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import {phoneValidator, emailValidator} from '../validators';
+import {phoneValidator, emailValidator} from '../../helpers/validators';
 import RadioFieldSet from '../radioFieldSet';
 
 

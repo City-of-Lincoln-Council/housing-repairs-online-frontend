@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import TextInput from '../textInput';
 import React from 'react';
-import {postCodeValidator} from '../validators';
+import {postCodeValidator} from '../../helpers/validators';
 
 const Postcode = ({handleChange, values}) => {
   const Continue = val => {

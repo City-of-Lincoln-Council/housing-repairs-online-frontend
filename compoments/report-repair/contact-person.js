@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import TextInput from '../textInput';
 import React from 'react';
-import {phoneValidator} from '../validators';
+import {phoneValidator} from '../../helpers/validators';
 
 
 const ContactPerson = ({handleChange, values}) => {
