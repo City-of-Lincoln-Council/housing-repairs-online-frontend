@@ -27,8 +27,20 @@ const emailValidator = {
   }
 }
 
+const phoneOnKeyPress = (e) => {
+  const charCode = e.which ? e.which : e.keyCode;
+
+  if (charCode == 43){
+    return true
+  }
+  if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+    e.preventDefault();
+  }
+}
+
 export {
   phoneValidator,
   postCodeValidator,
-  emailValidator
+  emailValidator,
+  phoneOnKeyPress
 };

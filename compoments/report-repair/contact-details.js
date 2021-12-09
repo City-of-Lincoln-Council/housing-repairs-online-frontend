@@ -1,6 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import {phoneValidator, emailValidator} from '../../helpers/validators';
+import {
+  phoneValidator,
+  emailValidator,
+  phoneOnKeyPress
+} from '../../helpers/validators';
 import RadioFieldSet from '../radioFieldSet';
 
 
@@ -12,7 +16,7 @@ const ContactDetails = ({handleChange, values}) => {
   const options =  [
     { value: 'text', title: 'Text message (recommended)', conditional: {
       label: 'Please enter a UK mobile (preferred) or landline phone number',
-      type: 'tel', validator: phoneValidator
+      type: 'tel', validator: phoneValidator, onKeyPress: phoneOnKeyPress
     }},
     { value: 'email', title: 'Email', conditional: {
       label: 'Please enter your email address',

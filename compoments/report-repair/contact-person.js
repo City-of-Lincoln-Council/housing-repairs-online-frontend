@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import TextInput from '../textInput';
 import React from 'react';
-import {phoneValidator} from '../../helpers/validators';
+import {phoneOnKeyPress, phoneValidator} from '../../helpers/validators';
 
 
 const ContactPerson = ({handleChange, values}) => {
@@ -21,6 +21,7 @@ const ContactPerson = ({handleChange, values}) => {
         title="What number should we call, if we need to get in touch?"
         buttonText={'Continue'}
         long={true}
+        onKeyPress={phoneOnKeyPress}
       ></TextInput>
     </div>
   </div>

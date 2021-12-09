@@ -10,6 +10,7 @@ class TextInput extends Component {
     this.title = this.props.title;
     this.label = this.props.label;
     this.hint = this.props.hint;
+    this.onKeyPress = this.props.onKeyPress;
     this.long = this.props.long;
     this.onSubmit = this.props.onSubmit;
     this.buttonText = this.props.buttonText;
@@ -79,7 +80,13 @@ class TextInput extends Component {
               {this.hint}
             </div>
             <input className="govuk-input govuk-!-margin-bottom-6" id={this.input.id}
-              name={this.name} type={this.type} onChange={this.input.onChange} defaultValue={this.input.defaultValue}/>
+              name={this.name}
+              type={this.type}
+              onChange={this.input.onChange}
+              defaultValue={this.input.defaultValue}
+              onWheel={(e) => e.target.blur()}
+              onKeyPress={this.onKeyPress}
+            />
             <Button onClick={this.formSubmit} >{this.buttonText}</Button>
           </form>
         </div>

@@ -103,6 +103,8 @@ class RadioFieldSet extends Component {
                       onChange={(e)=>{
                         this.conditionalValue[o.value] = e.target.value
                       }}
+                      onWheel={(e) => e.target.blur()}
+                      onKeyPress={o.conditional.onKeyPress}
                     />
                   </div>
                 </div> }

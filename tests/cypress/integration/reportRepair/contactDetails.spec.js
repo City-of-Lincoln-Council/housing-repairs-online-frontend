@@ -49,6 +49,16 @@ describe('postcode', () => {
         cy.contains('Not a valid uk number');
       });
     });
+
+    context('When a user types invalid characters', ()=>{
+      before(()=>{
+        cy.get('input#contactDetails-text').clear()
+      })
+      it('only numbers are accepted', () => {
+        cy.get('input#contactDetails-text').type('-442031234567');
+        cy.get('input#contactDetails-text').should('have.value', '442031234567')
+      });
+    });
   })
 
   context('When a user selects email option', ()=>{

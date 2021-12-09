@@ -29,4 +29,14 @@ describe('postcode', () => {
       cy.contains('Not a valid uk number');
     });
   });
+
+  context('When a user types invalid characters', ()=>{
+    before(()=>{
+      cy.get('input').clear()
+    })
+    it('only numbers are accepted', () => {
+      cy.get('input').type('§§§+442031234567§§§§§');
+      cy.get('input').should('have.value', '+442031234567')
+    });
+  });
 });
