@@ -12,7 +12,7 @@ describe('SearchProperties', () => {
   const repairLocation = 'Kitchen'
   const repairProblem = 'Cupboards, including damaged cupboard doors'
   const repairIssue = 'Missing door'
-  const uprn = '100023336956'
+  const locationId = '100023336956'
   let mockedPost;
   let mockedAxiosInstance;
   const dummyData = dummyData;
@@ -44,7 +44,7 @@ describe('SearchProperties', () => {
       repairLocation,
       repairProblem,
       repairIssue,
-      uprn
+      locationId
     });
 
     expect(axios.create).toHaveBeenCalledWith(
@@ -57,7 +57,7 @@ describe('SearchProperties', () => {
       repairLocation,
       repairProblem,
       repairIssue,
-      uprn
+      locationId
     });
 
     expect(mockedPost).toHaveBeenCalledWith(
@@ -72,7 +72,7 @@ describe('SearchProperties', () => {
           repairIssue: repairIssue,
           repairLocation: repairLocation,
           repairProblem: repairProblem,
-          uprn: uprn
+          locationId: locationId
         }
       }
     )
@@ -92,7 +92,7 @@ describe('SearchProperties', () => {
         repairLocation,
         repairProblem,
         repairIssue,
-        uprn
+        locationId
       }).then((res)=>{
         expect(res).toEqual(Error('Error searching'));
       });

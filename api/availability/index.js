@@ -7,14 +7,14 @@ module.exports = async function (context, req) {
     repairLocation: req.query.repairLocation,
     repairProblem: req.query.repairProblem,
     repairIssue: req.query.repairIssue,
-    uprn: req.query.uprn
+    locationId: req.query.locationId
   });
 
   context.log({
     repairLocation: req.query.repairLocation,
     repairProblem: req.query.repairProblem,
     repairIssue: req.query.repairIssue,
-    uprn: req.query.uprn
+    locationId: req.query.locationId
   });
 
   context.res = {

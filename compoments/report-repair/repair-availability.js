@@ -14,7 +14,7 @@ const RepairAvailability = ({handleChange, values, nextAvailability}) => {
     repairLocation:  values.repairLocation,
     repairProblem:  values.repairProblem,
     repairIssue: values.repairProblemBestDescription,
-    uprn: values.uprn,
+    locationId: values.address,
     next: nextAvailability
   }
   const apiUrl = `${baseURL}?${new URLSearchParams(params).toString()}`
@@ -38,11 +38,9 @@ const RepairAvailability = ({handleChange, values, nextAvailability}) => {
     })
   }
 
-  console.log(availability)
   const fieldName = 'availability';
 
   const Continue = () => {
-    console.log(value)
     if (value) {
       return handleChange(fieldName, value);
     }
