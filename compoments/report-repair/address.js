@@ -15,16 +15,14 @@ const Address = ({handleChange, values}) => {
   if (!data) return <div>loading...</div>
 
   const addresses = data.map((a) => {
-    return {
-      obj: a,
-      display: [a.addressLine1, a.addressLine2, a.postCode].filter(x=>x).join(', ')
-    }
+    a.display = [a.addressLine1, a.addressLine2, a.postCode].filter(x=>x).join(', ')
+    return a
   })
 
   const found_addresses = `${addresses?.length} ${addresses?.length === 1 ? 'address': 'addresses'} found`
 
   const onChange = e => {
-    setState({error: {}, value: e.target.value})
+    setState({error: {}, value: JSON.parse(e.target.value)})
   }
 
   const Continue = e => {
@@ -36,7 +34,11 @@ const Address = ({handleChange, values}) => {
         touched: true
       }})
     }
-    return handleChange('address', state.value);
+
+    return handleChange('address', {
+      display: state.value.display,
+      locationId: state.value.locationId
+    });
   }
 
   return <div className="govuk-grid-row" data-cy="SectionLoaded">
@@ -63,7 +65,7 @@ const Address = ({handleChange, values}) => {
               {found_addresses}
             </option>
             {addresses?.map((address, i) => (
-              <option value={Object.values(address.obj)} key={i}>
+              <option value={JSON.stringify(address)} key={i}>
                 {address.display}
               </option>
             ))}
