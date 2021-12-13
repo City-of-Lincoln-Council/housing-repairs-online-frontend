@@ -3,7 +3,11 @@ import parsePhoneNumber from 'libphonenumber-js';
 const phoneValidator = {
   errorMessage: 'Not a valid uk number',
   isValid: (val) =>{
-    const phoneNumber = parsePhoneNumber(val, 'GB')
+    const phoneNumber = parsePhoneNumber(val, {
+      defaultCountry: 'GB',
+      extract: false
+    })
+
     if (phoneNumber) {
       return phoneNumber.isValid()
     }
