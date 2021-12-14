@@ -1,6 +1,6 @@
 const {makeGetRequest} = require('./helpers');
 
-module.exports = async ({repairLocation, repairProblem, repairIssue, locationId}) => {
+module.exports = async ({repairLocation, repairProblem, repairIssue, locationId, fromDate}) => {
   let result;
 
   result = await makeGetRequest({
@@ -9,7 +9,8 @@ module.exports = async ({repairLocation, repairProblem, repairIssue, locationId}
       repairLocation: repairLocation,
       repairProblem: repairProblem,
       repairIssue: repairIssue,
-      locationId: locationId
+      locationId: locationId,
+      fromDate: fromDate
     }
   }).then(response => {
     return response.data;

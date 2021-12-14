@@ -4,17 +4,23 @@ import Button from '../button';
 import {fetcher} from '../../helpers/fetcher';
 import useSWR from 'swr';
 import moment from 'moment';
+import {useRouter} from 'next/router';
 
-const RepairAvailability = ({handleChange, values, nextAvailability}) => {
+const RepairAvailability = ({handleChange, values, fromDate}) => {
   const [error, setError] = useState();
   const [value, setValue] = useState();
+  const [latestDate, setLatestDate] = useState(Date.now());
   const baseURL = '/api/availability';
-  const params =  {
-    repairLocation:  values.repairLocation,
-    repairProblem:  values.repairProblem,
+  const router = useRouter();
+
+  const params = {
+    repairLocation: values.repairLocation,
+    repairProblem: values.repairProblem,
     repairIssue: values.repairProblemBestDescription,
     locationId: values.address?.locationId,
-    next: nextAvailability
+  }
+  if (fromDate) {
+    params['fromDate'] = fromDate;
   }
   const apiUrl = `${baseURL}?${new URLSearchParams(params).toString()}`
   const { data, dataError } = useSWR(apiUrl, fetcher)
@@ -27,6 +33,9 @@ const RepairAvailability = ({handleChange, values, nextAvailability}) => {
   if (data) {
     data.forEach((d) => {
       const date = moment(d.startTime)
+      if (date > latestDate) {
+        setLatestDate(date);
+      }
       const dateString = date.format('Do MMMM YYYY')
       const startTime = date.format('h:mma');
       const endTime = moment(d.endTime).format('h:mma')
@@ -93,12 +102,18 @@ const RepairAvailability = ({handleChange, values, nextAvailability}) => {
         </div>
       </div>
       <div>
-        {nextAvailability ? (
+        {fromDate ? (
           <a href="repair-availability"
-            className="govuk-button govuk-button--secondary">Previous 5 days</a>
+            className="govuk-button govuk-button--secondary" onClick={(e)=>{
+              e.preventDefault();
+              router.push(`${router.asPath}`, 'repair-availability', { shallow: true })
+            }}>Previous 5 days</a>
         ) : (
           <a href="repair-availability?next=true"
-            className="govuk-button govuk-button--secondary">Next 5 days</a>
+            className="govuk-button govuk-button--secondary" onClick={(e)=>{
+              e.preventDefault();
+              router.push(`${router.asPath}/?fromDate=${latestDate}`, `${router.asPath}/?next=true`, { shallow: true })
+            }}>Next 5 days</a>
         )}
       </div>
       <Button onClick={Continue} >Continue</Button>

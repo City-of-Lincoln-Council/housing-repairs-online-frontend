@@ -147,7 +147,7 @@ function ReportRepair() {
         <RepairAvailability
           handleChange={handleChange}
           values={values}
-          nextAvailability={router.query.next}
+          fromDate={router.query.fromDate}
         />
       )
     default:
