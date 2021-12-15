@@ -29,7 +29,7 @@ function intercept_availability_search() {
   cy.intercept('GET', `${api_url}/availability*`, {
     statusCode: 201,
     body: dummyAppointments
-  });
+  }).as('availability');
 }
 
 export {

@@ -2,9 +2,15 @@ import {intercept_availability_search} from '../../support/helpers';
 
 
 describe('repair availability', () => {
-  beforeEach(() => {
+  before(() => {
     intercept_availability_search();
     cy.visit('http://localhost:3000/report-repair/repair-availability');
+  });
+
+  it('api is called without from date ', () => {
+    cy.wait('@availability')
+      .its('request.url')
+      .should('not.include', 'fromDate=')
   });
 
   it('displays the question', () => {
@@ -34,13 +40,19 @@ describe('repair availability', () => {
   });
 
   context('when user loads more timeslots', () => {
-    beforeEach(() => {
+    before(() => {
       intercept_availability_search();
       cy.get('a.govuk-button').click();
       cy.wait(100)
     });
 
-    it.only('displays previous button with correct text', () => {
+    it('api is called with appropriate from date ', () => {
+      cy.wait('@availability')
+        .its('request.url')
+        .should('include', 'fromDate=2017-07-22')
+    });
+
+    it('displays previous button with correct text', () => {
       cy.get('a.govuk-button').contains('Previous 5 days');
     });
   })

@@ -9,7 +9,6 @@ import {useRouter} from 'next/router';
 const RepairAvailability = ({handleChange, values, fromDate}) => {
   const [error, setError] = useState();
   const [value, setValue] = useState();
-  const [latestDate, setLatestDate] = useState(Date.now());
   const baseURL = '/api/availability';
   const router = useRouter();
 
@@ -30,12 +29,14 @@ const RepairAvailability = ({handleChange, values, fromDate}) => {
 
   let availability = {};
 
+  let latestDate;
+
   if (data) {
+    let startTimes = data.map(d => moment(d.startTime))
+    latestDate = moment.max(startTimes).format('YYYY-MM-DD');
+
     data.forEach((d) => {
       const date = moment(d.startTime)
-      if (date > latestDate) {
-        setLatestDate(date);
-      }
       const dateString = date.format('Do MMMM YYYY')
       const startTime = date.format('h:mma');
       const endTime = moment(d.endTime).format('h:mma')
@@ -103,17 +104,13 @@ const RepairAvailability = ({handleChange, values, fromDate}) => {
       </div>
       <div>
         {fromDate ? (
-          <a href="repair-availability"
-            className="govuk-button govuk-button--secondary" onClick={(e)=>{
-              e.preventDefault();
-              router.push(`${router.asPath}`, 'repair-availability', { shallow: true })
-            }}>Previous 5 days</a>
+          <a className="govuk-button govuk-button--secondary" onClick={()=>{
+            router.push(`${router.asPath}`, 'repair-availability', { shallow: true })
+          }}>Previous 5 days</a>
         ) : (
-          <a href="repair-availability?next=true"
-            className="govuk-button govuk-button--secondary" onClick={(e)=>{
-              e.preventDefault();
-              router.push(`${router.asPath}/?fromDate=${latestDate}`, `${router.asPath}/?next=true`, { shallow: true })
-            }}>Next 5 days</a>
+          <a className="govuk-button govuk-button--secondary" onClick={()=>{
+            router.push(`${router.asPath}/?fromDate=${latestDate}`, `${router.asPath}/?next=true`, { shallow: true })
+          }}>Next 5 days</a>
         )}
       </div>
       <Button onClick={Continue} >Continue</Button>
