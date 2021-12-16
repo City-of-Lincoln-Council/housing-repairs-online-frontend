@@ -34,10 +34,7 @@ const emailValidator = {
 const phoneOnKeyPress = (e) => {
   const charCode = e.which ? e.which : e.keyCode;
 
-  if (charCode == 43){
-    return true
-  }
-  if ((charCode < '0'.charCodeAt() || charCode > '9'.charCodeAt()) && !charCode == '+'.charCodeAt()) {
+  if ((charCode < '0'.charCodeAt() || charCode > '9'.charCodeAt()) && charCode != '+'.charCodeAt()) {
     e.preventDefault();
   }
 }
