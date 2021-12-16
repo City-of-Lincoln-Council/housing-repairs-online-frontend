@@ -37,7 +37,7 @@ const phoneOnKeyPress = (e) => {
   if (charCode == 43){
     return true
   }
-  if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+  if ((charCode < '0'.charCodeAt() || charCode > '9'.charCodeAt()) && !charCode == '+'.charCodeAt()) {
     e.preventDefault();
   }
 }
