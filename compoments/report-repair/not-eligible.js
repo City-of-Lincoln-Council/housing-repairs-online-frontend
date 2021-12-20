@@ -37,7 +37,7 @@ const NotEligible = () => {
         <hr></hr>
         <h3>Non-emergency requests</h3>
         <p>
-          If you think the council is responsible for your property, please call <strong>01522 873 355</strong>.
+          If you think the council is responsible for your property, please call <strong>01522 873333</strong>.
         </p>
         <p>
           If you are a leaseholder you can still report communal repairs on <strong>01522 873333</strong>.
