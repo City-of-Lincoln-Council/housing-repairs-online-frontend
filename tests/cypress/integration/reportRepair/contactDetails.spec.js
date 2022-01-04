@@ -75,9 +75,29 @@ describe('contactDetails', () => {
       });
     });
 
-    context('When a user types in an invalid number', ()=>{
+    context('When a user types in an invalid email', ()=>{
       it('an error is displayed', () => {
         cy.get('input#contactDetails-email').type('abcde');
+        cy.get('button').click()
+        cy.contains('Not a valid email');
+      });
+    });
+
+    context('When a user types in an invalid email with the right format', ()=>{
+      beforeEach(()=> {
+        cy.reload();
+        cy.contains('Email').click();
+
+      });
+
+      it('an error is displayed when username is invalid', () => {
+        cy.get('input#contactDetails-email').type('!@me.com');
+        cy.get('button').click()
+        cy.contains('Not a valid email');
+      });
+
+      it('an error is displayed when domain is invalid', () => {
+        cy.get('input#contactDetails-email').type('test@!.com');
         cy.get('button').click()
         cy.contains('Not a valid email');
       });
