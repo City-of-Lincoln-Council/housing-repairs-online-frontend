@@ -26,7 +26,7 @@ const emailValidator = {
   errorMessage: 'Not a valid email',
   isValid: (email) =>{
     const str = email.toLowerCase();
-    const regexp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    const regexp = /^\w+([\.-]?\w+)*([\+\.-]?\w+)?@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     return regexp.test(str);
   }
 }
