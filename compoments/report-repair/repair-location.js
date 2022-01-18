@@ -9,7 +9,7 @@ const RepairLocation = ({handleChange, values}) => {
     { value: 'kitchen', title: 'Kitchen'},
     { value: 'bedroom', title: 'Bedroom'},
     { value: 'bathroom', title: 'Bathroom'},
-    { value: 'livingAreas', title: 'Living Areas'},
+    { value: 'living-areas', title: 'Living Areas'},
     { value: 'outside', title: 'Outside'},
   ];
 
