@@ -1120,6 +1120,11 @@ node-releases@^2.0.1:
   resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-2.0.1.tgz#3d1d395f204f1f2f29a54358b9fb678765ad2fc5"
   integrity sha512-CqyzN6z7Q6aMeF/ktcMVTzhAHCEpf8SOarwpzpf8pNBY2k5/oM34UHldUwp8VKI7uxct2HxSRdJjBaZeESzcxA==
 
+nvm@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/nvm/-/nvm-0.0.4.tgz#38a178e9d31b283508c92d15c9da861d1a9210bc"
+  integrity sha1-OKF46dMbKDUIyS0VydqGHRqSELw=
+
 object-keys@^1.0.12, object-keys@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/object-keys/-/object-keys-1.1.1.tgz#1c47f272df277f3b1daf061677d9c82e2322c60e"

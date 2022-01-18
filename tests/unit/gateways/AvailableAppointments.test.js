@@ -1,55 +1,18 @@
-const {AvailableAppointmentsGateway} = require('../../../api/gateways');
 import dummyData from '../../fixtures/availableAppointments.json'
 
-jest.mock('axios');
-
-import axios from 'axios';
-
 describe('SearchProperties', () => {
-  let mockedGet;
-  const api_url = 'https://repairs.api'
-  const api_identifier = 'magic key'
   const repairLocation = 'Kitchen'
   const repairProblem = 'Cupboards, including damaged cupboard doors'
   const repairIssue = 'Missing door'
   const locationId = '100023336956'
-  let mockedPost;
-  let mockedAxiosInstance;
   const dummyData = dummyData;
-  const jwt = '~~~jwt~~~';
+
+  let mockGetRequest;
+  let AvailableAppointmentsGateway;
 
   beforeAll(() => {
-    process.env.REPAIRS_API_BASE_URL = api_url
-    process.env.REPAIRS_API_IDENTIFIER = api_identifier
-
-    mockedPost = jest.fn().mockImplementation(() => Promise.resolve({data: jwt}));
-    mockedGet = jest.fn().mockImplementation(() => Promise.resolve({data: dummyData}));
-    mockedAxiosInstance = {
-      post: mockedPost,
-      get: mockedGet,
-      defaults: {
-        headers: {
-          common: {}
-        }
-      }
-    }
-
-    axios.create = jest.fn(()=>{
-      return mockedAxiosInstance
-    })
-  });
-
-  test('axios gets instantiated with the api url', async () => {
-    await AvailableAppointmentsGateway({
-      repairLocation,
-      repairProblem,
-      repairIssue,
-      locationId
-    });
-
-    expect(axios.create).toHaveBeenCalledWith(
-      {'baseURL': api_url}
-    )
+    mockGetRequest =  jest.fn().mockImplementation(({url, params}) => Promise.resolve({data: dummyData}));
+    AvailableAppointmentsGateway = require('../../../api/gateways/AvailableAppointmentsGateway')(mockGetRequest);
   });
 
   test('api gets called appropriately', async () => {
@@ -60,14 +23,9 @@ describe('SearchProperties', () => {
       locationId
     });
 
-    expect(mockedPost).toHaveBeenCalledWith(
-      `/authentication?identifier=${api_identifier}`
-    )
-
-    expect(mockedAxiosInstance.defaults.headers.common['Authorization']).toEqual(`Bearer ${jwt}`);
-
-    expect(mockedGet).toHaveBeenCalledWith(
-      '/Appointments/AvailableAppointments', {
+    expect(mockGetRequest).toHaveBeenCalledWith(
+      {
+        uri:  '/Appointments/AvailableAppointments',
         params: {
           repairIssue: repairIssue,
           repairLocation: repairLocation,
@@ -80,13 +38,11 @@ describe('SearchProperties', () => {
   });
 
   describe('when api is down', () =>{
-    beforeEach(()=>{
-      axios.create = jest.fn(()=>{
-        return {
-          post: jest.fn().mockRejectedValue({status: 500})
-        }
-      })
-    })
+    beforeAll(() => {
+      mockGetRequest =  jest.fn().mockRejectedValue({status: 500});
+      AvailableAppointmentsGateway = require('../../../api/gateways/AvailableAppointmentsGateway')(mockGetRequest);
+    });
+
     test('an error gets raised', async () => {
       await AvailableAppointmentsGateway({
         repairLocation,

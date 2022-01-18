@@ -1,9 +1,9 @@
-const SearchPropertiesGateway = require('../gateways/SearchPropertiesGateway');
+const {searchPropertiesGateway} = require('../gateways');
 
 module.exports = async function (context, req) {
 
   context.log('JavaScript HTTP trigger function processed a request.');
-  const results = await SearchPropertiesGateway(req.query.postcode);
+  const results = await searchPropertiesGateway(req.query.postcode);
 
   context.log(results);
 

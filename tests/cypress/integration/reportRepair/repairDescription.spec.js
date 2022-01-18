@@ -59,13 +59,13 @@ describe('repair description', () => {
     it('the image is shown', () => {
       cy.get('input').attachFile('good.jpg');
       cy.get('img').should('be.visible');
-      cy.get('button').contains('Delete');
+      cy.get('button.govuk-button--warning').contains('Delete');
       cy.get('input').should('not.exist');
     });
 
     it('allows user to replace image ',  () => {
       cy.get('input').attachFile('good.jpg');
-      cy.get('button').contains('Delete').click();
+      cy.get('button.govuk-button--warning').contains('Delete').click();
       cy.get('input').should('exist');
     });
   });

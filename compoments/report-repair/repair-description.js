@@ -1,10 +1,13 @@
 import PropTypes from 'prop-types';
 import React, {useState} from 'react';
 import Button from '../button';
+import imageToBase64 from 'image-to-base64/browser';
 
 const RepairDescription = ({handleChange, values}) => {
   const [error, setError] = useState({});
   const [selectedImage, setSelectedImage] = useState(values.description?.photo);
+  const [fileExtension, setFileExtension] = useState(values.description?.fileExtension);
+  const [base64img, setBase64img] = useState(values.description?.base64img);
   const [text, setText] = useState(values.description?.text)
   const [textAreaCount, setTextAreaCount] = React.useState(0);
   const textLimit = 255
@@ -30,7 +33,12 @@ const RepairDescription = ({handleChange, values}) => {
       return textTooLong()
     }
     if (text) {
-      return handleChange('description', {photo: selectedImage, text: text});
+      return handleChange('description', {
+        photo: selectedImage,
+        text: text,
+        fileExtension: fileExtension,
+        base64img: base64img
+      });
     }
     setError({text: 'Required', img: error.img})
   }
@@ -48,8 +56,20 @@ const RepairDescription = ({handleChange, values}) => {
       })
     }
     const image = URL.createObjectURL(file)
-    setSelectedImage(image);
-    setError({img: false, text: error.text});
+    imageToBase64(image)
+      .then(
+        (response) => {
+          setBase64img(response);
+          setSelectedImage(image);
+          setFileExtension(file.name.split('.').pop());
+          setError({img: false, text: error.text});
+        }
+      )
+      .catch(
+        (error) => {
+          console.log(error);
+        }
+      )
   }
 
   return <div className="govuk-grid-row" data-cy="repair-description">

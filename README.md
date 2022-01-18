@@ -19,7 +19,7 @@ Globally install azure function tools:
 In one terminal run the next development server:
 
 ```bash
-yarn dev
+nvm use && yarn dev
 ```
 In another terminal run the function server:
 
@@ -32,7 +32,7 @@ cd api/ && cp example.env .env
 Start the development function
 
 ```bash
-cd api/ && yarn start
+cd api/ && nvm use && yarn start
 ```
 > if the function doesn't start try switching your node version to 14.0.0 
 

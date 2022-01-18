@@ -31,7 +31,40 @@ function intercept_availability_search() {
   }).as('availability');
 }
 
+function intercept_save_repair(repairId) {
+  const api_url = 'http://localhost:3000/api';
+
+  cy.intercept('POST', `${api_url}/repair`, {
+    statusCode: 201,
+    body: repairId
+  }).as('saveRepair');
+}
+
+const navigateToPageSelectRadioOptionAndContinue = ({page, option}) => {
+  cy.get(`[data-cy=${page}]`, {timeout: 10000}).then(() => {
+    cy.contains(option).click();
+    cy.get('button').click();
+  });
+}
+
+const navigateToPageTypeInputTextAndContinue = ({page, inputText}) => {
+  cy.get(`[data-cy=${page}]`, {timeout: 10000}).then(() => {
+    cy.get('input.govuk-input').type(inputText);
+    cy.get('button').click();
+  });
+}
+
+const convertDateToDisplayDate = (date) => {
+  let dateArray = date?.split(' ')
+  dateArray?.splice(3, 0, 'between')
+  return(dateArray?.join(' '))
+}
+
 export {
   intercept_address_search,
-  intercept_availability_search
+  intercept_availability_search,
+  navigateToPageSelectRadioOptionAndContinue,
+  navigateToPageTypeInputTextAndContinue,
+  convertDateToDisplayDate,
+  intercept_save_repair
 }

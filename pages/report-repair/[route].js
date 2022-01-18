@@ -20,6 +20,8 @@ import RepairAvailability from '../../compoments/report-repair/repair-availabili
 import Summary from '../../compoments/report-repair/summary';
 import ContactPerson from '../../compoments/report-repair/contact-person';
 import ContactDetails from '../../compoments/report-repair/contact-details';
+import Confirmation from '../../compoments/report-repair/confirmation';
+import Error from '../../compoments/error';
 
 function ReportRepair() {
   const [state, setState] = useState({data:{}, step: 'priority-list'});
@@ -59,6 +61,45 @@ function ReportRepair() {
     }
   }
 
+  const [showBack, setShowBack] = useState(true)
+  const [confirmation, setConfirmation] = useState('');
+  const [formError, setFormError] = useState();
+  const [requestId, setRequestId] = useState();
+
+  const submit = (values) => {
+    fetch('/api/repair', {
+      method: 'POST',
+      body: JSON.stringify({
+        postcode: values.postcode,
+        address: values.address,
+        location: values.repairLocation,
+        problem: values.repairProblem,
+        issue: values.repairProblemBestDescription,
+        contactPersonNumber: values.contactPersonNumber,
+        description: values.description,
+        contactDetails: values.contactDetails,
+        time: values.availability
+      }),
+    }).then(response =>{
+      console.log(response)
+      if (response.ok) {
+        setShowBack(false);
+        router.push('confirmation');
+        setConfirmation(values.contactDetails.value);
+        return response.text().then((text)=> {
+          setRequestId(text);
+        });
+      }
+      window.history.scrollRestoration = 'manual';
+      setFormError(
+        <Error
+          name="summary"
+          heading="An error occurred while requesting your request"
+          body="Please call 01522 873333 to complete your repair request"></Error>
+      )
+    })
+  }
+
   const commonProblems = {
     walls: { value: 'walls/floor/ceiling', title: 'Walls, floor or ceiling, excluding damp' }
   }
@@ -73,7 +114,18 @@ function ReportRepair() {
     switch (currentPath) {
     case 'summary' :
       return (
-        <Summary changeLinkUrlValues={changeLinkUrlValues} values={values}/>
+        <Summary
+          changeLinkUrlValues={changeLinkUrlValues}
+          submit={submit}
+          values={values}
+        />
+      )
+    case 'confirmation':
+      return (
+        <Confirmation
+          requestId={requestId}
+          confirmation={confirmation}
+        />
       )
     case 'contact-person':
       return (
@@ -236,8 +288,9 @@ function ReportRepair() {
 
   return (
     <>
-      <BackLink href="#" onClick={prevStep}>Back</BackLink>
+      {showBack && <BackLink href="#" onClick={prevStep}>Back</BackLink>}
       <div className="govuk-!-margin-top-7">
+        {formError}
         {component()}
       </div>
     </>
@@ -249,6 +302,7 @@ export async function getStaticPaths() {
   const paths = [
     {params: { route: 'summary'}},
     {params: { route: 'address'} },
+    {params: { route: 'confirmation'} },
     {params: { route: 'communal'} },
     {params: { route: 'emergency-repair'} },
     {params: { route: 'contact-person'} },

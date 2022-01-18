@@ -11,8 +11,12 @@ import RadioFieldSet from '../radioFieldSet';
 const ContactDetails = ({handleChange, values}) => {
   const name = 'contactDetails'
   const Continue = val => {
-    handleChange(name, val);
+    handleChange(name, {
+      type: val.selected,
+      value: val.input
+    });
   }
+
   const options =  [
     { value: 'text', title: 'Text message (recommended)', conditional: {
       label: 'Please enter a UK mobile (preferred) or landline phone number',
@@ -30,9 +34,9 @@ const ContactDetails = ({handleChange, values}) => {
         title={'How should we confirm the appointment?'}
         options={options}
         onSubmit={Continue}
-        checked={values[name]?.selected}
+        checked={values[name]?.type}
         buttonText={'Continue'}
-        conditionalValue={{[values[name]?.selected]: values[name]?.input}}
+        conditionalValue={{[values[name]?.type]: values[name]?.value}}
       ></RadioFieldSet>
     </div>
   </div>
