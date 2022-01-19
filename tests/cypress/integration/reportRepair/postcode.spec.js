@@ -47,12 +47,13 @@ describe('postcode', () => {
   });
 
   context('When a user type a valid postcode and returns to change it', ()=>{
-    it('the field is changeable',  () => {
+    it.only('the field is changeable',  () => {
       intercept_address_search()
       cy.get('input.govuk-input').type('SW1A 2AA');
       cy.get('button').click()
       cy.get('[data-cy=address]', {timeout: 10000}).then(() => {
         cy.contains('Back').click();
+        cy.url().should('include', '/report-repair/postcode');
       });
       cy.get('[data-cy=postcode]', {timeout: 10000}).then(() => {
         cy.get('input').type('hello');

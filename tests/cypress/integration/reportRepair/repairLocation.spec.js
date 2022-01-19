@@ -82,10 +82,11 @@ describe('repairLocation', () => {
     beforeEach(()=>{
       getToRepairLocation();
     })
-    it('should be selected when they navigate back to the page',  () => {
+    it.only('should be selected when they navigate back to the page',  () => {
       cy.contains('Kitchen').click();
       cy.get('button').click()
       cy.contains('Back').click()
+      cy.url().should('eq', 'http://localhost:3000/report-repair/repair-location/');
       cy.get('[value="kitchen"]').should('be.checked')
     });
   });
