@@ -82,7 +82,8 @@ describe('repairLocation', () => {
     beforeEach(()=>{
       getToRepairLocation();
     })
-    it.only('should be selected when they navigate back to the page',  () => {
+
+    it('should be selected when they navigate back to the page',  () => {
       cy.contains('Kitchen').click();
       cy.get('button').click();
       cy.get('[data-cy=repair-problem]', {timeout: 10000}).then(() => {
