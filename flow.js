@@ -1,8 +1,11 @@
+
 class Flow {
-  constructor(setState, history, path) {
+  constructor(setState, history, path, prevSteps, setPrevSteps) {
     this.setState = setState;
     this.history = history;
     this.path = path;
+    this.prevSteps = prevSteps;
+    this.setPrevSteps = setPrevSteps;
     this.flow = {
       'priority-list': {prevStep: false, nextStep: [
         {condition: 'gas-emergency/1', nextStep: 'smell-gas'},
@@ -103,14 +106,14 @@ class Flow {
   };
   nextStep (step, state, prevStep) {
     state.prevStep = prevStep ? prevStep : state.step
+    this.setPrevSteps([...this.prevSteps, state.prevStep])
     state.step = step;
     this.setState(state);
 
     this.history.push(step)
   };
-  _prevStepIsNotDefinedOrEqualsCurrentStep = (state) => (state.prevStep === state.step || !state.prevStep)
 
-  _prevStepIsInFlow = (state) => (this.flow[state.step] && this.flow[state.step].prevStep)
+  _stepIsInFlow = (state) => (this.flow[state.step])
 
   getNextStepFromPreviousStepAndCondition = (previousStep, condition) => {
     let steps = this.flow[previousStep].nextStep
@@ -119,24 +122,17 @@ class Flow {
   }
 
   prevStep = (state) => {
-    // Clicking the back button twice will result in the current
-    // step being the same as the previous step, so we need to
-    // workout what the new previous step should be.
-    if (this._prevStepIsNotDefinedOrEqualsCurrentStep(state)) {
-      if (this._prevStepIsInFlow(state)) {
-        if(state.step == 'repair-description' && (state.data.repairProblemBestDescription.value == "doorHangingOff" || state.data.repairProblemBestDescription.value == "doorMissing")){
-          state.prevStep ='repair-kitchen-cupboard-problems'
-        }else {
-          state.prevStep = this.flow[state.step].prevStep
-        }
-      } else {
-        return this.history.push('/')
-      }
-    }
+    const step = this.prevSteps.pop();
+    state.prevStep = step;
+    state.step = step;
+    this.setPrevSteps(this.prevSteps);
 
-    state.step = state.prevStep
-    this.setState(state);
-    this.history.push(state.prevStep)
+    if (this._stepIsInFlow(state)) {
+      this.setState(state);
+      this.history.push(state.prevStep)
+    } else {
+      return this.history.push('/')
+    }
   }
   handleChange = (input, value, state) => {
     state.data[input]= value

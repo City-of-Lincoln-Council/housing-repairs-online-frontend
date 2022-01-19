@@ -30,14 +30,14 @@ function ReportRepair() {
 
   const currentPath = router.query.route
 
-  const flow = new Flow(setState, router, 'report-repair');
+  const [prevSteps, setPrevSteps] = useState([]);
+
+  const flow = new Flow(setState, router, 'report-repair', prevSteps, setPrevSteps);
 
   useEffect(() => {
     getNextStepForRepairProblem()
     router.beforePopState(({ as }) => {
-      if (as !== router.asPath) {
-        prevStep();
-      }
+      flow.prevStep(state)
       return true;
     });
 
@@ -101,7 +101,6 @@ function ReportRepair() {
   }
 
   const prevStep = (e) => {
-    e?.preventDefault();
     flow.prevStep(state)
   }
   const values = state.data;
