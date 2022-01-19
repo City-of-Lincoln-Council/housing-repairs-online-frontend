@@ -5,15 +5,19 @@ describe('Flow', () => {
   let historySpy;
   let pathDummy;
   let flow;
+  let prevStepsDummy = [];
+  let setPrevStepsSpy;
 
-  beforeAll(() => {
+  beforeEach(() => {
     setStateSpy = jest.fn();
     historySpy = {
       push: jest.fn()
     };
+    setPrevStepsSpy = jest.fn();
+
     pathDummy = 'report-repair';
 
-    flow = new Flow(setStateSpy, historySpy, pathDummy);
+    flow = new Flow(setStateSpy, historySpy, pathDummy, prevStepsDummy, setPrevStepsSpy);
   });
 
   afterEach(() => {
@@ -28,6 +32,9 @@ describe('Flow', () => {
         prevStep: '',
         step: step
       });
+
+      expect(setPrevStepsSpy).toHaveBeenCalledWith(['']);
+
       expect(historySpy.push).toHaveBeenCalledWith(`${step}`);
     });
 
@@ -38,46 +45,18 @@ describe('Flow', () => {
         prevStep: 'Two',
         step: step
       });
+      expect(setPrevStepsSpy).toHaveBeenCalledWith(['Two']);
       expect(historySpy.push).toHaveBeenCalledWith(`${step}`);
     });
   });
 
-  describe('_prevStepIsNotDefinedOrEqualsCurrentStep', () => {
-    test('returns true if previous step is not defined', () => {
-      const state = {
-        prevStep: '',
-        step: 'anything'
-      }
-      let result = flow._prevStepIsNotDefinedOrEqualsCurrentStep(state)
-      expect(result).toBe(true)
-    })
-
-    test('returns true if previous step equal step', () => {
-      const state = {
-        prevStep: 'anything',
-        step: 'anything'
-      }
-      let result = flow._prevStepIsNotDefinedOrEqualsCurrentStep(state)
-      expect(result).toBe(true)
-    })
-
-    test('returns false if previous step not equal step', () => {
-      const state = {
-        prevStep: 'something',
-        step: 'anything'
-      }
-      let result = flow._prevStepIsNotDefinedOrEqualsCurrentStep(state)
-      expect(result).toBe(false)
-    })
-  })
-
-  describe('_prevStepIsInFlow', ()=>{
+  describe('_stepIsInFlow', ()=>{
     test('returns true if previous step is in flow', ()=>{
       const state = {
         prevStep: '',
         step: 'address'
       }
-      let result = flow._prevStepIsInFlow(state)
+      let result = flow._stepIsInFlow(state)
       expect(result).toBeTruthy()
     })
 
@@ -86,37 +65,45 @@ describe('Flow', () => {
         prevStep: '',
         step: 'something'
       }
-      let result = flow._prevStepIsInFlow(state)
+      let result = flow._stepIsInFlow(state)
       expect(result).toBeFalsy()
     })
   })
 
   describe('prevStep', ()=>{
+    beforeAll(()=> {
+      prevStepsDummy = ['postcode'];
+
+      flow = new Flow(setStateSpy, historySpy, pathDummy, prevStepsDummy, setPrevStepsSpy);
+    })
     test('changes step to previous step', ()=>{
       const state = {
         prevStep: 'postcode',
         step: 'address'
       }
       flow.prevStep(state);
-      expect(setStateSpy).toHaveBeenCalledWith({
-        prevStep: 'postcode',
-        step: 'postcode'
-      });
+
+      expect(setPrevStepsSpy).toHaveBeenCalledWith([]);
+
+      expect(setStateSpy).toHaveBeenCalledWith({"prevStep": "postcode", "step": "postcode"});
+
       expect(historySpy.push).toHaveBeenCalledWith('postcode');
     });
 
     describe('when step and previous step are equal', ()=> {
+      beforeAll(()=> {
+        prevStepsDummy = ['address'];
+
+        flow = new Flow(setStateSpy, historySpy, pathDummy, prevStepsDummy, setPrevStepsSpy);
+      })
       test('find\'s previous step from flow', () => {
         const state = {
           prevStep: 'address',
           step: 'address'
         }
         flow.prevStep(state);
-        expect(setStateSpy).toHaveBeenCalledWith({
-          prevStep: 'postcode',
-          step: 'postcode'
-        });
-        expect(historySpy.push).toHaveBeenCalledWith('postcode');
+        expect(setStateSpy).toHaveBeenCalledWith(state);
+        expect(historySpy.push).toHaveBeenCalledWith('address');
       });
     });
 
@@ -133,6 +120,11 @@ describe('Flow', () => {
     })
 
     describe('multiple previous step', ()=>{
+      beforeEach(()=> {
+        prevStepsDummy = ['kitchen', 'repair-kitchen-cupboard-problems'];
+
+        flow = new Flow(setStateSpy, historySpy, pathDummy, prevStepsDummy, setPrevStepsSpy);
+      })
       test('redirects repair-kitchen-cupboard-problems when repairProblemBestDescription value is doorMissing', ()=>{
         const state = {
           prevStep: 'repair-description',
@@ -160,19 +152,6 @@ describe('Flow', () => {
         flow.prevStep(state);
         expect(setStateSpy).toBeCalled();
         expect(historySpy.push).toHaveBeenCalledWith('repair-kitchen-cupboard-problems');
-      });
-      test('does not redirect to repair-kitchen-cupboard-problems when repairProblemBestDescription value is random', ()=>{
-        const state = {
-          prevStep: 'repair-description',
-          step: 'repair-description',
-          data: {
-            repairProblemBestDescription: {
-              value: 'random'
-            }
-          }
-        }
-        flow.prevStep(state);
-        expect(historySpy.push).not.toHaveBeenCalledWith('repair-kitchen-cupboard-problems');
       });
     })
   });
