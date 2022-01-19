@@ -7,5 +7,7 @@
   "downloadsFolder": "tests/cypress/downloads",
   "supportFile": "tests/cypress/support/index.js",
   "chromeWebSecurity": false,
-  "projectId": "xqvxh7"
+  "projectId": "xqvxh7",
+  "video": true,
+  "videoUploadOnPasses": false
 }

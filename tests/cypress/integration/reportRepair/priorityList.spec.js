@@ -90,7 +90,8 @@ describe('priorityList', () => {
     it('should redirect the user to a different exit page',  () => {
       cy.contains('I can smell gas in or near the property').click();
       cy.get('button').click();
-      cy.go('back')
+      cy.url().should('include', '/report-repair/smell-gas');
+      cy.go('back');
       cy.contains('I have no heating in the property').click();
       cy.get('button').click()
       cy.url().should('include', '/report-repair/emergency-repair');
@@ -101,7 +102,8 @@ describe('priorityList', () => {
     it('should redirect the user to the same exit page',  () => {
       cy.contains('I can smell gas in or near the property').click();
       cy.get('button').click();
-      cy.go('back')
+      cy.url().should('include', '/report-repair/smell-gas');
+      cy.go('back');
       cy.contains('I can smell gas in or near the property').click();
       cy.get('button').click()
       cy.url().should('include', '/report-repair/smell-gas');
