@@ -100,6 +100,10 @@ function ReportRepair() {
     })
   }
 
+  const commonProblems = {
+    walls: { value: 'wallsFloorsCeiling', title: 'Walls, floor or ceiling, excluding damp' }
+  }
+
   const prevStep = (e) => {
     e?.preventDefault();
     flow.prevStep(state)
@@ -186,7 +190,50 @@ function ReportRepair() {
         <RepairProblem
           handleChange={handleChange}
           values={values}
-          options = {[{ value: 'cupboards', title: 'Cupboards, including damaged cupboard doors'}]}
+          options = {[
+            { value: 'cupboards', title: 'Cupboards, including damaged cupboard doors'},
+            commonProblems.walls
+          ]}
+        />
+      )
+    case 'repair-bathroom-problems':
+      return (
+        <RepairProblem
+          handleChange={handleChange}
+          values={values}
+          options = {[
+            commonProblems.walls
+          ]}
+        />
+      )
+    case 'repair-bedroom-problems':
+      return (
+        <RepairProblem
+          handleChange={handleChange}
+          values={values}
+          options = {[
+            commonProblems.walls
+          ]}
+        />
+      )
+    case 'repair-bedroom-problems':
+      return (
+        <RepairProblem
+          handleChange={handleChange}
+          values={values}
+          options = {[
+            commonProblems.walls
+          ]}
+        />
+      )
+    case 'repair-living-areas-problems':
+      return (
+        <RepairProblem
+          handleChange={handleChange}
+          values={values}
+          options = {[
+            commonProblems.walls
+          ]}
         />
       )
     case 'repair-kitchen-cupboard-problems':
@@ -197,6 +244,22 @@ function ReportRepair() {
           options = {[
             { value: 'doorHangingOff', title: 'Hanging door'},
             { value: 'doorMissing', title: 'Missing door'},
+          ]}
+        />
+      )
+    case 'wall-problems':
+      return (
+        <RepairProblemBestDescription
+          handleChange={handleChange}
+          values={values}
+          options = {[
+            { value: 'wallTiles', title: 'Wall tiles'},
+            { value: 'floorTiles', title: 'Floor tiles'},
+            { value: 'lightFitting', title: 'Light fitting(s)'},
+            { value: 'skirtingBoardArchitrave', title: 'Skirting boards or architraves'},
+            { value: 'plasteringCeiling', title: 'Plastering on the ceiling'},
+            { value: 'plasteringWalls', title: 'Plastering on the walls'},
+            { value: 'woodenFloorboards', title: 'Wooden floorboards'},
           ]}
         />
       )
@@ -252,6 +315,10 @@ export async function getStaticPaths() {
     {params: { route: 'repair-location'} },
     {params: { route: 'smell-gas'} },
     {params: { route: 'repair-kitchen-problems'} },
+    {params: { route: 'repair-bathroom-problems'} },
+    {params: { route: 'repair-bedroom-problems'} },
+    {params: { route: 'repair-living-areas-problems'} },
+    {params: { route: 'wall-problems'} },
     {params: { route: 'repair-kitchen-cupboard-problems'} },
     {params: { route: 'repair-description'} },
     {params: { route: 'repair-availability'} },

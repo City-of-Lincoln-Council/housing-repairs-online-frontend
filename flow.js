@@ -25,7 +25,10 @@ class Flow {
       'postcode': {prevStep: 'communal', nextStep: 'address'},
       'address': {prevStep: 'postcode', nextStep: 'repair-location'},
       'repair-location': { prevStep: 'address', nextStep: [
-        {condition: 'kitchen', nextStep: 'repair-kitchen-problems'}
+        {condition: 'kitchen', nextStep: 'repair-kitchen-problems'},
+        {condition: 'bathroom', nextStep: 'repair-bathroom-problems'},
+        {condition: 'bedroom', nextStep: 'repair-bedroom-problems'},
+        {condition: 'livingAreas', nextStep: 'repair-living-areas-problems'},
       ]},
       'repair-kitchen-problems': { prevStep: 'repair-location', nextStep: [
         {condition: 'cupboards', nextStep: 'repair-kitchen-cupboard-problems'},
@@ -34,8 +37,19 @@ class Flow {
         {condition: 'heating-or-hot-water', nextStep: 'repair-description'},
         {condition: 'sink', nextStep: 'repair-description'},
         {condition: 'drip-or-leak', nextStep: 'repair-description-leak'},
-        {condition: 'something-else', nextStep: 'repair-description'}
+        {condition: 'something-else', nextStep: 'repair-description'},
+        {condition: 'wallsFloorsCeiling', nextStep: 'wall-problems'}
       ]},
+      'repair-bathroom-problems': { prevStep: 'repair-location', nextStep: [
+        {condition: 'wallsFloorsCeiling', nextStep: 'wall-problems'}
+      ]},
+      'repair-bedroom-problems': { prevStep: 'repair-location', nextStep: [
+        {condition: 'wallsFloorsCeiling', nextStep: 'wall-problems'}
+      ]},
+      'repair-living-areas-problems': { prevStep: 'repair-location', nextStep: [
+        {condition: 'wallsFloorsCeiling', nextStep: 'wall-problems'}
+      ]},
+      'wall-problems': {nextStep: 'repair-description'},
       'repair-kitchen-cupboard-problems': {prevStep: 'repair-kitchen-problems', nextStep: 'repair-description'},
       'repair-description-damp': {prevStep: 'repair-kitchen-types', nextStep: [
         {condition: 'damp', nextStep: 'repair-damp'},

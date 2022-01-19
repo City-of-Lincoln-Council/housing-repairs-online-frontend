@@ -60,11 +60,35 @@ const convertDateToDisplayDate = (date) => {
   return(dateArray?.join(' '))
 }
 
+const navigateToLocation = () => {
+  intercept_address_search();
+  cy.visit('http://localhost:3000/report-repair/');
+
+  navigateToPageSelectRadioOptionAndContinue({
+    page: 'priority-list',
+    option:'No, I want to request a non-emergency repair'
+  })
+
+  navigateToPageSelectRadioOptionAndContinue({
+    page: 'communal', option:'No'
+  })
+
+  navigateToPageTypeInputTextAndContinue({
+    page: 'postcode', inputText:'SW1A 2AA'
+  })
+
+  cy.get('[data-cy=address]', {timeout: 10000}).then(() => {
+    cy.get('select').select('1 Downing Street, London, SW1A 2AA')
+    cy.get('button').click();
+  });
+}
+
 export {
   intercept_address_search,
   intercept_availability_search,
   navigateToPageSelectRadioOptionAndContinue,
   navigateToPageTypeInputTextAndContinue,
   convertDateToDisplayDate,
-  intercept_save_repair
+  intercept_save_repair,
+  navigateToLocation
 }

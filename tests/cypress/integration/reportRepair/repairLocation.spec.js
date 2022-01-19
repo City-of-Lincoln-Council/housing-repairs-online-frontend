@@ -1,27 +1,8 @@
-import {intercept_address_search} from '../../support/helpers';
-
-function getToRepairLocation() {
-  intercept_address_search();
-  cy.visit('http://localhost:3000/report-repair/');
-  cy.contains('No, I want to request a non-emergency repair').click();
-  cy.get('button').click();
-  cy.get('[data-cy=communal]', {timeout: 10000}).then(($loadedSection) => {
-    cy.contains('No').click({force: true});
-    cy.get('button').click().then(() => {
-      cy.wait(100)
-      cy.get('input.govuk-input').type('SW1A 2AA');
-      cy.get('button').click();
-    });
-  });
-  cy.get('[data-cy=address]', {timeout: 10000}).then(($loadedSection) => {
-    cy.get('select').select('1 Downing Street, London, SW1A 2AA')
-    cy.get('button').click();
-  });
-}
+import {navigateToLocation} from '../../support/helpers';
 
 describe('repairLocation', () => {
   before(() => {
-    getToRepairLocation();
+    navigateToLocation();
   });
 
   it('displays the repair location question', () => {
@@ -60,7 +41,7 @@ describe('repairLocation', () => {
 
   context('When a user selects: Kitchen', ()=>{
     beforeEach(()=>{
-      getToRepairLocation();
+      navigateToLocation();
     })
     context('by clicking the label', ()=>{
       it('should redirect them to kitchen repair type page',  () => {
@@ -78,9 +59,69 @@ describe('repairLocation', () => {
     });
   });
 
+  context('When a user selects: Bathroom', ()=>{
+    beforeEach(()=>{
+      navigateToLocation();
+    })
+    context('by clicking the label', ()=>{
+      it('should redirect them to kitchen repair type page',  () => {
+        cy.contains('Bathroom').click();
+        cy.get('button').click()
+        cy.url().should('include', '/report-repair/repair-bathroom-problems');
+      });
+    });
+    context('by checking the radio button', ()=>{
+      it('should redirect them to kitchen repair type page',  () => {
+        cy.get('[value="bathroom"]').check();
+        cy.get('button').click()
+        cy.url().should('include', '/report-repair/repair-bathroom-problems');
+      });
+    });
+  });
+
+  context('When a user selects: Bedroom', ()=>{
+    beforeEach(()=>{
+      navigateToLocation();
+    })
+    context('by clicking the label', ()=>{
+      it('should redirect them to kitchen repair type page',  () => {
+        cy.contains('Bedroom').click();
+        cy.get('button').click()
+        cy.url().should('include', '/report-repair/repair-bedroom-problems');
+      });
+    });
+    context('by checking the radio button', ()=>{
+      it('should redirect them to kitchen repair type page',  () => {
+        cy.get('[value="bedroom"]').check();
+        cy.get('button').click()
+        cy.url().should('include', '/report-repair/repair-bedroom-problems');
+      });
+    });
+  });
+
+  context('When a user selects: Living Areas', ()=>{
+    beforeEach(()=>{
+      navigateToLocation();
+    })
+    context('by clicking the label', ()=>{
+      it('should redirect them to kitchen repair type page',  () => {
+        cy.contains('Living Areas').click();
+        cy.get('button').click()
+        cy.url().should('include', '/report-repair/repair-living-areas-problems');
+      });
+    });
+    context('by checking the radio button', ()=>{
+      it('should redirect them to kitchen repair type page',  () => {
+        cy.get('[value="livingAreas"]').check();
+        cy.get('button').click()
+        cy.url().should('include', '/report-repair/repair-living-areas-problems');
+      });
+    });
+  });
+
   context('When a user selects an option', ()=>{
     beforeEach(()=>{
-      getToRepairLocation();
+      navigateToLocation();
     })
 
     it('should be selected when they navigate back to the page',  () => {

@@ -1,55 +1,25 @@
 import {
-  intercept_address_search,
-  navigateToPageSelectRadioOptionAndContinue,
-  navigateToPageTypeInputTextAndContinue
+  navigateToLocation
 } from '../../support/helpers';
 
 describe('repairProblemBestDescription', () => {
-  const address = '1 Downing Street, London, SW1A 2AA';
-
-  beforeEach(() => {
-    intercept_address_search();
-    cy.visit('http://localhost:3000/report-repair/');
-
-    navigateToPageSelectRadioOptionAndContinue({
-      page: 'priority-list',
-      option:'No, I want to request a non-emergency repair'
-    })
-
-    navigateToPageSelectRadioOptionAndContinue({
-      page: 'communal', option:'No'
-    })
-
-    navigateToPageTypeInputTextAndContinue({
-      page: 'postcode', inputText:'SW1A 2AA'
-    })
-
-    cy.get('[data-cy=address]', {timeout: 10000}).then(() => {
-      cy.get('select').select(address)
-      cy.get('button').click();
-    });
-  });
-
-  it('displays the repair issue question', () => {
-    cy.contains('Kitchen').click();
-    cy.get('button').click();
-    cy.contains('Cupboards, including damaged cupboard doors').click();
-    cy.get('button').click();
-    cy.contains('What best describes the problem?');
-  });
 
   context('kitchen', () => {
-    beforeEach(()=>{
+    before(()=>{
+      navigateToLocation()
       cy.contains('Kitchen').click();
       cy.get('button').click();
     });
 
     context('cupboards', () => {
-      beforeEach(()=>{
-
+      before(()=>{
         cy.contains('Cupboards, including damaged cupboard doors').click();
         cy.get('button').click();
-      })
+      });
+
+      it('displays the repair issue question', () => {
+        cy.contains('What best describes the problem?');
+      });
 
       it('displays a "Hanging door" option', () => {
         cy.contains('Hanging door');
@@ -59,6 +29,190 @@ describe('repairProblemBestDescription', () => {
         cy.contains('Missing door');
       });
     })
+
+    context('Walls, floor or ceiling, excluding damp', () => {
+      before(()=>{
+        cy.go(-1);
+        cy.contains('Walls, floor or ceiling, excluding damp').click();
+        cy.get('button').click();
+      });
+
+      it('displays the repair issue question', () => {
+        cy.contains('What best describes the problem?');
+      });
+
+      it('displays a "Wall tiles" option', () => {
+        cy.contains('Wall tiles');
+      });
+
+      it('displays a "Floor tiles" option', () => {
+        cy.contains('Floor tiles');
+      });
+
+      it('displays a "Light fitting(s)" option', () => {
+        cy.contains('Light fitting(s)');
+      });
+
+      it('displays a "Skirting boards or architraves" option', () => {
+        cy.contains('Skirting boards or architraves');
+      });
+
+      it('displays a "Plastering on the ceiling" option', () => {
+        cy.contains('Plastering on the ceiling');
+      });
+
+      it('displays a "Plastering on the walls" option', () => {
+        cy.contains('Plastering on the walls');
+      });
+
+      it('displays a "Wooden floorboards" option', () => {
+        cy.contains('Wooden floorboards');
+      });
+    });
+
+  })
+
+  context('bathroom', () => {
+    before(()=>{
+      navigateToLocation()
+      cy.contains('Bathroom').click();
+      cy.get('button').click();
+    });
+
+    context('Walls, floor or ceiling, excluding damp', () => {
+      before(()=>{
+        cy.contains('Walls, floor or ceiling, excluding damp').click();
+        cy.get('button').click();
+      });
+
+      it('displays the repair issue question', () => {
+        cy.contains('What best describes the problem?');
+      });
+
+      it('displays a "Wall tiles" option', () => {
+        cy.contains('Wall tiles');
+      });
+
+      it('displays a "Floor tiles" option', () => {
+        cy.contains('Floor tiles');
+      });
+
+      it('displays a "Light fitting(s)" option', () => {
+        cy.contains('Light fitting(s)');
+      });
+
+      it('displays a "Skirting boards or architraves" option', () => {
+        cy.contains('Skirting boards or architraves');
+      });
+
+      it('displays a "Plastering on the ceiling" option', () => {
+        cy.contains('Plastering on the ceiling');
+      });
+
+      it('displays a "Plastering on the walls" option', () => {
+        cy.contains('Plastering on the walls');
+      });
+
+      it('displays a "Wooden floorboards" option', () => {
+        cy.contains('Wooden floorboards');
+      });
+    });
+
+  });
+
+  context('bedroom', () => {
+    before(()=>{
+      navigateToLocation()
+      cy.contains('Bedroom').click();
+      cy.get('button').click();
+    });
+
+    context('Walls, floor or ceiling, excluding damp', () => {
+      before(()=>{
+        cy.contains('Walls, floor or ceiling, excluding damp').click();
+        cy.get('button').click();
+      });
+
+      it('displays the repair issue question', () => {
+        cy.contains('What best describes the problem?');
+      });
+
+      it('displays a "Wall tiles" option', () => {
+        cy.contains('Wall tiles');
+      });
+
+      it('displays a "Floor tiles" option', () => {
+        cy.contains('Floor tiles');
+      });
+
+      it('displays a "Light fitting(s)" option', () => {
+        cy.contains('Light fitting(s)');
+      });
+
+      it('displays a "Skirting boards or architraves" option', () => {
+        cy.contains('Skirting boards or architraves');
+      });
+
+      it('displays a "Plastering on the ceiling" option', () => {
+        cy.contains('Plastering on the ceiling');
+      });
+
+      it('displays a "Plastering on the walls" option', () => {
+        cy.contains('Plastering on the walls');
+      });
+
+      it('displays a "Wooden floorboards" option', () => {
+        cy.contains('Wooden floorboards');
+      });
+    });
+
+  });
+
+  context('living areas', () => {
+    before(()=>{
+      navigateToLocation()
+      cy.contains('Living Areas').click();
+      cy.get('button').click();
+    });
+
+    context('Walls, floor or ceiling, excluding damp', () => {
+      before(()=>{
+        cy.contains('Walls, floor or ceiling, excluding damp').click();
+        cy.get('button').click();
+      });
+
+      it('displays the repair issue question', () => {
+        cy.contains('What best describes the problem?');
+      });
+
+      it('displays a "Wall tiles" option', () => {
+        cy.contains('Wall tiles');
+      });
+
+      it('displays a "Floor tiles" option', () => {
+        cy.contains('Floor tiles');
+      });
+
+      it('displays a "Light fitting(s)" option', () => {
+        cy.contains('Light fitting(s)');
+      });
+
+      it('displays a "Skirting boards or architraves" option', () => {
+        cy.contains('Skirting boards or architraves');
+      });
+
+      it('displays a "Plastering on the ceiling" option', () => {
+        cy.contains('Plastering on the ceiling');
+      });
+
+      it('displays a "Plastering on the walls" option', () => {
+        cy.contains('Plastering on the walls');
+      });
+
+      it('displays a "Wooden floorboards" option', () => {
+        cy.contains('Wooden floorboards');
+      });
+    });
 
   });
 });
