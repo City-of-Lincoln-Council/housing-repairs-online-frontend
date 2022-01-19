@@ -84,9 +84,11 @@ describe('repairLocation', () => {
     })
     it.only('should be selected when they navigate back to the page',  () => {
       cy.contains('Kitchen').click();
-      cy.get('button').click()
-      cy.contains('Back').click()
-      cy.url().should('eq', 'http://localhost:3000/report-repair/repair-location/');
+      cy.get('button').click();
+      cy.get('[data-cy=repair-problem]', {timeout: 10000}).then(() => {
+        cy.contains('Back').click({force: true});
+      });
+      cy.url().should('eq', 'http://localhost:3000/report-repair/repair-location');
       cy.get('[value="kitchen"]').should('be.checked')
     });
   });

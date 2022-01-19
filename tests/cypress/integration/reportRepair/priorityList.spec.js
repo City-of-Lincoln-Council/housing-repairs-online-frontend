@@ -115,7 +115,7 @@ describe('priorityList', () => {
       cy.contains('I can smell gas in or near the property').click();
       cy.get('button').click();
       cy.contains('Back').click();
-      cy.url().should('eq', 'http://localhost:3000/priority-list');
+      cy.url().should('eq', 'http://localhost:3000/report-repair/priority-list');
       cy.contains('Back').click();
       cy.url().should('eq', 'http://localhost:3000/');
     })
