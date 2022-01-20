@@ -2,6 +2,40 @@ import {
   navigateToLocation
 } from '../../support/helpers';
 
+const testWallOption = () => {
+  it('displays the repair issue question', () => {
+    cy.contains('What best describes the problem?');
+  });
+
+  it('displays a "Wall tiles" option', () => {
+    cy.contains('Wall tiles');
+  });
+
+  it('displays a "Floor tiles" option', () => {
+    cy.contains('Floor tiles');
+  });
+
+  it('displays a "Light fitting(s)" option', () => {
+    cy.contains('Light fitting(s)');
+  });
+
+  it('displays a "Skirting boards or architraves" option', () => {
+    cy.contains('Skirting boards or architraves');
+  });
+
+  it('displays a "Plastering on the ceiling" option', () => {
+    cy.contains('Plastering on the ceiling');
+  });
+
+  it('displays a "Plastering on the walls" option', () => {
+    cy.contains('Plastering on the walls');
+  });
+
+  it('displays a "Wooden floorboards" option', () => {
+    cy.contains('Wooden floorboards');
+  });
+}
+
 describe('repairProblemBestDescription', () => {
 
   context('kitchen', () => {
@@ -37,37 +71,7 @@ describe('repairProblemBestDescription', () => {
         cy.get('button').click();
       });
 
-      it('displays the repair issue question', () => {
-        cy.contains('What best describes the problem?');
-      });
-
-      it('displays a "Wall tiles" option', () => {
-        cy.contains('Wall tiles');
-      });
-
-      it('displays a "Floor tiles" option', () => {
-        cy.contains('Floor tiles');
-      });
-
-      it('displays a "Light fitting(s)" option', () => {
-        cy.contains('Light fitting(s)');
-      });
-
-      it('displays a "Skirting boards or architraves" option', () => {
-        cy.contains('Skirting boards or architraves');
-      });
-
-      it('displays a "Plastering on the ceiling" option', () => {
-        cy.contains('Plastering on the ceiling');
-      });
-
-      it('displays a "Plastering on the walls" option', () => {
-        cy.contains('Plastering on the walls');
-      });
-
-      it('displays a "Wooden floorboards" option', () => {
-        cy.contains('Wooden floorboards');
-      });
+      testWallOption();
     });
 
   })
@@ -80,42 +84,13 @@ describe('repairProblemBestDescription', () => {
     });
 
     context('Walls, floor or ceiling, excluding damp', () => {
-      before(()=>{
+      before(() => {
         cy.contains('Walls, floor or ceiling, excluding damp').click();
         cy.get('button').click();
       });
 
-      it('displays the repair issue question', () => {
-        cy.contains('What best describes the problem?');
-      });
+      testWallOption();
 
-      it('displays a "Wall tiles" option', () => {
-        cy.contains('Wall tiles');
-      });
-
-      it('displays a "Floor tiles" option', () => {
-        cy.contains('Floor tiles');
-      });
-
-      it('displays a "Light fitting(s)" option', () => {
-        cy.contains('Light fitting(s)');
-      });
-
-      it('displays a "Skirting boards or architraves" option', () => {
-        cy.contains('Skirting boards or architraves');
-      });
-
-      it('displays a "Plastering on the ceiling" option', () => {
-        cy.contains('Plastering on the ceiling');
-      });
-
-      it('displays a "Plastering on the walls" option', () => {
-        cy.contains('Plastering on the walls');
-      });
-
-      it('displays a "Wooden floorboards" option', () => {
-        cy.contains('Wooden floorboards');
-      });
     });
 
   });
@@ -128,42 +103,13 @@ describe('repairProblemBestDescription', () => {
     });
 
     context('Walls, floor or ceiling, excluding damp', () => {
-      before(()=>{
+      before(() => {
         cy.contains('Walls, floor or ceiling, excluding damp').click();
         cy.get('button').click();
       });
 
-      it('displays the repair issue question', () => {
-        cy.contains('What best describes the problem?');
-      });
+      testWallOption();
 
-      it('displays a "Wall tiles" option', () => {
-        cy.contains('Wall tiles');
-      });
-
-      it('displays a "Floor tiles" option', () => {
-        cy.contains('Floor tiles');
-      });
-
-      it('displays a "Light fitting(s)" option', () => {
-        cy.contains('Light fitting(s)');
-      });
-
-      it('displays a "Skirting boards or architraves" option', () => {
-        cy.contains('Skirting boards or architraves');
-      });
-
-      it('displays a "Plastering on the ceiling" option', () => {
-        cy.contains('Plastering on the ceiling');
-      });
-
-      it('displays a "Plastering on the walls" option', () => {
-        cy.contains('Plastering on the walls');
-      });
-
-      it('displays a "Wooden floorboards" option', () => {
-        cy.contains('Wooden floorboards');
-      });
     });
 
   });
@@ -181,37 +127,7 @@ describe('repairProblemBestDescription', () => {
         cy.get('button').click();
       });
 
-      it('displays the repair issue question', () => {
-        cy.contains('What best describes the problem?');
-      });
-
-      it('displays a "Wall tiles" option', () => {
-        cy.contains('Wall tiles');
-      });
-
-      it('displays a "Floor tiles" option', () => {
-        cy.contains('Floor tiles');
-      });
-
-      it('displays a "Light fitting(s)" option', () => {
-        cy.contains('Light fitting(s)');
-      });
-
-      it('displays a "Skirting boards or architraves" option', () => {
-        cy.contains('Skirting boards or architraves');
-      });
-
-      it('displays a "Plastering on the ceiling" option', () => {
-        cy.contains('Plastering on the ceiling');
-      });
-
-      it('displays a "Plastering on the walls" option', () => {
-        cy.contains('Plastering on the walls');
-      });
-
-      it('displays a "Wooden floorboards" option', () => {
-        cy.contains('Wooden floorboards');
-      });
+      testWallOption();
     });
 
   });
