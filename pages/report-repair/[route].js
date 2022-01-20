@@ -101,7 +101,7 @@ function ReportRepair() {
   }
 
   const commonProblems = {
-    walls: { value: 'wallsFloorsCeiling', title: 'Walls, floor or ceiling, excluding damp' }
+    wallsFloorAndCeiling: { value: 'wallsFloorsCeiling', title: 'Walls, floor or ceiling, excluding damp' }
   }
 
   const prevStep = (e) => {
@@ -192,7 +192,7 @@ function ReportRepair() {
           values={values}
           options = {[
             { value: 'cupboards', title: 'Cupboards, including damaged cupboard doors'},
-            commonProblems.walls
+            commonProblems.wallsFloorAndCeiling
           ]}
         />
       )
@@ -202,7 +202,7 @@ function ReportRepair() {
           handleChange={handleChange}
           values={values}
           options = {[
-            commonProblems.walls
+            commonProblems.wallsFloorAndCeiling
           ]}
         />
       )
@@ -212,7 +212,7 @@ function ReportRepair() {
           handleChange={handleChange}
           values={values}
           options = {[
-            commonProblems.walls
+            commonProblems.wallsFloorAndCeiling
           ]}
         />
       )
@@ -222,7 +222,7 @@ function ReportRepair() {
           handleChange={handleChange}
           values={values}
           options = {[
-            commonProblems.walls
+            commonProblems.wallsFloorAndCeiling
           ]}
         />
       )
@@ -232,7 +232,7 @@ function ReportRepair() {
           handleChange={handleChange}
           values={values}
           options = {[
-            commonProblems.walls
+            commonProblems.wallsFloorAndCeiling
           ]}
         />
       )
@@ -247,7 +247,7 @@ function ReportRepair() {
           ]}
         />
       )
-    case 'wall-problems':
+    case 'wall-floor-ceiling-problems':
       return (
         <RepairProblemBestDescription
           handleChange={handleChange}
@@ -318,7 +318,7 @@ export async function getStaticPaths() {
     {params: { route: 'repair-bathroom-problems'} },
     {params: { route: 'repair-bedroom-problems'} },
     {params: { route: 'repair-living-areas-problems'} },
-    {params: { route: 'wall-problems'} },
+    {params: { route: 'wall-floor-ceiling-problems'} },
     {params: { route: 'repair-kitchen-cupboard-problems'} },
     {params: { route: 'repair-description'} },
     {params: { route: 'repair-availability'} },

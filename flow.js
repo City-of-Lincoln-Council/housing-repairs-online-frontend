@@ -38,18 +38,18 @@ class Flow {
         {condition: 'sink', nextStep: 'repair-description'},
         {condition: 'drip-or-leak', nextStep: 'repair-description-leak'},
         {condition: 'something-else', nextStep: 'repair-description'},
-        {condition: 'wallsFloorsCeiling', nextStep: 'wall-problems'}
+        {condition: 'wallsFloorsCeiling', nextStep: 'wall-floor-ceiling-problems'}
       ]},
       'repair-bathroom-problems': { prevStep: 'repair-location', nextStep: [
-        {condition: 'wallsFloorsCeiling', nextStep: 'wall-problems'}
+        {condition: 'wallsFloorsCeiling', nextStep: 'wall-floor-ceiling-problems'}
       ]},
       'repair-bedroom-problems': { prevStep: 'repair-location', nextStep: [
-        {condition: 'wallsFloorsCeiling', nextStep: 'wall-problems'}
+        {condition: 'wallsFloorsCeiling', nextStep: 'wall-floor-ceiling-problems'}
       ]},
       'repair-living-areas-problems': { prevStep: 'repair-location', nextStep: [
-        {condition: 'wallsFloorsCeiling', nextStep: 'wall-problems'}
+        {condition: 'wallsFloorsCeiling', nextStep: 'wall-floor-ceiling-problems'}
       ]},
-      'wall-problems': {nextStep: 'repair-description'},
+      'wall-floor-ceiling-problems': {nextStep: 'repair-description'},
       'repair-kitchen-cupboard-problems': {prevStep: 'repair-kitchen-problems', nextStep: 'repair-description'},
       'repair-description-damp': {prevStep: 'repair-kitchen-types', nextStep: [
         {condition: 'damp', nextStep: 'repair-damp'},
