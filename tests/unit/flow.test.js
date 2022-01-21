@@ -222,14 +222,14 @@ describe('Flow', () => {
       });
     })
 
-    describe('can generate next step from previous step and condition', ()=>{
-      test('with multiple next steps', ()=>{
-        let result = flow.getNextStepFromPreviousStepAndCondition('repair-location', 'kitchen');
-        expect(result).toBe('repair-kitchen-problems');
+    describe('can generate next step from condition', ()=>{
+      test('walls/floors/ceiling', ()=>{
+        let result = flow.getNextStepFromCondition('wallsFloorsCeiling');
+        expect(result).toBe('wall-floor-ceiling-problems');
       });
-      test('with multiple next steps and conditions', ()=>{
-        let result = flow.getNextStepFromPreviousStepAndCondition('repair-kitchen-problems', 'cupbpards');
-        expect(result).toBe('repair-kitchen-cupboard-problems');
+      test('kitchen', ()=>{
+        let result = flow.getNextStepFromCondition('kitchen');
+        expect(result).toBe('repair-kitchen-problems');
       });
     });
   });

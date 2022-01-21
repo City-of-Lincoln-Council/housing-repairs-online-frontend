@@ -129,10 +129,16 @@ class Flow {
 
   _stepIsInFlow = (state) => (this.flow[state.step])
 
-  getNextStepFromPreviousStepAndCondition = (previousStep, condition) => {
-    let steps = this.flow[previousStep].nextStep
-    steps.filter( step => step.condition == condition)
-    return steps[0].nextStep
+  getNextStepFromCondition = (condition) => {
+    for (const [_, value] of Object.entries(this.flow)) {
+      let steps = value.nextStep
+      if (Array.isArray(steps)) {
+        const step = steps.filter(step => step.condition == condition)
+        if (step.length > 0) {
+          return step[0].nextStep
+        }
+      }
+    }
   }
 
   prevStep = (state) => {

@@ -2,15 +2,14 @@ import React, {useEffect, useState} from 'react';
 import SummaryList from '../summaryList';
 import Button from '../button';
 
-const Summary = ({values, changeLinkUrlValues, submit}) => {
-  let [whatIsRepairProblemLink, setWhatIsRepairProblemLink] = useState(null)
-  let [describeRepairProblemLink, setDescribeRepairProblemLink] = useState(null)
-
+const Summary = ({values, getNextStepFromCondition, submit}) => {
+  let [repairProblemLink, setRepairProblemLink] = useState('')
+  let [repairProblemBestDescriptionLink, setRepairProblemBestDescriptionLink] = useState('')
 
   useEffect(()=>{
-    setWhatIsRepairProblemLink(changeLinkUrlValues[values.repairLocation?.value])
-    setDescribeRepairProblemLink(changeLinkUrlValues[values.repairProblem?.value])
-  }, [values, changeLinkUrlValues])
+    setRepairProblemLink(getNextStepFromCondition(values.repairLocation.value));
+    setRepairProblemBestDescriptionLink(getNextStepFromCondition(values.repairProblem.value));
+  }, [values])
 
   const personalDetailsSummary = [
     {pageName:'Repair address', value: values.address?.display, link: 'postcode'},
@@ -18,8 +17,8 @@ const Summary = ({values, changeLinkUrlValues, submit}) => {
   ]
   const repairDetailsSummary = [
     { pageName:'Where is the problem?', value: values.repairLocation?.display, link:'repair-location'},
-    { pageName:'What is the problem?', value: values.repairProblem?.display, link: changeLinkUrlValues[values.repairLocation?.value]},
-    { pageName:'What best describes the problem?', value: values['repairProblemBestDescription']?.display, link: changeLinkUrlValues[values.repairProblem?.value]},
+    { pageName:'What is the problem?', value: values.repairProblem?.display, link: repairProblemLink},
+    { pageName:'What best describes the problem?', value: values['repairProblemBestDescription']?.display, link: repairProblemBestDescriptionLink},
     { pageName:'Description', value: values.description?.text, link:'repair-description'}
   ]
   const appointmentDetailsSummary = [
@@ -28,7 +27,7 @@ const Summary = ({values, changeLinkUrlValues, submit}) => {
   ]
 
   return(
-    <>{values && whatIsRepairProblemLink && describeRepairProblemLink && (
+    <>{ (
       <div data-cy="summary">
         <div className="govuk-grid-row govuk-body-m">
           <div className="govuk-grid-column-two-thirds">

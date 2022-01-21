@@ -35,7 +35,7 @@ function ReportRepair() {
   const flow = new Flow(setState, router, 'report-repair', prevSteps, setPrevSteps);
 
   useEffect(() => {
-    getNextStepForRepairProblem()
+    // getNextStepForRepairProblem()
     router.beforePopState(({ as }) => {
       flow.prevStep(state)
       return true;
@@ -49,17 +49,6 @@ function ReportRepair() {
   const handleChange = (input, value) => {
     flow.handleChange(input,value,state)
   };
-  const getNextStepForRepairProblem = () => {
-    let currentChangeLinkUrls = changeLinkUrls
-    if(state.data.repairLocation){
-      currentChangeLinkUrls[state.data.repairLocation.value] = flow.getNextStepFromPreviousStepAndCondition('repair-location', state.data.repairLocation.value);
-      setChangeLinkUrls(currentChangeLinkUrls)
-    }
-    if(state.data.repairProblem){
-      currentChangeLinkUrls[state.data.repairProblem.value] = flow.getNextStepFromPreviousStepAndCondition(currentChangeLinkUrls[state.data.repairLocation.value], state.data.repairLocation.value);
-      setChangeLinkUrls(currentChangeLinkUrls)
-    }
-  }
 
   const [showBack, setShowBack] = useState(true)
   const [confirmation, setConfirmation] = useState('');
@@ -116,7 +105,7 @@ function ReportRepair() {
     case 'summary' :
       return (
         <Summary
-          changeLinkUrlValues={changeLinkUrlValues}
+          getNextStepFromCondition={flow.getNextStepFromCondition}
           submit={submit}
           values={values}
         />

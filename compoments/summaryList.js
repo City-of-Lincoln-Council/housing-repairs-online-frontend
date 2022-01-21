@@ -4,7 +4,7 @@ export default function SummaryList ({summary}) {
 
   return(<dl className="govuk-summary-list govuk-!-margin-bottom-9">
     {summary.map((o, i) => (
-      <div className="govuk-summary-list__row">
+      <div className="govuk-summary-list__row" key={i}>
         <dt className="govuk-summary-list__key">
           {o.pageName}
         </dt>
