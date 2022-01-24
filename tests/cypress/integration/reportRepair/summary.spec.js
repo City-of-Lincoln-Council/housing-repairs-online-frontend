@@ -3,7 +3,8 @@ import {
   intercept_availability_search,
   navigateToPageSelectRadioOptionAndContinue,
   navigateToPageTypeInputTextAndContinue,
-  convertDateToDisplayDate
+  convertDateToDisplayDate,
+  continueOnPage
 } from '../../support/helpers';
 
 describe('summary', () => {
@@ -156,6 +157,41 @@ describe('summary', () => {
     });
   });
   context('Repair Details', () => {
+    it.only('allows you to change location and problem',  () =>{
+      cy.get('a[href*="repair-location"]').contains('Change').click();
+      navigateToPageSelectRadioOptionAndContinue({
+        page: 'repair-location', option:'Bathroom'
+      })
+      navigateToPageSelectRadioOptionAndContinue({
+        page: 'repair-problem', option:'Walls, floor or ceiling, excluding damp'
+      });
+      navigateToPageSelectRadioOptionAndContinue({
+        page: 'repair-problem-best-description', option:'Floor tiles'
+      })
+
+      continueOnPage('repair-description');
+
+      continueOnPage('contact-person');
+      continueOnPage('contact-details');
+      continueOnPage('repair-availability');
+      cy.contains('Bathroom')
+      cy.contains('What is the problem?')
+      cy.contains('Floor tiles')
+
+      cy.get('a[href*="wall-floor-ceiling-problems"]').contains('Change').click();
+      cy.location('href').should('eq', 'http://localhost:3000/report-repair/wall-floor-ceiling-problems');
+
+      navigateToPageSelectRadioOptionAndContinue({
+        page: 'repair-problem-best-description', option:'Wall tiles'
+      })
+      continueOnPage('repair-description');
+      continueOnPage('contact-person');
+      continueOnPage('contact-details');
+      continueOnPage('repair-availability');
+
+      cy.contains('Wall tiles')
+    });
+
     it('allows you to navigate to change the repair location page ', () => {
       cy.get('a[href*="repair-location"]').contains('Change').click();
       cy.location('href').should('eq', 'http://localhost:3000/report-repair/repair-location');

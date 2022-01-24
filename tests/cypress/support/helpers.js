@@ -46,7 +46,11 @@ const navigateToPageSelectRadioOptionAndContinue = ({page, option}) => {
     cy.get('button').click();
   });
 }
-
+const continueOnPage = (page) => {
+  cy.get(`[data-cy=${page}]`, {timeout: 10000}).then(() => {
+    cy.get('button').contains('Continue').click();
+  });
+}
 const navigateToPageTypeInputTextAndContinue = ({page, inputText}) => {
   cy.get(`[data-cy=${page}]`, {timeout: 10000}).then(() => {
     cy.get('input.govuk-input').type(inputText);
@@ -90,5 +94,6 @@ export {
   navigateToPageTypeInputTextAndContinue,
   convertDateToDisplayDate,
   intercept_save_repair,
+  continueOnPage,
   navigateToLocation
 }
