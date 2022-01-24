@@ -35,7 +35,6 @@ function ReportRepair() {
   const flow = new Flow(setState, router, 'report-repair', prevSteps, setPrevSteps);
 
   useEffect(() => {
-    // getNextStepForRepairProblem()
     router.beforePopState(({ as }) => {
       flow.prevStep(state)
       return true;
