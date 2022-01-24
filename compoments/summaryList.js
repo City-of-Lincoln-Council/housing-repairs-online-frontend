@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link'
-export default function SummaryList ({summary}) {
+export default function SummaryList ({summary, goToStep}) {
 
   return(<dl className="govuk-summary-list govuk-!-margin-bottom-9">
     {summary.map((o, i) => (
@@ -13,7 +13,10 @@ export default function SummaryList ({summary}) {
         </dd>
         <dd className="govuk-summary-list__actions">
           <Link href={o.link}>
-            <a className={'govuk-link'}>Change</a>
+            <a className={'govuk-link'} href={o.link} onClick={(e)=>{
+              e.preventDefault()
+              goToStep(o.link, 'summary')
+            }}>Change</a>
           </Link>
           <span className="govuk-visually-hidden">{o.pageName}</span>
         </dd>

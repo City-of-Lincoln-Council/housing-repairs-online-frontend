@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import SummaryList from '../summaryList';
 import Button from '../button';
 
-const Summary = ({values, getNextStepFromCondition, submit}) => {
+const Summary = ({values, getNextStepFromCondition, submit, goToStep}) => {
   let [repairProblemLink, setRepairProblemLink] = useState('')
   let [repairProblemBestDescriptionLink, setRepairProblemBestDescriptionLink] = useState('')
 
@@ -34,13 +34,13 @@ const Summary = ({values, getNextStepFromCondition, submit}) => {
             <h1 className='govuk-heading-xl'>Request summary</h1>
 
             <h2 className="govuk-heading-m">Personal details</h2>
-            <SummaryList summary={personalDetailsSummary}/>
+            <SummaryList goToStep={goToStep} summary={personalDetailsSummary}/>
 
             <h2 className="govuk-heading-m">Repair details</h2>
-            <SummaryList summary={repairDetailsSummary}/>
+            <SummaryList goToStep={goToStep} summary={repairDetailsSummary}/>
 
             <h2 className="govuk-heading-m">Appointment details</h2>
-            <SummaryList summary={appointmentDetailsSummary}/>
+            <SummaryList goToStep={goToStep} summary={appointmentDetailsSummary}/>
 
           </div>
         </div>

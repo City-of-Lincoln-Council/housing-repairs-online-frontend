@@ -50,6 +50,10 @@ function ReportRepair() {
     flow.handleChange(input,value,state)
   };
 
+  const goToStep = (step, prevStep) => {
+    flow.nextStep(step, state, prevStep)
+  }
+
   const [showBack, setShowBack] = useState(true)
   const [confirmation, setConfirmation] = useState('');
   const [formError, setFormError] = useState();
@@ -106,6 +110,7 @@ function ReportRepair() {
       return (
         <Summary
           getNextStepFromCondition={flow.getNextStepFromCondition}
+          goToStep={goToStep}
           submit={submit}
           values={values}
         />
