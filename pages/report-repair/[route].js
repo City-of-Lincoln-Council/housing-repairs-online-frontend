@@ -191,6 +191,7 @@ function ReportRepair() {
             { value: 'cupboards', title: 'Cupboards, including damaged cupboard doors'},
             { value: 'electrical', title: 'Electrical, including extractor fans and lightbulbs'},
             { value: 'heatingOrHotWater', title: 'Heating or hot water'},
+            { value: 'door', title: 'Damaged or stuck doors'},
             commonProblems.wallsFloorAndCeiling
           ]}
         />
@@ -284,6 +285,20 @@ function ReportRepair() {
           ]}
         />
       )
+    case 'kitchen-door-problems':
+      return (
+        <RepairProblemBestDescription
+          handleChange={handleChange}
+          values={values}
+          options = {[
+            {value: 'backDoorWooden', title: 'Wooden back door'},
+            {value: 'backDoorUPVC', title: 'UPVC back door'},
+            {value: 'backFrenchDoors', title: 'French doors'},
+            {value: 'internal', title: 'Internal door issue, including hinges, handle, sticking'},
+            {value: 'sliding', title: 'Sliding door'}
+          ]}
+        />
+      )
     case 'wall-floor-ceiling-problems':
       return (
         <RepairProblemBestDescription
@@ -358,6 +373,7 @@ export async function getStaticPaths() {
     {params: { route: 'repair-living-areas-lighting-problems'} },
     {params: { route: 'wall-floor-ceiling-problems'} },
     {params: { route: 'kitchen-electrical-problems'} },
+    {params: { route: 'kitchen-door-problems'} },
     {params: { route: 'repair-kitchen-cupboard-problems'} },
     {params: { route: 'repair-kitchen-heating-problems'} },
     {params: { route: 'repair-bedroom-lighting-problems'} },

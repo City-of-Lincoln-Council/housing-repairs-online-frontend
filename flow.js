@@ -37,11 +37,11 @@ class Flow {
         {condition: 'heatingOrHotWater', nextStep: 'repair-kitchen-heating-problems'},
         {condition: 'sink', nextStep: 'repair-description'},
         {condition: 'drip-or-leak', nextStep: 'repair-description-leak'},
-        {condition: 'something-else', nextStep: 'repair-description'},
+        {condition: 'door', nextStep: 'kitchen-door-problems'},
         {condition: 'wallsFloorsCeiling', nextStep: 'wall-floor-ceiling-problems'}
       ]},
       'repair-kitchen-heating-problems': { prevStep: 'repair-kitchen-problems', nextStep: 'repair-description'},
-
+      'kitchen-door-problems': { prevStep: 'repair-kitchen-problems', nextStep: 'repair-description'},
       'kitchen-electrical-problems': {prevStep: 'repair-kitchen-problems', nextStep: 'repair-description'},
       'repair-bathroom-problems': { prevStep: 'repair-location', nextStep: [
           {condition: 'wallsFloorsCeiling', nextStep: 'wall-floor-ceiling-problems'},

@@ -41,6 +41,10 @@ describe('repairProblem', () => {
       cy.contains('Electrical, including extractor fans and lightbulbs');
     });
 
+    it('displays a "door" option', () => {
+      cy.contains('Damaged or stuck doors');
+    });
+
     it('displays a "heating" option', () => {
       cy.contains('Heating or hot water');
     });
