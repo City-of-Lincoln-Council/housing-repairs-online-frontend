@@ -28,6 +28,7 @@ const RepairAvailability = ({handleChange, values, fromDate}) => {
   if (!data) return <div>loading...</div>
 
   let availability = {};
+  let availabilityValues = {};
 
   let nextAppointmentSearchFromDate;
 
@@ -36,28 +37,28 @@ const RepairAvailability = ({handleChange, values, fromDate}) => {
     nextAppointmentSearchFromDate = moment.max(startTimes).add(1, 'day').format('YYYY-MM-DD');
 
     data.forEach((d) => {
-      const date = moment(d.startTime)
-      const dateString = date.format('Do MMMM YYYY')
-      const startTime = date.format('h:mma');
-      const endTime = moment(d.endTime).format('h:mma')
+      const startDateTime = moment(d.startTime)
+      const dateString = startDateTime.format('Do MMMM YYYY')
+      const startTime = startDateTime.format('h:mma');
+      const endDateTime = moment(d.endTime);
+      const endTime = endDateTime.format('h:mma')
+      const appointmentSlotKey = `${startDateTime.unix()}-${endDateTime.unix()}`
       const timeString = `${startTime} to ${endTime}`
+      const timeStringSummary = `between ${timeString}`
+      const appointmentSlotData = {timeString, startDateTime:d.startTime, endDateTime:d.endTime, appointmentSlotKey}
       availability[dateString] ?
-        availability[dateString].push(timeString) :
-        availability[dateString] = [timeString]
+        availability[dateString].push(appointmentSlotData) :
+        availability[dateString] = [appointmentSlotData]
+      availabilityValues[appointmentSlotKey] = {startDateTime:d.startTime, endDateTime:d.endTime, display:`${dateString} ${timeStringSummary}`}
     })
-  }
-  const convertDateToDisplayDate = (date) => {
-    let dateArray = date?.split(' ')
-    dateArray?.splice(3, 0, 'between')
-    return(dateArray?.join(' '))
   }
 
   const fieldName = 'availability';
 
   const Continue = () => {
     if (value) {
-      let title = convertDateToDisplayDate(value)
-      return handleChange(fieldName, {value:value, display: title});
+      let selectedAppointmentSlot = availabilityValues[value];
+      return handleChange(fieldName, {startDateTime:selectedAppointmentSlot.startDateTime, endDateTime:selectedAppointmentSlot.endDateTime, display: selectedAppointmentSlot.display});
     }
     setError('Required')
   }
@@ -91,15 +92,15 @@ const RepairAvailability = ({handleChange, values, fromDate}) => {
               <h3 className="govuk-heading-m govuk-!-padding-top-4">
                 {date}
               </h3>
-              {availability[date].map((time, ti)=>(
+              {availability[date].map((timeSlot, ti)=>(
                 <div className="govuk-radios__item" key={`${i}-${ti}`}>
                   <input data-cy={`availability-slot-${i}-${ti}`} className="govuk-radios__input govuk-input--width-10"
                     id={`${fieldName}-${i}-${ti}`} name={fieldName}
-                    type="radio" value={`${date} ${time}`}
-                    defaultChecked={values.availability?.value === `${date} ${time}` ? true : false}/>
+                    type="radio" value={timeSlot.appointmentSlotKey}
+                    defaultChecked={values.availability?.startDateTime === timeSlot.startDateTime && values.availability?.endDateTime === timeSlot.endDateTime}/>
                   <label className="govuk-label govuk-radios__label"
                     htmlFor={`${fieldName}-${i}-${ti}`}>
-                    {time}
+                    {timeSlot.timeString}
                   </label>
                 </div>
               ))}
