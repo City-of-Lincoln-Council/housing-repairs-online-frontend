@@ -7,8 +7,20 @@ import moment from 'moment';
 import {useRouter} from 'next/router';
 
 const RepairAvailability = ({handleChange, values, fromDate}) => {
+  const CreateAppointmentSlotKeyFromDateStrings = (startDateTime, endDateTime) => {
+    return CreateAppointmentSlotKey(moment(startDateTime), moment(endDateTime));
+  }
+
+  const CreateAppointmentSlotKey = (startDateTime, endDateTime) => {
+    return `${startDateTime.unix()}-${endDateTime.unix()}`;
+  }
+  let defaultValue;
+  if (values.availability) {
+    defaultValue = CreateAppointmentSlotKeyFromDateStrings(values.availability?.startDateTime, values.availability?.endDateTime)
+  }
+
   const [error, setError] = useState();
-  const [value, setValue] = useState(values.availability?.value);
+  const [value, setValue] = useState(defaultValue);
   const baseURL = '/api/availability';
   const params =  {
     repairLocation:  values.repairLocation?.value,
@@ -42,7 +54,7 @@ const RepairAvailability = ({handleChange, values, fromDate}) => {
       const startTime = startDateTime.format('h:mma');
       const endDateTime = moment(d.endTime);
       const endTime = endDateTime.format('h:mma')
-      const appointmentSlotKey = `${startDateTime.unix()}-${endDateTime.unix()}`
+      const appointmentSlotKey = CreateAppointmentSlotKey(startDateTime, endDateTime)
       const timeString = `${startTime} to ${endTime}`
       const timeStringSummary = `between ${timeString}`
       const appointmentSlotData = {timeString, startDateTime:d.startTime, endDateTime:d.endTime, appointmentSlotKey}
