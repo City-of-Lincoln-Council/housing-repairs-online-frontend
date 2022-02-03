@@ -90,6 +90,7 @@ class Flow {
         {condition: 'dampOrMould', nextStep: 'damp-mould-problems'},
         {condition: 'stairs', nextStep: 'repair-stairs-problems'}
       ]},
+      'repair-stairs-problems': { prevStep: 'repair-living-areas-problems', nextStep: 'repair-description'},
       'bath-problems': { prevStep: 'repair-bathroom-problems', nextStep: 'repair-description'},
       'repair-window-problems': {nextStep: 'repair-description'},
       'repair-bedroom-lighting-problems': { prevStep: 'repair-bedroom-problems', nextStep: 'repair-description'},
