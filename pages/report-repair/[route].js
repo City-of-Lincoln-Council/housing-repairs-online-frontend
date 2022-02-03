@@ -246,11 +246,25 @@ function ReportRepair() {
             commonProblems.wallsFloorAndCeiling,
             { value: 'windows', title: 'Damaged or stuck windows'},
             commonProblems.damagedOrStuckDoors,
-            commonProblems.dampOrMould
+            commonProblems.dampOrMould,
+            { value: 'stairs', title: 'Stairs (including handrail)'}
           ]}
         />
       )
 
+    case 'repair-stairs-problems':
+      return (
+        <RepairProblemBestDescription
+          handleChange={handleChange}
+          values={values}
+          options = {[
+            {value: 'damagedSteps', title: 'Damaged stairs'},
+            {value: 'damagedPalistrades', title: 'Damaged palistrades'},
+            {value: 'handRail', title: 'Handrail'},
+            {value: 'stairRailLoose', title: 'Stair rail came loose'}
+          ]}
+        />
+      )
     case 'repair-toilet-problems':
       return (
         <RepairProblemBestDescription
@@ -525,6 +539,7 @@ export async function getStaticPaths() {
     {params: { route: 'repair-living-areas-problems'} },
     {params: { route: 'repair-living-areas-lighting-problems'} },
     {params: { route: 'wall-floor-ceiling-problems'} },
+    {params: { route: 'repair-stairs-problems'} },
     {params: { route: 'bath-problems'} },
     {params: { route: 'damp-mould-problems'} },
     {params: { route: 'kitchen-electrical-problems'} },

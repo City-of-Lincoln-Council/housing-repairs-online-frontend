@@ -87,8 +87,9 @@ class Flow {
         {condition: 'wallsFloorsCeiling', nextStep: 'wall-floor-ceiling-problems'},
         {condition: 'windows', nextStep: 'repair-window-problems'},
         {condition: 'damagedOrStuckDoors', nextStep: 'repair-door-problems'},
-        {condition: 'dampOrMould', nextStep: 'damp-mould-problems'}]
-      },
+        {condition: 'dampOrMould', nextStep: 'damp-mould-problems'},
+        {condition: 'stairs', nextStep: 'repair-stairs-problems'}
+      ]},
       'bath-problems': { prevStep: 'repair-bathroom-problems', nextStep: 'repair-description'},
       'repair-window-problems': {nextStep: 'repair-description'},
       'repair-bedroom-lighting-problems': { prevStep: 'repair-bedroom-problems', nextStep: 'repair-description'},

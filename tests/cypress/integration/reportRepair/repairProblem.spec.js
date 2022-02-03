@@ -150,6 +150,10 @@ describe('repairProblem', () => {
     it('displays a "Damp or mould" option', () => {
       cy.contains('Damp or mould');
     });
+
+    it('displays a "Stairs (including handrail)" option', () => {
+      cy.contains('Stairs (including handrail)');
+    });
   });
 
   context('Outside', () => {
