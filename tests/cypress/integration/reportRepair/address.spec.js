@@ -12,7 +12,7 @@ function setup_addresses_search(setup_addresses_API) {
 describe('address', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000/report-repair/');
-    cy.contains('No, I want to request a non-emergency repair').click();
+    cy.contains('Something else').click();
     cy.get('button').click();
     cy.get('[data-cy=communal]', { timeout: 10000 }).then(($loadedSection) => {
       cy.contains('No').click();

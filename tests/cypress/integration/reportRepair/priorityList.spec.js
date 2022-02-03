@@ -4,7 +4,7 @@ describe('priorityList', () => {
   });
 
   it('displays the question title', () => {
-    cy.contains('Are you having one of the emergencies below?');
+    cy.contains('Please select one of the below');
   });
 
   context('When a user doesn\'t select any option', ()=>{
@@ -54,17 +54,17 @@ describe('priorityList', () => {
     });
   });
 
-  context('When a user selects: I can\'t secure my property', ()=>{
+  context('When a user selects: I can\'t lock the doors or windows in my property', ()=>{
     it('should redirect them to emergency page',  () => {
-      cy.contains('I can\'t secure my property').click();
+      cy.contains('I can\'t lock the doors or windows in my property').click();
       cy.get('button').click()
       cy.url().should('include', '/report-repair/emergency-repair');
     });
   });
 
-  context('When a user selects: I have exposed wiring or sockets', ()=>{
+  context('When a user selects: I have exposed wires or sockets', ()=>{
     it('should redirect them to emergency page',  () => {
-      cy.contains('I have exposed wiring or sockets').click();
+      cy.contains('I have exposed wires or sockets').click();
       cy.get('button').click()
       cy.url().should('include', '/report-repair/emergency-repair');
     });
@@ -78,9 +78,9 @@ describe('priorityList', () => {
     });
   });
 
-  context('When a user selects: No, I want to request a non-emergency repair', ()=>{
+  context('When a user selects: Something else', ()=>{
     it('should redirect them to communal page',  () => {
-      cy.contains('No, I want to request a non-emergency repair').click();
+      cy.contains('Something else').click();
       cy.get('button').click()
       cy.url().should('include', '/report-repair/communal');
     });
@@ -123,7 +123,7 @@ describe('priorityList', () => {
 
   context('When a user proceeds to next step and goes back', ()=>{
     it('should have user\'s selection reselected',  () => {
-      cy.contains('No, I want to request a non-emergency repair').click();
+      cy.contains('Something else').click();
       cy.get('button').click()
       cy.contains('Back').click();
       cy.get('[value="non-emergency/9"]').should('be.checked')
