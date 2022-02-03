@@ -162,6 +162,7 @@ describe('repairProblemBestDescription', () => {
         cy.contains('Missing door');
       });
     })
+
     context('Heating or hot water', () => {
       before(()=>{
         navigateToLocation()
@@ -271,6 +272,7 @@ describe('repairProblemBestDescription', () => {
 
       testSinkOptions();
     });
+
     context('Damp or mould', () => {
       before(()=>{
         navigateToLocation()
@@ -404,6 +406,48 @@ describe('repairProblemBestDescription', () => {
         cy.contains('Toilet seat');
       });
     });
+    context('Shower, including the tray and shower door', () => {
+      before(()=>{
+        navigateToLocation()
+        cy.contains('Bathroom').click();
+        cy.get('button').click();
+        cy.contains('Shower, including the tray and shower door').click();
+        cy.get('button').click();
+      });
+
+      it('displays the repair issue question', () => {
+        cy.contains('What best describes the problem?');
+      });
+
+      it('displays a "Electric shower unit" option', () => {
+        cy.contains('Electric shower unit');
+      });
+
+      it('displays a "Tap shower" option', () => {
+        cy.contains('Tap shower');
+      });
+
+      it('displays a "Shower hose" option', () => {
+        cy.contains('Shower hose');
+      });
+
+      it('displays a "Shower head" option', () => {
+        cy.contains('Shower head');
+      });
+
+      it('displays a "Shower tray broken" option', () => {
+        cy.contains('Shower tray broken');
+      });
+
+      it('displays a "Cubicle door broken" option', () => {
+        cy.contains('Cubicle door broken');
+      });
+
+      it('displays a "Shower drain blocked" option', () => {
+        cy.contains('Shower drain blocked');
+      });
+    });
+
   });
 
   context('Bedroom', () => {
@@ -603,7 +647,36 @@ describe('repairProblemBestDescription', () => {
       it ('displays a "Problem with a flat roof" option', () => {
         cy.contains('Problem with a flat roof');
       });
+    });
 
+    context('Garage, including roof and door', () => {
+      before(()=>{
+        navigateToLocation()
+        cy.contains('Outside').click();
+        cy.get('button').click();
+        cy.contains('Garage, including roof and door').click();
+        cy.get('button').click();
+      });
+
+      it('displays the repair issue question', () => {
+        cy.contains('What best describes the problem?');
+      });
+
+      it('displays a "Door damage" option', () => {
+        cy.contains('Door damage');
+      });
+
+      it('displays a "Lock damage" option', () => {
+        cy.contains('Lock damage');
+      });
+
+      it('displays a "Broken into" option', () => {
+        cy.contains('Broken into');
+      });
+
+      it('displays a "Roof issue or leak" option', () => {
+        cy.contains('Roof issue or leak');
+      });
     });
 
     context('Door, including shed and outhouse', () => {

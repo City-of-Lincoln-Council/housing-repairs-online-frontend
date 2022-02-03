@@ -212,11 +212,13 @@ function ReportRepair() {
           handleChange={handleChange}
           values={values}
           options = {[
-            {value: 'bath', title: 'Bath, including taps'},
+            { value: 'bath', title: 'Bath, including taps'},
             commonProblems.wallsFloorAndCeiling,
-            {value: 'electricsExtractorCords', title: 'Electrics, including extractor fan and pull cords'},
+            { value: 'electricsExtractorCords', title: 'Electrics, including extractor fan and pull cords'},
             { value: 'windows', title: 'Damaged or stuck windows'},
             commonProblems.sink,
+            commonProblems.damagedOrStuckDoors,
+            { value: 'showerIncludingTrayAndDoor', title: 'Shower, including the tray and shower door'},
             commonProblems.damagedOrStuckDoors,
             { value: 'toilet', title: 'Toilet'}
           ]}
@@ -286,7 +288,22 @@ function ReportRepair() {
           options = {[
             { value: 'door', title: 'Door, including shed and outhouse'},
             { value: 'securityLights', title: 'Outdoor security lights'},
-            { value: 'roof', title: 'Roof, including insulation and shed roof'}
+            { value: 'roof', title: 'Roof, including insulation and shed roof'},
+            { value: 'garage', title: 'Garage, including roof and door'},
+          ]}
+        />
+      )
+    case 'repair-garage-problems':
+      return (
+        <RepairProblemBestDescription
+          handleChange={handleChange}
+          values={values}
+          options = {[
+            { value: 'doorDamage', title: 'Door damage'},
+            { value: 'lockDamage', title: 'Lock damage'},
+            { value: 'brokenInto', title: 'Broken into'},
+            { value: 'roofIssueOrLeak', title: 'Roof issue or leak'},
+            { value: 'securityLights', title: 'Outdoor security lights'},
           ]}
         />
       )
@@ -331,7 +348,35 @@ function ReportRepair() {
           ]}
         />
       )
+    case 'repair-shower-problems':
+      return (
+        <RepairProblemBestDescription
+          handleChange={handleChange}
+          values={values}
+          options = {[
+            { value: 'electricShowerUnit', title: 'Electric shower unit'},
+            { value: 'showerTap', title: 'Tap shower'},
+            { value: 'showerHose', title: 'Shower hose'},
+            { value: 'showerHead', title: 'Shower head'},
+            { value: 'showerTrayBroken', title: 'Shower tray broken'},
+            { value: 'cubicleDoorBroken', title: 'Cubicle door broken'},
+            { value: 'showerDrainBlocked', title: 'Shower drain blocked'}
+          ]}
+        />
+      )
     case 'repair-door-problems':
+      return (
+        <RepairProblemBestDescription
+          handleChange={handleChange}
+          values={values}
+          options = {[
+            { value: 'internalDoorIssue', title: 'Internal door issue, including hinges, handle, sticking'},
+            { value: 'lockOnDoor', title: 'Lock on the door'},
+            { value: 'adjustingDoorAfterCarpetFitting', title: 'Adjusting a door after a carpet fitting'},
+          ]}
+        />
+      )
+    case 'repair-living-area-door-problems':
       return (
         <RepairProblemBestDescription
           handleChange={handleChange}
@@ -548,12 +593,15 @@ export async function getStaticPaths() {
     {params: { route: 'repair-kitchen-heating-problems'} },
     {params: { route: 'repair-bedroom-lighting-problems'} },
     {params: { route: 'repair-bathroom-electric-problems'} },
+    {params: { route: 'repair-living-area-door-problems'} },
     {params: { route: 'repair-door-problems'}},
     {params: { route: 'repair-toilet-problems'}},
+    {params: { route: 'repair-garage-problems'}},
     {params: { route: 'repair-window-problems'} },
     {params: { route: 'repair-outside-problems'}},
     {params: { route: 'outside-roof-problems'}},
     {params: { route: 'outside-door-problems'}},
+    {params: { route: 'repair-shower-problems'} },
     {params: { route: 'repair-description'} },
     {params: { route: 'repair-availability'} },
     {params: { route: 'smell-gas'} }

@@ -101,6 +101,10 @@ describe('repairProblem', () => {
       cy.contains('Damaged or stuck doors');
     });
 
+    it('displays a "shower" option', () => {
+      cy.contains('Shower, including the tray and shower door');
+    });
+
     it('displays a "toilet" option', () => {
       cy.contains('Toilet');
     });
@@ -177,6 +181,10 @@ describe('repairProblem', () => {
 
     it('displays a "Roof, including insulation and shed roof" option', () => {
       cy.contains('Roof, including insulation and shed roof')
+    });
+
+    it('displays a "Garage, including roof and door" option', () => {
+      cy.contains('Garage, including roof and door');
     });
   });
 });
