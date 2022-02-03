@@ -59,7 +59,12 @@ function ReportRepair() {
   const [formError, setFormError] = useState();
   const [requestId, setRequestId] = useState();
 
+  const CleanPayload = (payload) => {
+    delete payload.availability.appointmentSlotKey
+  }
+
   const submit = (values) => {
+    CleanPayload(values)
     fetch('/api/repair', {
       method: 'POST',
       body: JSON.stringify({
