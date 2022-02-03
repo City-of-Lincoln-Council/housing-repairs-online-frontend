@@ -58,9 +58,7 @@ const RepairAvailability = ({handleChange, values, fromDate}) => {
       const timeString = `${startTime} to ${endTime}`
       const timeStringSummary = `between ${timeString}`
       const appointmentSlotData = {timeString, startDateTime:d.startTime, endDateTime:d.endTime, appointmentSlotKey}
-      availability[dateString] ?
-        availability[dateString].push(appointmentSlotData) :
-        availability[dateString] = [appointmentSlotData]
+      availability[dateString] ? availability[dateString].push(appointmentSlotData) : availability[dateString] = [appointmentSlotData]
       availabilityValues[appointmentSlotKey] = {startDateTime:d.startTime, endDateTime:d.endTime, display:`${dateString} ${timeStringSummary}`}
     })
   }
