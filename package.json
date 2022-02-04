@@ -15,6 +15,7 @@
     "test:headless:integration": "yarn build && start-server-and-test start http://localhost:3000 cy:run"
   },
   "dependencies": {
+    "@sentry/nextjs": "^6.17.4",
     "@zeit/next-sass": "^1.0.1",
     "azure-functions-core-tools": "3",
     "dotenv": "^10.0.0",

@@ -1,12 +1,12 @@
 const path = require('path')
 const withSass = require('@zeit/next-sass');
-module.exports = withSass({
-  /* bydefault config  option Read For More Optios
-  here https://github.com/vercel/next-plugins/tree/master/packages/next-sass*/
-  cssModules: true
-})
-module.exports = {
+
+const { withSentryConfig } = require('@sentry/nextjs');
+
+const moduleExports =  {
   /* Add Your Scss File Folder Path Here */
+  // cssModules: true,
+
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
   },
@@ -26,4 +26,18 @@ module.exports = {
   images: {
     loader: 'default'
   }
-}
+};
+
+const sentryWebpackPluginOptions = {
+  // Additional config options for the Sentry Webpack plugin. Keep in mind that
+  // the following options are set automatically, and overriding them is not
+  // recommended:
+  //   release, url, org, project, authToken, configFile, stripPrefix,
+  //   urlPrefix, include, ignore
+
+  silent: true, // Suppresses all logs
+  // For all available options, see:
+  // https://github.com/getsentry/sentry-webpack-plugin#options.
+};
+
+module.exports = withSentryConfig(moduleExports, sentryWebpackPluginOptions);

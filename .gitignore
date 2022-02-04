@@ -40,3 +40,6 @@ api/.env
 .gitmessage
 .idea/
 .run/*
+
+# Sentry
+.sentryclirc
