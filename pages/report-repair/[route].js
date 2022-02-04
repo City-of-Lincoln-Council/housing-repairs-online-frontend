@@ -59,7 +59,12 @@ function ReportRepair() {
   const [formError, setFormError] = useState();
   const [requestId, setRequestId] = useState();
 
+  const cleanPayload = (payload) => {
+    delete payload.availability.appointmentSlotKey
+  }
+
   const submit = (values) => {
+    cleanPayload(values)
     fetch('/api/repair', {
       method: 'POST',
       body: JSON.stringify({
@@ -217,6 +222,7 @@ function ReportRepair() {
             { value: 'electricsExtractorCords', title: 'Electrics, including extractor fan and pull cords'},
             { value: 'windows', title: 'Damaged or stuck windows'},
             commonProblems.sink,
+            {value: 'dampOrMould', title: 'Damp or mould'},
             commonProblems.damagedOrStuckDoors,
             { value: 'showerIncludingTrayAndDoor', title: 'Shower, including the tray and shower door'},
             commonProblems.damagedOrStuckDoors,
@@ -290,6 +296,7 @@ function ReportRepair() {
             { value: 'securityLights', title: 'Outdoor security lights'},
             { value: 'roof', title: 'Roof, including insulation and shed roof'},
             { value: 'garage', title: 'Garage, including roof and door'},
+            { value: 'gatesAndPathways', title: 'Gates and pathways'}
           ]}
         />
       )
@@ -318,6 +325,20 @@ function ReportRepair() {
             { value: 'looseTiles', title: 'Loose tiles'},
             { value: 'flatRoofProblems', title: 'Problem with a flat roof'},
             { value: 'securityLights', title: 'Outdoor security lights'}
+          ]}
+        />
+      )
+    case 'gates-and-pathways-problems':
+      return (
+        <RepairProblemBestDescription
+          handleChange={handleChange}
+          values={values}
+          options = {[
+            {value: 'frontGate', title: 'Front gate'},
+            {value: 'backGate', title: 'Back gate'},
+            {value: 'driveway', title: 'Driveway'},
+            {value: 'concretePath', title: 'Concrete path around the property'},
+            {value: 'steps', title: 'Steps'}
           ]}
         />
       )
@@ -407,6 +428,17 @@ function ReportRepair() {
           options = {[
             { value: 'boiler', title: 'Boiler'},
             { value: 'radiator', title: 'Radiator'}
+          ]}
+        />
+      )
+    case 'bathroom-damp-mould-problems':
+      return (
+        <RepairProblemBestDescription
+          handleChange={handleChange}
+          values={values}
+          options = {[
+            { value: 'emergency', title: 'Damp or mould caused by a leak'},
+            { value: 'dampOrMould', title: 'Damp or mould caused by something else'}
           ]}
         />
       )
@@ -581,6 +613,7 @@ export async function getStaticPaths() {
     {params: { route: 'sink-problems'} },
     {params: { route: 'repair-bathroom-problems'} },
     {params: { route: 'repair-bedroom-problems'} },
+    {params: { route: 'bathroom-damp-mould-problems'} },
     {params: { route: 'repair-living-areas-problems'} },
     {params: { route: 'repair-living-areas-lighting-problems'} },
     {params: { route: 'wall-floor-ceiling-problems'} },
@@ -601,6 +634,7 @@ export async function getStaticPaths() {
     {params: { route: 'repair-outside-problems'}},
     {params: { route: 'outside-roof-problems'}},
     {params: { route: 'outside-door-problems'}},
+    {params: { route: 'gates-and-pathways-problems'}},
     {params: { route: 'repair-shower-problems'} },
     {params: { route: 'repair-description'} },
     {params: { route: 'repair-availability'} },

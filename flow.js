@@ -35,8 +35,11 @@ class Flow {
         {condition: 'securityLights', nextStep: 'repair-description'},
         {condition: 'roof', nextStep: 'outside-roof-problems'},
         {condition: 'garage', nextStep: 'repair-garage-problems'},
-        {condition: 'door', nextStep: 'outside-door-problems'},]},
+        {condition: 'door', nextStep: 'outside-door-problems'},
+        {condition: 'gatesAndPathways', nextStep: 'gates-and-pathways-problems'}
+      ]},
       'repair-garage-problems': { prevSteps:'', nextStep: 'repair-description'},
+      'gates-and-pathways-problems': { prevSteps:'repair-outside-problems', nextStep: 'repair-description'},
       'outside-roof-problems':  { prevSteps: 'repair-outside-problems', nextStep: 'repair-description'},
       'outside-door-problems':  { prevSteps: 'repair-outside-problems', nextStep: 'repair-description'},
       'repair-kitchen-problems': { prevStep: 'repair-location', nextStep: [
@@ -82,6 +85,7 @@ class Flow {
         {condition: 'electricsExtractorCords', nextStep: 'repair-bathroom-electric-problems'},
         {condition: 'sink', nextStep: 'sink-problems'},
         {condition: 'windows', nextStep: 'repair-window-problems'},
+        {condition: 'dampOrMould', nextStep: 'bathroom-damp-mould-problems'},
         {condition: 'damagedOrStuckDoors', nextStep: 'repair-door-problems'},
         {condition: 'showerIncludingTrayAndDoor', nextStep: 'repair-shower-problems'},
         {condition: 'damagedOrStuckDoors', nextStep: 'repair-door-problems'},
@@ -92,7 +96,8 @@ class Flow {
         {condition: 'wallsFloorsCeiling', nextStep: 'wall-floor-ceiling-problems'},
         {condition: 'windows', nextStep: 'repair-window-problems'},
         {condition: 'damagedOrStuckDoors', nextStep: 'repair-door-problems'},
-        {condition: 'dampOrMould', nextStep: 'damp-mould-problems'}]},
+        {condition: 'dampOrMould', nextStep: 'damp-mould-problems'}
+      ]},
       'repair-living-areas-problems': {prevSteps: 'repair-location', nextStep: [
         {condition: 'electricsLightsSwitches', nextStep: 'repair-bedroom-lighting-problems'},
         {condition: 'wallsFloorsCeiling', nextStep: 'wall-floor-ceiling-problems'},
@@ -113,6 +118,12 @@ class Flow {
       'repair-living-areas-lighting-problems': { prevStep: 'repair-living-areas-problems', nextStep: 'repair-description'},
       'wall-floor-ceiling-problems': {nextStep: 'repair-description'},
       'repair-kitchen-cupboard-problems': {prevStep: 'repair-kitchen-problems', nextStep: 'repair-description'},
+      'bathroom-damp-mould-problems': { prevStep: 'repair-bathroom-problems',
+        nextStep: [
+          {condition: 'emergency', nextStep: 'emergency-repair'},
+          {condition: 'dampOrMould', nextStep: 'repair-description'}
+        ]
+      },
       'repair-description-damp': {prevStep: 'repair-kitchen-types', nextStep: [
         {condition: 'damp', nextStep: 'repair-damp'},
         {condition: 'mould', nextStep: 'repair-description-damp-mold'},

@@ -97,6 +97,10 @@ describe('repairProblem', () => {
       cy.contains('Damaged or stuck windows');
     });
 
+    it('displays a "Damp or mould" option', () => {
+      cy.contains('Damp or mould');
+    });
+
     it('displays a "door" option', () => {
       cy.contains('Damaged or stuck doors');
     });
@@ -181,6 +185,10 @@ describe('repairProblem', () => {
 
     it('displays a "Roof, including insulation and shed roof" option', () => {
       cy.contains('Roof, including insulation and shed roof')
+    });
+
+    it('displays a "Gates and pathways" option', () => {
+      cy.contains('Gates and pathways')
     });
 
     it('displays a "Garage, including roof and door" option', () => {
