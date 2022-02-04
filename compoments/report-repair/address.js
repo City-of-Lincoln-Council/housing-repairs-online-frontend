@@ -74,7 +74,7 @@ const Address = ({handleChange, values}) => {
         <TextLink href="not-eligible">I can&apos;t find my address on this list</TextLink>
         <br/>
         <br/>
-        <Button onClick={Continue} >Tell us where the problem is</Button>
+        <Button onClick={Continue} >Continue</Button>
       </form>
     </div>
   </div>

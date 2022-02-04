@@ -29,7 +29,7 @@ describe('address', () => {
     });
 
     it('button displays correct text', () => {
-      cy.get('button').contains('Tell us where the problem is');
+      cy.get('button').contains('Continue');
     });
 
     it('contains a can\t find my address link', () => {
