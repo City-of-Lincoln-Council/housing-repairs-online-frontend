@@ -12,14 +12,14 @@ describe('communal', () => {
   });
 
   it('displays button with correct text', () => {
-    cy.get('button').contains('Provide your postcode');
+    cy.get('button').contains('Continue');
   });
 
   context('communal area prompt', () => {
     it('displays text', () => {
       cy.get('[data-testid=communal-area-prompt]').should(
         'have.contain',
-        'Which areas are communal?'
+        'What is a communal area?'
       );
     });
 

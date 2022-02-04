@@ -12,11 +12,11 @@ const Communal = ({handleChange, values}) => {
     { value: 'no', title: 'No'}
   ];
   const beforeButton =  (
-    <Details summary="Which areas are communal?" testid="communal-area-prompt">
+    <Details summary="What is a communal area?" testid="communal-area-prompt">
       <span data-testid="communal-area-info">
         <p>Communal repairs are usually in areas that people share.</p>
         <p>They can include:</p>
-        <ul>
+        <ul className={'govuk-list govuk-list--bullet'}>
           <li>repairs to door entry systems</li>
           <li>lock repairs to communal doors</li>
           <li>lighting repairs to shared areas</li>
@@ -38,7 +38,7 @@ const Communal = ({handleChange, values}) => {
       <RadioFieldSet name={name}
         title={title}
         options={options}
-        onSubmit={Continue} buttonText={'Provide your postcode'}
+        onSubmit={Continue} buttonText={'Continue'}
         beforeButton={beforeButton}
         checked={values[name]}
       />
