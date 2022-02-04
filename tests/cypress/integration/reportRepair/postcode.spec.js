@@ -13,7 +13,7 @@ describe('postcode', () => {
   });
 
   it('displays the question', () => {
-    cy.contains('What is the property address?');
+    cy.contains('What is the property postcode?');
   });
 
   it('displays input label', () => {
@@ -21,7 +21,7 @@ describe('postcode', () => {
   });
 
   it('displays button with correct text', () => {
-    cy.get('button').contains('Select your address');
+    cy.get('button').contains('Continue');
   });
   context('When a user doesn\'t type anything', ()=>{
     it('an error should be shown',  () => {
