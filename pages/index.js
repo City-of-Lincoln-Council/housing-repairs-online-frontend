@@ -13,6 +13,14 @@ export default function Home() {
 
   return (
     <div className="govuk-grid-row govuk-body-m govuk-!-margin-top-7">
+      <button
+        type="button"
+        onClick={() => {
+          throw new Error('Sentry Frontend Error');
+        }}
+      >
+        Throw error
+      </button>
       <div className="govuk-grid-column-two-thirds">
         <h1 className={'govuk-heading-xl'}>Request a repair</h1>
         <h2 className={'govuk-heading-m'}>Before you start</h2>

@@ -43,7 +43,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Set up circle CI
+      - name: Set up sentry cli
         run: |
           touch .sentryclirc
           echo "[auth]" >> .sentryclirc
