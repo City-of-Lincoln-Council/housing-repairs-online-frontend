@@ -35,6 +35,8 @@ const sentryWebpackPluginOptions = {
   //   release, url, org, project, authToken, configFile, stripPrefix,
   //   urlPrefix, include, ignore
   authToken: process.env.SENTRY_TOKEN,
+  ignore: ['node_modules'],
+  project: 'housing-repairs-online-frontend',
 
   silent: false, // Suppresses all logs
   // For all available options, see:
