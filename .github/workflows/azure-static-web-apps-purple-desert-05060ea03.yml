@@ -43,6 +43,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Set up circle CI
+        run: |
+          touch .sentryclirc
+          echo "[auth]" >> .sentryclirc
+          echo "[auth]" >> .sentryclirc
+          echo "token=${{ secrets.SENTRY_AUTH_TOKEN }}" >> .sentryclirc
+
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
