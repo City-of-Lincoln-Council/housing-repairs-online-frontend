@@ -87,6 +87,7 @@ jobs:
           REPAIRS_API: ${{ secrets.REPAIRS_API }}
           REPAIRS_API_IDENTIFIER: ${{ secrets.REPAIRS_API_IDENTIFIER }}
           SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
           SENTRY_ENVIRONMENT: ${{ github.event_name == 'pull_request' && 'staging' || 'production' }}
 
   close_pull_request_job:
