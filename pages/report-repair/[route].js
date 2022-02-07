@@ -225,7 +225,6 @@ function ReportRepair() {
             {value: 'dampOrMould', title: 'Damp or mould'},
             commonProblems.damagedOrStuckDoors,
             { value: 'showerIncludingTrayAndDoor', title: 'Shower, including the tray and shower door'},
-            commonProblems.damagedOrStuckDoors,
             { value: 'toilet', title: 'Toilet'}
           ]}
         />
