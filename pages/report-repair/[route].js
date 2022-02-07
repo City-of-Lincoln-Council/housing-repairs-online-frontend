@@ -103,7 +103,7 @@ function ReportRepair() {
     sink: { value: 'sink', title: 'Sink, including taps and drainage'},
     damagedOrStuckDoors: { value: 'damagedOrStuckDoors', title: 'Damaged or stuck doors' },
     electricsLightsSwitches: {value: 'electricsLightsSwitches', title: 'Electrics, including lights and switches'},
-    damagedOrStuckWindows: { value: 'damagedOrStuckWindows', title: 'Damaged or stuck windows'},
+    windows: { value: 'windows', title: 'Damaged or stuck windows'},
     dampOrMould: { value: 'dampOrMould', title: 'Damp or mould'}
   }
 
@@ -206,7 +206,7 @@ function ReportRepair() {
             { value: 'door', title: 'Damaged or stuck doors'},
             commonProblems.wallsFloorAndCeiling,
             commonProblems.sink,
-            { value: 'windows', title: 'Damaged or stuck windows'},
+            commonProblems.windows,
             commonProblems.dampOrMould
           ]}
         />
@@ -220,12 +220,11 @@ function ReportRepair() {
             { value: 'bath', title: 'Bath, including taps'},
             commonProblems.wallsFloorAndCeiling,
             { value: 'electricsExtractorCords', title: 'Electrics, including extractor fan and pull cords'},
-            { value: 'windows', title: 'Damaged or stuck windows'},
+            commonProblems.windows,
             commonProblems.sink,
             {value: 'dampOrMould', title: 'Damp or mould'},
             commonProblems.damagedOrStuckDoors,
             { value: 'showerIncludingTrayAndDoor', title: 'Shower, including the tray and shower door'},
-            commonProblems.damagedOrStuckDoors,
             { value: 'toilet', title: 'Toilet'}
           ]}
         />
@@ -238,7 +237,7 @@ function ReportRepair() {
           options = {[
             commonProblems.electricsLightsSwitches,
             commonProblems.wallsFloorAndCeiling,
-            { value: 'windows', title: 'Damaged or stuck windows'},
+            commonProblems.windows,
             commonProblems.damagedOrStuckDoors,
             commonProblems.dampOrMould
           ]}
@@ -252,7 +251,7 @@ function ReportRepair() {
           options = {[
             commonProblems.electricsLightsSwitches,
             commonProblems.wallsFloorAndCeiling,
-            { value: 'windows', title: 'Damaged or stuck windows'},
+            commonProblems.windows,
             commonProblems.damagedOrStuckDoors,
             commonProblems.dampOrMould,
             { value: 'stairs', title: 'Stairs (including handrail)'}
