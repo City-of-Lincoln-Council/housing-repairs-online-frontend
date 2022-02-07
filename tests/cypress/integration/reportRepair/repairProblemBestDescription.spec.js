@@ -100,7 +100,7 @@ const testSinkOptions = () => {
   });
 }
 
-const testDoorOption = () => {
+const testDoorOption = (testLockOnDoor = true) => {
   it('displays the repair issue question', () => {
     cy.contains('What best describes the problem?');
   });
@@ -109,9 +109,11 @@ const testDoorOption = () => {
     cy.contains('Internal door issue, including hinges, handle, sticking');
   });
 
-  it('displays a "Lock on the door" option', () => {
-    cy.contains('Lock on the door');
-  });
+  if (testLockOnDoor) {
+    it('displays a "Lock on the door" option', () => {
+      cy.contains('Lock on the door');
+    });
+  }
 
   it('displays a "Adjusting a door after a carpet fitting" option', () => {
     cy.contains('Adjusting a door after a carpet fitting');
@@ -525,7 +527,7 @@ context('Bedroom', () => {
       cy.contains('Damaged or stuck doors').click();
       cy.get('button').click();
     });
-    testDoorOption();
+    testDoorOption(false);
   });
 
   context('Damp or mould', () => {

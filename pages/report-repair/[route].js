@@ -408,6 +408,17 @@ function ReportRepair() {
           ]}
         />
       )
+    case 'repair-bedroom-door-problems':
+      return (
+        <RepairProblemBestDescription
+          handleChange={handleChange}
+          values={values}
+          options={[
+            { value: 'internalDoorIssue', title: 'Internal door issue, including hinges, handle, sticking'},
+            { value: 'adjustingDoorAfterCarpetFitting', title: 'Adjusting a door after a carpet fitting'},
+          ]}
+        />
+      )
     case 'repair-bedroom-lighting-problems':
       return (
         <RepairProblemBestDescription
@@ -626,6 +637,7 @@ export async function getStaticPaths() {
     {params: { route: 'repair-bedroom-lighting-problems'} },
     {params: { route: 'repair-bathroom-electric-problems'} },
     {params: { route: 'repair-living-area-door-problems'} },
+    {params: { route: 'repair-bedroom-door-problems'} },
     {params: { route: 'repair-door-problems'}},
     {params: { route: 'repair-toilet-problems'}},
     {params: { route: 'repair-garage-problems'}},
