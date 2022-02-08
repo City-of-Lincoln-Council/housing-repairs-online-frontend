@@ -67,7 +67,7 @@ jobs:
           # auto generated GitHub token to allow accurately detecting a build vs a re-run build
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   build_and_deploy_job:
-    needs: [test, cypress-run]
+    needs: [test]
 #    needs: [test, cypress-run]
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
@@ -76,6 +76,14 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: true
+
+      - name: Set up sentry cli
+        run: |
+          touch .sentryclirc
+          echo "[auth]" >> .sentryclirc
+          echo "[auth]" >> .sentryclirc
+          echo "token=${{ secrets.SENTRY_AUTH_TOKEN }}" >> .sentryclirc
+
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
@@ -95,7 +103,7 @@ jobs:
           REPAIRS_API_IDENTIFIER: ${{ secrets.REPAIRS_API_IDENTIFIER }}
           SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-          SENTRY_ENVIRONMENT: ${{ github.event_name == 'pull_request' && 'staging' || 'production' }}
+          NODE_ENV: ${{ github.event_name == 'pull_request' && 'staging' || 'production' }}
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
