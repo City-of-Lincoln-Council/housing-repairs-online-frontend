@@ -7,9 +7,10 @@
     "test": "echo \"No tests yet...\""
   },
   "dependencies": {
-    "node-fetch": "2.6.1",
+    "@sentry/node": "^6.17.5",
+    "axios": "^0.24.0",
     "dotenv": "^10.0.0",
-    "axios": "^0.24.0"
+    "node-fetch": "2.6.1"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",

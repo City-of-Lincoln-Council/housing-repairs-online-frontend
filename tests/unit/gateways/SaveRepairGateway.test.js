@@ -8,6 +8,9 @@ describe('SaveRepairGateway', () => {
   let mockPostRequest;
   let SaveRepairGateway;
 
+  let mockSentry;
+  let mockCaptureException;
+
   beforeAll(() => {
     mockPostRequest =  jest.fn().mockImplementation(({url, params}) => Promise.resolve({data: dummyID}));
     SaveRepairGateway = require('../../../api/gateways/SaveRepairGateway')(mockPostRequest);
@@ -38,7 +41,9 @@ describe('SaveRepairGateway', () => {
   describe('when api is down', () =>{
     beforeAll(() => {
       mockPostRequest =  jest.fn().mockRejectedValue({status: 500});
-      SaveRepairGateway = require('../../../api/gateways/SaveRepairGateway')(mockPostRequest);
+      mockCaptureException = jest.fn();
+      mockSentry = {captureException: mockCaptureException, flush: jest.fn()};
+      SaveRepairGateway = require('../../../api/gateways/SaveRepairGateway')(mockPostRequest, mockSentry);
     });
 
     test('an error gets raised', async () => {
