@@ -5,7 +5,7 @@ import App from 'next/app'
 import Link from 'next/link'
 import { useEffect } from 'react';
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps, err  }) {
   const enableJavascript = () => {
     window.GOVUKFrontend.initAll()
   }
@@ -44,7 +44,7 @@ function MyApp({ Component, pageProps }) {
         </p>
       </div>
       <main className="govuk-main-wrapper govuk-!-padding-0">
-        <Component {...pageProps} />
+        <Component {...pageProps} err={err} />
       </main>
     </div>
     <footer className="govuk-footer " role="contentinfo">
