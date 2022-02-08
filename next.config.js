@@ -1,10 +1,8 @@
 const path = require('path')
-const withSass = require('@zeit/next-sass');
-const nextSourceMaps = require('@zeit/next-source-maps');
 
 const { withSentryConfig } = require('@sentry/nextjs');
 
-const moduleExports =  nextSourceMaps({
+const moduleExports =  {
   /* Add Your Scss File Folder Path Here */
   // cssModules: true,
 
@@ -32,6 +30,6 @@ const moduleExports =  nextSourceMaps({
     disableServerWebpackPlugin: true,
     disableClientWebpackPlugin: true,
   },
-});
+};
 
 module.exports = withSentryConfig(moduleExports);
