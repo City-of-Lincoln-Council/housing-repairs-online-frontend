@@ -105,7 +105,9 @@ function ReportRepair() {
     damagedOrStuckDoors: { value: 'damagedOrStuckDoors', title: 'Damaged or stuck doors' },
     electricsLightsSwitches: {value: 'electricsLightsSwitches', title: 'Electrics, including lights and switches'},
     windows: { value: 'windows', title: 'Damaged or stuck windows'},
-    dampOrMould: { value: 'dampOrMould', title: 'Damp or mould'}
+    dampOrMould: { value: 'dampOrMould', title: 'Damp or mould'},
+    heatingOrHotWater: { value: 'heatingOrHotWater', title: 'Heating or hot water'},
+    heating: { value: 'heating', title: 'Heating'},
   }
 
   const prevStep = (e) => {
@@ -207,7 +209,7 @@ function ReportRepair() {
             { value: 'cupboards', title: 'Cupboards, including damaged cupboard doors'},
             { value: 'electrical', title: 'Electrical, including extractor fans and lightbulbs'},
             { value: 'worktop', title:   'Damaged worktop'},
-            { value: 'heatingOrHotWater', title: 'Heating or hot water'},
+            commonProblems.heatingOrHotWater,
             { value: 'door', title: 'Damaged or stuck doors'},
             commonProblems.wallsFloorAndCeiling,
             commonProblems.sink,
@@ -230,7 +232,8 @@ function ReportRepair() {
             {value: 'dampOrMould', title: 'Damp or mould'},
             commonProblems.damagedOrStuckDoors,
             { value: 'showerIncludingTrayAndDoor', title: 'Shower, including the tray and shower door'},
-            { value: 'toilet', title: 'Toilet'}
+            { value: 'toilet', title: 'Toilet'},
+            commonProblems.heatingOrHotWater,
           ]}
         />
       )
@@ -244,7 +247,8 @@ function ReportRepair() {
             commonProblems.wallsFloorAndCeiling,
             commonProblems.windows,
             commonProblems.damagedOrStuckDoors,
-            commonProblems.dampOrMould
+            commonProblems.dampOrMould,
+            commonProblems.heating,
           ]}
         />
       )
@@ -259,7 +263,8 @@ function ReportRepair() {
             commonProblems.windows,
             commonProblems.damagedOrStuckDoors,
             commonProblems.dampOrMould,
-            { value: 'stairs', title: 'Stairs (including handrail)'}
+            { value: 'stairs', title: 'Stairs (including handrail)'},
+            commonProblems.heating,
           ]}
         />
       )

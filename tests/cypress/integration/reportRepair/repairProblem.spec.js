@@ -112,6 +112,10 @@ describe('repairProblem', () => {
     it('displays a "toilet" option', () => {
       cy.contains('Toilet');
     });
+
+    it('displays a "heating" option', () => {
+      cy.contains('Heating or hot water');
+    });
   });
 
   context('Bedroom', () => {
@@ -133,6 +137,10 @@ describe('repairProblem', () => {
 
     it('displays a "Damp or mould" option', () => {
       cy.contains('Damp or mould');
+    });
+
+    it('displays a "Heating" option', () => {
+      cy.contains('Heating');
     });
   });
 
@@ -161,6 +169,10 @@ describe('repairProblem', () => {
 
     it('displays a "Stairs (including handrail)" option', () => {
       cy.contains('Stairs (including handrail)');
+    });
+
+    it('displays a "Heating" option', () => {
+      cy.contains('Heating');
     });
   });
 
