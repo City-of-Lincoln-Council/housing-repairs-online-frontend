@@ -23,6 +23,7 @@ import ContactDetails from '../../compoments/report-repair/contact-details';
 import Confirmation from '../../compoments/report-repair/confirmation';
 import Error from '../../compoments/error';
 import NotEligibleNonEmergency from '../../compoments/report-repair/not-eligible-non-emergency';
+import UnableToBook from '../../compoments/report-repair/unable-to-book';
 
 function ReportRepair() {
   const [state, setState] = useState({data:{}, step: 'priority-list'});
@@ -173,6 +174,10 @@ function ReportRepair() {
     case 'not-eligible-communal-repairs':
       return (
         <NotEligibleCommunalRepairs/>
+      )
+    case 'unable-to-book':
+      return (
+        <UnableToBook/>
       )
     case 'postcode':
       return (
@@ -430,17 +435,6 @@ function ReportRepair() {
           ]}
         />
       )
-    case 'repair-kitchen-heating-problems':
-      return (
-        <RepairProblemBestDescription
-          handleChange={handleChange}
-          values={values}
-          options = {[
-            { value: 'boiler', title: 'Boiler'},
-            { value: 'radiator', title: 'Radiator'}
-          ]}
-        />
-      )
     case 'bathroom-damp-mould-problems':
       return (
         <RepairProblemBestDescription
@@ -615,6 +609,7 @@ export async function getStaticPaths() {
     {params: { route: 'not-eligible'} },
     {params: { route: 'not-eligible-non-emergency'} },
     {params: { route: 'not-eligible-communal-repairs'} },
+    {params: { route: 'unable-to-book'} },
     {params: { route: 'postcode'} },
     {params: { route: 'priority-list'} },
     {params: { route: 'repair-location'} },
@@ -633,7 +628,6 @@ export async function getStaticPaths() {
     {params: { route: 'kitchen-electrical-problems'} },
     {params: { route: 'kitchen-door-problems'} },
     {params: { route: 'repair-kitchen-cupboard-problems'} },
-    {params: { route: 'repair-kitchen-heating-problems'} },
     {params: { route: 'repair-bedroom-lighting-problems'} },
     {params: { route: 'repair-bathroom-electric-problems'} },
     {params: { route: 'repair-living-area-door-problems'} },

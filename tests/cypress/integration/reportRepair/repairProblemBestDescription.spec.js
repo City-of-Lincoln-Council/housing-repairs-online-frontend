@@ -171,16 +171,8 @@ describe('repairProblemBestDescription', () => {
         cy.get('button').click();
       });
 
-      it('displays the repair issue question', () => {
-        cy.contains('What best describes the problem?');
-      });
-
-      it('displays a "Boiler" option', () => {
-        cy.contains('Boiler');
-      });
-
-      it('displays a "Radiator" option', () => {
-        cy.contains('Radiator');
+      it('should redirect them to not eligible non-emergency page',  () => {
+        cy.url().should('include', '/report-repair/unable-to-book');
       });
     })
 

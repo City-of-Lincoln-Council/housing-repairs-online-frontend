@@ -49,7 +49,7 @@ class Flow {
         {condition: 'electrical', nextStep: 'kitchen-electrical-problems'},
         {condition: 'worktop', nextStep: 'repair-description'},
         {condition: 'sink', nextStep: 'sink-problems'},
-        {condition: 'heatingOrHotWater', nextStep: 'repair-kitchen-heating-problems'},
+        {condition: 'heatingOrHotWater', nextStep: 'unable-to-book'},
         {condition: 'drip-or-leak', nextStep: 'repair-description-leak'},
         {condition: 'door', nextStep: 'kitchen-door-problems'},
         {condition: 'wallsFloorsCeiling', nextStep: 'wall-floor-ceiling-problems'}
@@ -76,7 +76,6 @@ class Flow {
         {condition: 'cubicleDoorBroken', nextStep: 'repair-description'},
         {condition: 'showerDrainBlocked', nextStep: 'emergency-repair'},]},
       'sink-problems': {nextStep: 'repair-description'},
-      'repair-kitchen-heating-problems': { prevStep: 'repair-kitchen-problems', nextStep: 'repair-description'},
       'kitchen-door-problems': { prevStep: 'repair-kitchen-problems', nextStep: 'repair-description'},
       'kitchen-electrical-problems': {prevStep: 'repair-kitchen-problems', nextStep: 'repair-description'},
       'repair-bathroom-problems': { prevStep: 'repair-location', nextStep: [
