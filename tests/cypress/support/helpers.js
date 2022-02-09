@@ -23,12 +23,12 @@ function intercept_address_search(
   }).as('address');
 }
 
-function intercept_availability_search() {
+function intercept_availability_search(appointments = dummyAppointments) {
   const api_url = 'http://localhost:3000/api';
 
   cy.intercept('GET', `${api_url}/availability*`, {
     statusCode: 201,
-    body: dummyAppointments
+    body: appointments
   }).as('availability');
 }
 
