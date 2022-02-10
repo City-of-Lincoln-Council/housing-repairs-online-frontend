@@ -26,10 +26,15 @@ const moduleExports =  {
     loader: 'default'
   },
 
-  sentry: {
-    disableServerWebpackPlugin: true,
-    disableClientWebpackPlugin: true,
-  },
+  // sentry: {
+  //   disableServerWebpackPlugin: true,
+  //   disableClientWebpackPlugin: true,
+  // },
 };
 
-module.exports = withSentryConfig(moduleExports);
+module.exports = withSentryConfig(moduleExports, {
+  org: 'housing-repairs-online',
+  project: 'housing-repairs-online-frontend',
+  authToken: process.env.SENTRY_AUTH_TOKEN,
+  dryRun: false,
+});
