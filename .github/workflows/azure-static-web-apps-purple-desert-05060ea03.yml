@@ -85,6 +85,8 @@ jobs:
         env:
           REPAIRS_API: ${{ secrets.REPAIRS_API }}
           REPAIRS_API_IDENTIFIER: ${{ secrets.REPAIRS_API_IDENTIFIER }}
+          SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
