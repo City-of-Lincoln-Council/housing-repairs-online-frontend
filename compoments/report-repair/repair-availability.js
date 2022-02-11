@@ -5,6 +5,7 @@ import {fetcher} from '../../helpers/fetcher';
 import useSWR from 'swr';
 import moment from 'moment';
 import {useRouter} from 'next/router';
+import Loader from "../loader";
 
 const RepairAvailability = ({handleChange, values, fromDate}) => {
   const [error, setError] = useState();
@@ -25,7 +26,7 @@ const RepairAvailability = ({handleChange, values, fromDate}) => {
   const { data, dataError } = useSWR(apiUrl, fetcher)
 
   if (dataError) return <div>failed to load</div>
-  if (!data) return <div>loading...</div>
+  if (!data) return <Loader/>
 
   let availability = {};
   let availabilityValues = {};

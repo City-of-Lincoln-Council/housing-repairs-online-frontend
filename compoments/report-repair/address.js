@@ -5,6 +5,7 @@ import TextLink from '../textLink';
 import Button from '../button';
 import useSWR from 'swr'
 import {fetcher} from '../../helpers/fetcher';
+import Loader from '../loader';
 
 const Address = ({handleChange, values}) => {
   const [state, setState] = useState({error: {}, value: 'null'});
@@ -12,7 +13,7 @@ const Address = ({handleChange, values}) => {
   const { data, error } = useSWR(`/api/address?postcode=${values.postcode}`, fetcher)
 
   if (error) return <div>failed to load</div>
-  if (!data) return <div>loading...</div>
+  if (!data) return <Loader/>
 
   const addresses = data.map((a) => {
     a.display = [a.addressLine1, a.addressLine2, a.postCode].filter(x=>x).join(', ')
