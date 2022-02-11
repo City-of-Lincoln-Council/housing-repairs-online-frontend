@@ -66,11 +66,11 @@ class TextInput extends Component {
   render(){
     return (
       <>
-        <h1 className="govuk-heading-xl">{this.title}</h1>
+        <h1 className="govuk-heading-l">{this.title}</h1>
         <div className={this.state.error.msg ? 'govuk-form-group--error' : 'govuk-form-group'}>
           <form action="" className={(this.long ? 'govuk-grid-column-two-thirds':'govuk-grid-column-one-third')+' govuk-!-padding-0'}>
             <span id={`${this.name}-error`}
-              className="govuk-error-message">
+              className="govuk-error-message govuk-!-margin-bottom-0">
               {this.state.error.msg}
             </span>
             <label className="govuk-label" htmlFor={this.input.id}>

@@ -74,7 +74,7 @@ const RepairDescription = ({handleChange, values}) => {
 
   return <div className="govuk-grid-row" data-cy="repair-description">
     <div className="govuk-grid-column-two-thirds">
-      <h1 className="govuk-heading-xl govuk-!-margin-0">
+      <h1 className="govuk-heading-l">
         Describe your problem in more detail
       </h1>
       <div className={error.text ? 'govuk-form-group--error' : 'govuk-form-group'}>

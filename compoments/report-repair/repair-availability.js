@@ -68,7 +68,7 @@ const RepairAvailability = ({handleChange, values, fromDate}) => {
 
   return <div className="govuk-grid-row" data-cy="repair-availability">
     <div className="govuk-grid-column-two-thirds">
-      <h1 className="govuk-heading-xl">
+      <h1 className="govuk-heading-l">
         When are you available?
       </h1>
       <p className="govuk-body-l">

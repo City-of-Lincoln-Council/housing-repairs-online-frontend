@@ -65,58 +65,68 @@ class RadioFieldSet extends Component {
 
     return (
       <div>
-        <h1 className="govuk-heading-xl">
-          {this.title}
-        </h1>
-        <div className={this.state.error ? 'govuk-form-group--error' : 'govuk-form-group'}>
-          <span id={`${this.name}-error`}
-            className="govuk-error-message">
-            {this.state.error}
-          </span>
-          <div className={this.conditional ?'govuk-radios--conditional' : 'govuk-radios' }>
-            {this.options.map((o, i) => (
-              <span key={i}>
-                { this.includeOrDivider(i) ? <div className="govuk-radios__divider">or</div> : <br/>}
-                <div className="govuk-radios__item">
-                  <input className="govuk-radios__input govuk-input--width-10"
-                    id={`${this.name}-${i}`} name={this.name}
-                    type="radio" value={o.value}
-                    defaultChecked={o.checked}
-                    onChange={this.setValue.bind(this)}
-                    data-aria-controls={`conditional-${this.name}-${i}`}
-                  />
-                  <label className="govuk-label govuk-radios__label"
-                    htmlFor={`${this.name}-${i}`}>
-                    {o.title}
-                  </label>
-                </div>
-                {o.conditional && <div
-                  className={`govuk-radios__conditional ${this.state.value[this.name] != o.value && 'govuk-visually-hidden'}`}
-                  id={`conditional-${this.name}-${i}`}>
-                  <div className="govuk-form-group" key={`conditional-${i}`}>
-                    <label className="govuk-hint" htmlFor={`${this.name}-${o.value}`}>
-                      {o.conditional.label}
-                    </label>
-                    <input className="govuk-input govuk-!-width-one-third"
-                      id={`${this.name}-${o.value}`} name={`${this.name}-${o.value}`}
-                      type={o.conditional.type}
-                      defaultValue={this.conditionalValue[o.value]}
-                      onChange={(e)=>{
-                        this.conditionalValue[o.value] = e.target.value
-                      }}
-                      onWheel={(e) => e.target.blur()}
-                      onKeyPress={o.conditional.onKeyPress}
-                    />
-                  </div>
-                </div> }
+        <div className="govuk-form-group">
+          <fieldset className="govuk-fieldset" id="repair-emergency"
+            name="repair-emergency">
+            <legend className="govuk-fieldset__legend govuk-fieldset__legend--l govuk-!-margin-bottom-1">
+              <h1 className="govuk-fieldset__heading">
+                {this.title}
+              </h1>
+            </legend>
+            <div className={this.state.error ? 'govuk-form-group--error' : 'govuk-form-group'}>
+              <span id={`${this.name}-error`}
+                className="govuk-error-message govuk-!-margin-bottom-0">
+                {this.state.error}
               </span>
-            ))}
+              <div className={this.conditional ?'govuk-radios--conditional' : 'govuk-radios' }>
+                {this.options.map((o, i) => (
+                  <span key={i}>
+                    { this.includeOrDivider(i) ? <div className="govuk-radios__divider">or</div> : <div className="govuk-!-margin-bottom-2"></div>}
+                    <div className="govuk-radios__item">
+                      <input className="govuk-radios__input govuk-input--width-10"
+                        id={`${this.name}-${i}`} name={this.name}
+                        type="radio" value={o.value}
+                        defaultChecked={o.checked}
+                        onChange={this.setValue.bind(this)}
+                        data-aria-controls={`conditional-${this.name}-${i}`}
+                      />
+                      <label className="govuk-label govuk-radios__label"
+                        htmlFor={`${this.name}-${i}`}>
+                        {o.title}
+                      </label>
+                    </div>
+                    {o.conditional && <div
+                      className={`govuk-radios__conditional ${this.state.value[this.name] != o.value && 'govuk-visually-hidden'}`}
+                      id={`conditional-${this.name}-${i}`}>
+                      <div className="govuk-form-group" key={`conditional-${i}`}>
+                        <label className="govuk-hint" htmlFor={`${this.name}-${o.value}`}>
+                          {o.conditional.label}
+                        </label>
+                        <input className="govuk-input govuk-!-width-one-third"
+                          id={`${this.name}-${o.value}`} name={`${this.name}-${o.value}`}
+                          type={o.conditional.type}
+                          defaultValue={this.conditionalValue[o.value]}
+                          onChange={(e)=>{
+                            this.conditionalValue[o.value] = e.target.value
+                          }}
+                          onWheel={(e) => e.target.blur()}
+                          onKeyPress={o.conditional.onKeyPress}
+                        />
+                      </div>
+                    </div> }
+                  </span>
+                ))}
+              </div>
+            </div>
+
+          </fieldset>
+        </div>
+        <div>
+          <div className="govuk-!-margin-top-6">
+            {this.beforeButton}
           </div>
+          <Button onClick={this.formSubmit}>{this.buttonText}</Button>
         </div>
-        <div className="govuk-!-margin-top-6">
-          {this.beforeButton}
-        </div>
-        <Button onClick={this.formSubmit}>{this.buttonText}</Button>
       </div>
     )
   }
