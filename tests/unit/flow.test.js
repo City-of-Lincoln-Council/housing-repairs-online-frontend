@@ -237,21 +237,21 @@ describe('Flow', () => {
       describe('when the repairProblemBestDescription is updated', () => {
         test('then a repairProblemBestDescription is deselected and a repairProblemBestDescription does not exists', () =>{
           const state = {
-            step: 'repair-kitchen-heating-problems',
+            step: 'kitchen-door-problems',
             data: {
               'repairProblem': {value: 'heatingOrHotWater', display: 'Heating or hot water'},
               'repairProblemBestDescription': {value: 'smashed', display: 'Smashed window(s)'}
             },
             prevStep: 'repair-kitchen-problems',
           }
-          flow.handleChange('repairProblemBestDescription', {value: 'boiler', display: 'Boiler'}, state);
+          flow.handleChange('repairProblemBestDescription', {value: 'internalDoorIssue', display: 'Internal door issue, including hinges, handle, sticking'}, state);
           expect(setStateSpy).toHaveBeenCalledWith({
             step: 'repair-description',
             data: {
               'repairProblem': {value: 'heatingOrHotWater', display: 'Heating or hot water'},
-              'repairProblemBestDescription': {value: 'boiler', display: 'Boiler'}
+              'repairProblemBestDescription': {value: 'internalDoorIssue', display: 'Internal door issue, including hinges, handle, sticking'}
             },
-            prevStep: 'repair-kitchen-heating-problems'})
+            prevStep: 'kitchen-door-problems'})
         })
       })
       test('then a repairProblemBestDescription is deselected and a repairProblemBestDescription does not exists', () =>{

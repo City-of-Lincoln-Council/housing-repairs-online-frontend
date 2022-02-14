@@ -60,24 +60,21 @@ const testWallOption = () => {
 }
 
 const electricsOption = () => {
-  context('Electrics, including lights and switches', () => {
-    before(() => {
-      cy.contains('Electrics, including lights and switches').click();
-      cy.get('button').click();
-    });
+  before(() => {
+    cy.contains('Electrics, including lights and switches').click();
+    cy.get('button').click();
+  });
 
-    it('displays the repair issue question', () => {
-      cy.contains('What best describes the problem?');
-    });
+  it('displays the repair issue question', () => {
+    cy.contains('What best describes the problem?');
+  });
 
-    it('displays a "Light" option', () => {
-      cy.contains('Lights');
-    });
+  it('displays a "Light" option', () => {
+    cy.contains('Lights');
+  });
 
-    it('displays a "Socket" option', () => {
-      cy.contains('Sockets');
-    });
-
+  it('displays a "Socket" option', () => {
+    cy.contains('Sockets');
   });
 }
 
@@ -103,7 +100,7 @@ const testSinkOptions = () => {
   });
 }
 
-const testDoorOption = () => {
+const testDoorOption = (testLockOnDoor = true) => {
   it('displays the repair issue question', () => {
     cy.contains('What best describes the problem?');
   });
@@ -112,9 +109,11 @@ const testDoorOption = () => {
     cy.contains('Internal door issue, including hinges, handle, sticking');
   });
 
-  it('displays a "Lock on the door" option', () => {
-    cy.contains('Lock on the door');
-  });
+  if (testLockOnDoor) {
+    it('displays a "Lock on the door" option', () => {
+      cy.contains('Lock on the door');
+    });
+  }
 
   it('displays a "Adjusting a door after a carpet fitting" option', () => {
     cy.contains('Adjusting a door after a carpet fitting');
@@ -172,16 +171,8 @@ describe('repairProblemBestDescription', () => {
         cy.get('button').click();
       });
 
-      it('displays the repair issue question', () => {
-        cy.contains('What best describes the problem?');
-      });
-
-      it('displays a "Boiler" option', () => {
-        cy.contains('Boiler');
-      });
-
-      it('displays a "Radiator" option', () => {
-        cy.contains('Radiator');
+      it('should redirect them to not eligible non-emergency page',  () => {
+        cy.url().should('include', '/report-repair/unable-to-book');
       });
     })
 
@@ -362,6 +353,28 @@ describe('repairProblemBestDescription', () => {
 
     });
 
+    context('Damp or mould', () => {
+      beforeEach(() => {
+        navigateToLocation()
+        cy.contains('Bathroom').click();
+        cy.get('button').click();
+        cy.contains('Damp or mould').click();
+        cy.get('button').click();
+      });
+
+      it('displays a "Damp or mould caused by a leak" option', () => {
+        cy.contains('Damp or mould caused by a leak').click();
+        cy.get('button').click();
+        cy.url().should('include', '/report-repair/emergency-repair');
+      });
+
+      it('displays a "Damp or mould caused by something else" option', () => {
+        cy.contains('Damp or mould caused by something else').click();
+        cy.get('button').click();
+        cy.url().should('include', '/report-repair/repair-description');
+      });
+    });
+
     context('Damaged or stuck doors', () => {
       before(()=>{
         navigateToLocation()
@@ -372,207 +385,240 @@ describe('repairProblemBestDescription', () => {
       });
       testDoorOption();
     });
+  });
 
-    context('Toilet', () => {
-      before(()=>{
-        navigateToLocation()
-        cy.contains('Bathroom').click();
-        cy.get('button').click();
-        cy.contains('Toilet').click();
-        cy.get('button').click();
-      });
-
-      it('displays the repair issue question', () => {
-        cy.contains('What best describes the problem?');
-      });
-
-      it('displays a "Not flushing" option', () => {
-        cy.contains('Not flushing');
-      });
-
-      it('displays a "Overflowing" option', () => {
-        cy.contains('Overflowing');
-      });
-
-      it('displays a "Coming loose from the floor or wall" option', () => {
-        cy.contains('Coming loose from the floor or wall');
-      });
-
-      it('displays a "Cracked" option', () => {
-        cy.contains('Cracked');
-      });
-
-      it('displays a "Toilet seat" option', () => {
-        cy.contains('Toilet seat');
-      });
+  context('Toilet', () => {
+    before(()=>{
+      navigateToLocation()
+      cy.contains('Bathroom').click();
+      cy.get('button').click();
+      cy.contains('Toilet').click();
+      cy.get('button').click();
     });
-    context('Shower, including the tray and shower door', () => {
-      before(()=>{
-        navigateToLocation()
-        cy.contains('Bathroom').click();
-        cy.get('button').click();
-        cy.contains('Shower, including the tray and shower door').click();
-        cy.get('button').click();
-      });
 
-      it('displays the repair issue question', () => {
-        cy.contains('What best describes the problem?');
-      });
+    it('displays the repair issue question', () => {
+      cy.contains('What best describes the problem?');
+    });
 
-      it('displays a "Electric shower unit" option', () => {
-        cy.contains('Electric shower unit');
-      });
+    it('displays a "Not flushing" option', () => {
+      cy.contains('Not flushing');
+    });
 
-      it('displays a "Tap shower" option', () => {
-        cy.contains('Tap shower');
-      });
+    it('displays a "Overflowing" option', () => {
+      cy.contains('Overflowing');
+    });
 
-      it('displays a "Shower hose" option', () => {
-        cy.contains('Shower hose');
-      });
+    it('displays a "Coming loose from the floor or wall" option', () => {
+      cy.contains('Coming loose from the floor or wall');
+    });
 
-      it('displays a "Shower head" option', () => {
-        cy.contains('Shower head');
-      });
+    it('displays a "Cracked" option', () => {
+      cy.contains('Cracked');
+    });
 
-      it('displays a "Shower tray broken" option', () => {
-        cy.contains('Shower tray broken');
-      });
-
-      it('displays a "Cubicle door broken" option', () => {
-        cy.contains('Cubicle door broken');
-      });
-
-      it('displays a "Shower drain blocked" option', () => {
-        cy.contains('Shower drain blocked');
-      });
+    it('displays a "Toilet seat" option', () => {
+      cy.contains('Toilet seat');
     });
 
   });
 
-  context('Bedroom', () => {
+
+  context('Shower, including the tray and shower door', () => {
+    before(()=>{
+      navigateToLocation()
+      cy.contains('Bathroom').click();
+      cy.get('button').click();
+      cy.contains('Shower, including the tray and shower door').click();
+      cy.get('button').click();
+    });
+
+    it('displays the repair issue question', () => {
+      cy.contains('What best describes the problem?');
+    });
+
+    it('displays a "Electric shower unit" option', () => {
+      cy.contains('Electric shower unit');
+    });
+
+    it('displays a "Tap shower" option', () => {
+      cy.contains('Tap shower');
+    });
+
+    it('displays a "Shower hose" option', () => {
+      cy.contains('Shower hose');
+    });
+
+    it('displays a "Shower head" option', () => {
+      cy.contains('Shower head');
+    });
+
+    it('displays a "Shower tray broken" option', () => {
+      cy.contains('Shower tray broken');
+    });
+
+    it('displays a "Cubicle door broken" option', () => {
+      cy.contains('Cubicle door broken');
+    });
+
+    it('displays a "Shower drain blocked" option', () => {
+      cy.contains('Shower drain blocked');
+    });
+  });
+
+});
+
+context('Bedroom', () => {
+  before(()=>{
+    navigateToLocation()
+    cy.contains('Bedroom').click();
+    cy.get('button').click();
+  });
+
+  context('Walls, floor or ceiling, excluding damp', () => {
+    before(() => {
+      cy.contains('Walls, floor or ceiling, excluding damp').click();
+      cy.get('button').click();
+    });
+
+    testWallOption();
+  });
+
+  context('Electrics, including extractor fan and pull cords', () => {
     before(()=>{
       navigateToLocation()
       cy.contains('Bedroom').click();
       cy.get('button').click();
     });
 
-    context('Walls, floor or ceiling, excluding damp', () => {
-      before(() => {
-        cy.contains('Walls, floor or ceiling, excluding damp').click();
-        cy.get('button').click();
-      });
-
-      testWallOption();
-    });
-
-    context('Electrics, including extractor fan and pull cords', () => {
-      before(()=>{
-        navigateToLocation()
-        cy.contains('Bedroom').click();
-        cy.get('button').click();
-      });
-
-      electricsOption();
-    });
-
-    context('Electrical, including extractor fans and lightbulbs', () => {
-      before(()=>{
-        navigateToLocation()
-        cy.contains('Bedroom').click();
-        cy.get('button').click();
-      });
-      electricsOption();
-    });
-
-    context('Damaged or stuck windows', () => {
-      before(()=>{
-        cy.go(-1);
-        cy.contains('Damaged or stuck windows').click();
-        cy.get('button').click();
-      });
-      testWindowOption();
-    });
-
-    context('Damaged or stuck doors', () => {
-      before(()=>{
-        navigateToLocation()
-        cy.contains('Bedroom').click();
-        cy.get('button').click();
-        cy.contains('Damaged or stuck doors').click();
-        cy.get('button').click();
-      });
-      testDoorOption();
-    });
-
-    context('Damp or mould', () => {
-      before(()=>{
-        navigateToLocation()
-        cy.contains('Bedroom').click();
-        cy.get('button').click();
-        cy.contains('Damp or mould').click();
-        cy.get('button').click();
-      });
-      testDampOrMouldOption();
-    });
+    electricsOption();
   });
 
-  context('Living Area', () => {
+  context('Electrical, including extractor fans and lightbulbs', () => {
+    before(()=>{
+      navigateToLocation()
+      cy.contains('Bedroom').click();
+      cy.get('button').click();
+    });
+    electricsOption();
+  });
+
+  context('Damaged or stuck windows', () => {
+    before(()=>{
+      cy.go(-1);
+      cy.contains('Damaged or stuck windows').click();
+      cy.get('button').click();
+    });
+    testWindowOption();
+  });
+
+  context('Damaged or stuck doors', () => {
+    before(()=>{
+      navigateToLocation()
+      cy.contains('Bedroom').click();
+      cy.get('button').click();
+      cy.contains('Damaged or stuck doors').click();
+      cy.get('button').click();
+    });
+    testDoorOption(false);
+  });
+
+  context('Damp or mould', () => {
+    before(()=>{
+      navigateToLocation()
+      cy.contains('Bedroom').click();
+      cy.get('button').click();
+      cy.contains('Damp or mould').click();
+      cy.get('button').click();
+    });
+    testDampOrMouldOption();
+  });
+});
+
+context('Living Area', () => {
+  before(()=>{
+    navigateToLocation()
+    cy.contains('Living Area').click();
+    cy.get('button').click();
+  });
+
+  context('Walls, floor or ceiling, excluding damp', () => {
+    before(() => {
+      cy.contains('Walls, floor or ceiling, excluding damp').click();
+      cy.get('button').click();
+    });
+
+    testWallOption();
+  });
+  context('Electrics, including lights and switches', () => {
+    before(()=>{
+      navigateToLocation()
+      cy.contains('Living Areas').click();
+      cy.get('button').click();
+    });
+
+    electricsOption();
+  });
+
+  context('Damaged or stuck windows', () => {
+    before(()=>{
+      navigateToLocation()
+      cy.contains('Living Areas').click();
+      cy.get('button').click();
+      cy.contains('Damaged or stuck windows').click();
+      cy.get('button').click();
+    });
+    testWindowOption();
+  });
+
+  context('Damaged or stuck doors', () => {
     before(()=>{
       navigateToLocation()
       cy.contains('Living Area').click();
       cy.get('button').click();
+      cy.contains('Damaged or stuck doors').click();
+      cy.get('button').click();
+    });
+    testDoorOption();
+  });
+
+  context('Damp or mould', () => {
+    before(()=>{
+      navigateToLocation()
+      cy.contains('Living Area').click();
+      cy.get('button').click();
+      cy.contains('Damp or mould').click();
+      cy.get('button').click();
+    });
+    testDampOrMouldOption();
+  });
+
+  context('Stairs (including handrail)', () => {
+    before(()=>{
+      navigateToLocation()
+      cy.contains('Living Area').click();
+      cy.get('button').click();
+      cy.contains('Stairs (including handrail)').click();
+      cy.get('button').click();
     });
 
-    context('Walls, floor or ceiling, excluding damp', () => {
-      before(() => {
-        cy.contains('Walls, floor or ceiling, excluding damp').click();
-        cy.get('button').click();
-      });
-
-      testWallOption();
-    });
-    context('Electrics, including lights and switches', () => {
-      before(()=>{
-        navigateToLocation()
-        cy.contains('Living Areas').click();
-        cy.get('button').click();
-      });
-
-      electricsOption();
+    it('displays the repair issue question', () => {
+      cy.contains('What best describes the problem?');
     });
 
-    context('Damaged or stuck windows', () => {
-      before(()=>{
-        navigateToLocation()
-        cy.contains('Living Areas').click();
-        cy.get('button').click();
-        cy.contains('Damaged or stuck windows').click();
-        cy.get('button').click();
-      });
-      testWindowOption();
+    it('displays a "Damaged stairs" option', () => {
+      cy.contains('Damaged stairs');
     });
 
-    context('Damaged or stuck doors', () => {
-      before(()=>{
-        navigateToLocation()
-        cy.contains('Living Area').click();
-        cy.get('button').click();
-        cy.contains('Damaged or stuck doors').click();
-        cy.get('button').click();
-      });
-      testDoorOption();
+    it('displays a "Damaged palistrades" option', ()=> {
+      cy.contains('Damaged palistrades');
     });
 
-    context('Damp or mould', () => {
-      before(()=>{
-        navigateToLocation()
-        cy.contains('Living Area').click();
-        cy.get('button').click();
-        cy.contains('Damp or mould').click();
-        cy.get('button').click();
-      });
-      testDampOrMouldOption();
+    it('displays a "Handrail" option', ()=> {
+      cy.contains('Handrail');
+    });
+
+    it('displays a "Stair rail came loose" option', ()=> {
+      cy.contains('Stair rail came loose');
     });
   });
 
@@ -681,6 +727,41 @@ describe('repairProblemBestDescription', () => {
       it ('displays a "French doors" option', () => {
         cy.contains('French doors');
       });
+    });
+
+    context('Gates and pathways', () => {
+      before(()=>{
+        navigateToLocation()
+        cy.contains('Outside').click();
+        cy.get('button').click();
+        cy.contains('Gates and pathways').click();
+        cy.get('button').click();
+      });
+
+      it('displays the repair issue question', () => {
+        cy.contains('What best describes the problem?');
+      });
+
+      it('displays a "Front gate" option', ()=>{
+        cy.contains('Front gate');
+      });
+
+      it('displays a "Back gate" option', ()=>{
+        cy.contains('Back gate');
+      });
+
+      it('displays a "Driveway" option', ()=>{
+        cy.contains('Driveway');
+      });
+
+      it('displays a "Concrete path around the property" option', ()=>{
+        cy.contains('Concrete path around the property');
+      });
+
+      it('displays a "Steps" option', ()=>{
+        cy.contains('Steps');
+      });
+
     });
   });
 });

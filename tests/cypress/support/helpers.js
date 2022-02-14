@@ -1,4 +1,5 @@
 import dummyAppointments from '../../fixtures/availableAppointments.json';
+import moment from 'moment';
 
 function intercept_address_search(
   numberOfResults = 2,
@@ -22,12 +23,12 @@ function intercept_address_search(
   }).as('address');
 }
 
-function intercept_availability_search() {
+function intercept_availability_search(appointments = dummyAppointments) {
   const api_url = 'http://localhost:3000/api';
 
   cy.intercept('GET', `${api_url}/availability*`, {
     statusCode: 201,
-    body: dummyAppointments
+    body: appointments
   }).as('availability');
 }
 
@@ -59,9 +60,14 @@ const navigateToPageTypeInputTextAndContinue = ({page, inputText}) => {
 }
 
 const convertDateToDisplayDate = (date) => {
-  let dateArray = date?.split(' ')
-  dateArray?.splice(3, 0, 'between')
-  return(dateArray?.join(' '))
+  let dateArray = date?.split('-')
+  let startDateTime = moment.unix(dateArray[0])
+  let endDateTime = moment.unix(dateArray[1])
+  const dateString = startDateTime.format('Do MMMM YYYY')
+  const startTime = startDateTime.format('h:mma');
+  const endTime = endDateTime.format('h:mma')
+  const timeString = `${startTime} to ${endTime}`
+  return `${dateString} between ${timeString}`
 }
 
 const navigateToLocation = () => {

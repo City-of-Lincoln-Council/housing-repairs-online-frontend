@@ -35,8 +35,11 @@ class Flow {
         {condition: 'securityLights', nextStep: 'repair-description'},
         {condition: 'roof', nextStep: 'outside-roof-problems'},
         {condition: 'garage', nextStep: 'repair-garage-problems'},
-        {condition: 'door', nextStep: 'outside-door-problems'},]},
+        {condition: 'door', nextStep: 'outside-door-problems'},
+        {condition: 'gatesAndPathways', nextStep: 'gates-and-pathways-problems'}
+      ]},
       'repair-garage-problems': { prevSteps:'', nextStep: 'repair-description'},
+      'gates-and-pathways-problems': { prevSteps:'repair-outside-problems', nextStep: 'repair-description'},
       'outside-roof-problems':  { prevSteps: 'repair-outside-problems', nextStep: 'repair-description'},
       'outside-door-problems':  { prevSteps: 'repair-outside-problems', nextStep: 'repair-description'},
       'repair-kitchen-problems': { prevStep: 'repair-location', nextStep: [
@@ -46,7 +49,7 @@ class Flow {
         {condition: 'electrical', nextStep: 'kitchen-electrical-problems'},
         {condition: 'worktop', nextStep: 'repair-description'},
         {condition: 'sink', nextStep: 'sink-problems'},
-        {condition: 'heatingOrHotWater', nextStep: 'repair-kitchen-heating-problems'},
+        {condition: 'heatingOrHotWater', nextStep: 'unable-to-book'},
         {condition: 'drip-or-leak', nextStep: 'repair-description-leak'},
         {condition: 'door', nextStep: 'kitchen-door-problems'},
         {condition: 'wallsFloorsCeiling', nextStep: 'wall-floor-ceiling-problems'}
@@ -73,7 +76,6 @@ class Flow {
         {condition: 'cubicleDoorBroken', nextStep: 'repair-description'},
         {condition: 'showerDrainBlocked', nextStep: 'emergency-repair'},]},
       'sink-problems': {nextStep: 'repair-description'},
-      'repair-kitchen-heating-problems': { prevStep: 'repair-kitchen-problems', nextStep: 'repair-description'},
       'kitchen-door-problems': { prevStep: 'repair-kitchen-problems', nextStep: 'repair-description'},
       'kitchen-electrical-problems': {prevStep: 'repair-kitchen-problems', nextStep: 'repair-description'},
       'repair-bathroom-problems': { prevStep: 'repair-location', nextStep: [
@@ -82,34 +84,52 @@ class Flow {
         {condition: 'electricsExtractorCords', nextStep: 'repair-bathroom-electric-problems'},
         {condition: 'sink', nextStep: 'sink-problems'},
         {condition: 'windows', nextStep: 'repair-window-problems'},
+        {condition: 'dampOrMould', nextStep: 'bathroom-damp-mould-problems'},
         {condition: 'damagedOrStuckDoors', nextStep: 'repair-door-problems'},
         {condition: 'showerIncludingTrayAndDoor', nextStep: 'repair-shower-problems'},
         {condition: 'damagedOrStuckDoors', nextStep: 'repair-door-problems'},
-        {condition: 'toilet', nextStep: 'repair-toilet-problems'}
+        {condition: 'toilet', nextStep: 'repair-toilet-problems'},
+        {condition: 'heatingOrHotWater', nextStep: 'unable-to-book'}
       ]},
       'repair-bedroom-problems': { prevStep: 'repair-location', nextStep: [
         {condition: 'electricsLightsSwitches', nextStep: 'repair-bedroom-lighting-problems'},
         {condition: 'wallsFloorsCeiling', nextStep: 'wall-floor-ceiling-problems'},
         {condition: 'windows', nextStep: 'repair-window-problems'},
-        {condition: 'damagedOrStuckDoors', nextStep: 'repair-door-problems'},
-        {condition: 'dampOrMould', nextStep: 'damp-mould-problems'}]},
+        {condition: 'damagedOrStuckDoors', nextStep: 'repair-bedroom-door-problems'},
+        {condition: 'dampOrMould', nextStep: 'damp-mould-problems'},
+        {condition: 'heating', nextStep: 'unable-to-book'},
+      ]},
       'repair-living-areas-problems': {prevSteps: 'repair-location', nextStep: [
         {condition: 'electricsLightsSwitches', nextStep: 'repair-bedroom-lighting-problems'},
         {condition: 'wallsFloorsCeiling', nextStep: 'wall-floor-ceiling-problems'},
         {condition: 'windows', nextStep: 'repair-window-problems'},
         {condition: 'damagedOrStuckDoors', nextStep: 'repair-living-area-door-problems'},
-        {condition: 'dampOrMould', nextStep: 'damp-mould-problems'}]
-      },
+        {condition: 'dampOrMould', nextStep: 'damp-mould-problems'},
+        {condition: 'stairs', nextStep: 'repair-stairs-problems'},
+        {condition: 'heating', nextStep: 'unable-to-book'},
+      ]},
+      'repair-stairs-problems': { prevStep: 'repair-living-areas-problems', nextStep: 'repair-description'},
       'repair-living-area-door-problems': { prevSteps: '', nextStep: [
         {condition: 'internalDoorIssue', nextStep: 'repair-description'},
         {condition: 'lockOnDoor', nextStep: 'not-eligible-non-emergency'},
-        {condition: 'adjustingDoorAfterCarpetFitting', nextStep: 'not-eligible-non-emergency'}]},
+        {condition: 'adjustingDoorAfterCarpetFitting', nextStep: 'not-eligible-non-emergency'}
+      ]},
+      'repair-bedroom-door-problems': { prevSteps: 'repair-location', nextStep: [
+        {condition: 'internalDoorIssue', nextStep: 'repair-description'},
+        {condition: 'adjustingDoorAfterCarpetFitting', nextStep: 'not-eligible-non-emergency'}
+      ]},
       'bath-problems': { prevStep: 'repair-bathroom-problems', nextStep: 'repair-description'},
       'repair-window-problems': {nextStep: 'repair-description'},
       'repair-bedroom-lighting-problems': { prevStep: 'repair-bedroom-problems', nextStep: 'repair-description'},
       'repair-living-areas-lighting-problems': { prevStep: 'repair-living-areas-problems', nextStep: 'repair-description'},
       'wall-floor-ceiling-problems': {nextStep: 'repair-description'},
       'repair-kitchen-cupboard-problems': {prevStep: 'repair-kitchen-problems', nextStep: 'repair-description'},
+      'bathroom-damp-mould-problems': { prevStep: 'repair-bathroom-problems',
+        nextStep: [
+          {condition: 'emergency', nextStep: 'emergency-repair'},
+          {condition: 'dampOrMould', nextStep: 'repair-description'}
+        ]
+      },
       'repair-description-damp': {prevStep: 'repair-kitchen-types', nextStep: [
         {condition: 'damp', nextStep: 'repair-damp'},
         {condition: 'mould', nextStep: 'repair-description-damp-mold'},
