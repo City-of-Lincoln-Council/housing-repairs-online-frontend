@@ -278,7 +278,7 @@ function ReportRepair() {
             {value: 'damagedSteps', title: 'Damaged stairs'},
             {value: 'damagedPalistrades', title: 'Damaged palistrades'},
             {value: 'handRail', title: 'Handrail'},
-            {value: 'stairRailLoose', title: 'Stair rail came loose'}
+            {value: 'stairRailLoose', title: 'Stair rail come loose'}
           ]}
         />
       )

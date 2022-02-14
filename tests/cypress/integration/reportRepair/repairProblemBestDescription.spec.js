@@ -617,8 +617,8 @@ context('Living Area', () => {
       cy.contains('Handrail');
     });
 
-    it('displays a "Stair rail came loose" option', ()=> {
-      cy.contains('Stair rail came loose');
+    it('displays a "Stair rail come loose" option', ()=> {
+      cy.contains('Stair rail come loose');
     });
   });
 

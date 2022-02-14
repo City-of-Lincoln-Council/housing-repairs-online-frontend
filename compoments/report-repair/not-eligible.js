@@ -16,7 +16,9 @@ const NotEligible = () => {
         <p>
           Emergency Out of Hours Repairs - Telephone: <strong>01522 534747</strong>
         </p>
-        <p>For non-emergency requests, call <strong>01522 873333</strong></p>
+        <p>
+          Emergency In Hours Repairs - Telephone:  <strong>01522 873333</strong>
+        </p>
         <Details summary="Opening times" testid="opening-times">
           <li>Monday 9am - 5pm</li>
           <li>Tuesday 9am - 5pm</li>

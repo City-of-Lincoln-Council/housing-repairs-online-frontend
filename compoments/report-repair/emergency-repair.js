@@ -15,7 +15,9 @@ const EmergencyRepair = () => {
       <p>
         Emergency Out of Hours Repairs - Telephone: <strong>01522 534747</strong>
       </p>
-      <p>For emergencies in normal hours, please call <strong>01522 873333</strong></p>
+      <p>
+        Emergency In Hours Repairs - Telephone:  <strong>01522 873333</strong>
+      </p>
       <p>
         Opening times:
       </p>
@@ -33,7 +35,7 @@ const EmergencyRepair = () => {
         Please do not call the emergency out of hours number if the repair is not urgent.
       </p>
       <p>
-        If you suspect you have a gas leak, you must report it immediately to
+        If you can smell gas, you must report it immediately to
         the Gas Emergency Service <strong>0800 111 999</strong> or via textphone (minicom) on
         <strong> 0800 371 787</strong>
       </p>
