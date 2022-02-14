@@ -108,6 +108,7 @@ class Flow {
         {condition: 'stairs', nextStep: 'repair-stairs-problems'},
         {condition: 'heating', nextStep: 'unable-to-book'},
       ]},
+      'repair-bathroom-electric-problems': { prevStep: 'repair-bathroom-problems', nextStep: 'repair-description'},
       'repair-stairs-problems': { prevStep: 'repair-living-areas-problems', nextStep: 'repair-description'},
       'repair-living-area-door-problems': { prevSteps: '', nextStep: [
         {condition: 'internalDoorIssue', nextStep: 'repair-description'},
