@@ -43,6 +43,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: sentry check
+        run: |
+          yarn install
+          yarn sentry-cli --auth-token=${{ secrets.SENTRY_AUTH_TOKEN }} projects --org=housing-repairs-online info
+
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
