@@ -59,6 +59,7 @@ jobs:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_KEY }}
           # auto generated GitHub token to allow accurately detecting a build vs a re-run build
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
   build_and_deploy_job:
     needs: [test, cypress-run]
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
@@ -85,6 +86,7 @@ jobs:
         env:
           REPAIRS_API: ${{ secrets.REPAIRS_API }}
           REPAIRS_API_IDENTIFIER: ${{ secrets.REPAIRS_API_IDENTIFIER }}
+          SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'

@@ -16,6 +16,14 @@ export default function Home() {
       <div className="govuk-grid-column-two-thirds">
         <h1 className={'govuk-heading-xl'}>Request a repair</h1>
         <h2 className={'govuk-heading-m'}>Before you start</h2>
+        <button
+          type="button"
+          onClick={() => {
+            throw new Error('Sentry Staging Frontend Error');
+          }}
+        >
+          Throw error
+        </button>
         <WarningText  testid="landing-page-report-limit-warning" className="govuk-!-margin-top-4">
           This service can only be used to request one repair at a time to a council property.
         </WarningText>
