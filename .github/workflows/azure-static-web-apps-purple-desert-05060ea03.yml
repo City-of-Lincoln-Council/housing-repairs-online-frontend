@@ -46,6 +46,9 @@ jobs:
       - name: sentry login
         run: |
           yarn install
+          touch .sentryclirc
+          echo "[auth]" >> .sentryclirc
+          echo "token=${{ inputs.auth-token }}" >> .sentryclirc
           yarn sentry-cli --auth-token=${{ secrets.SENTRY_AUTH_TOKEN }} login
 #           projects --org=housing-repairs-online
 
