@@ -73,9 +73,8 @@ describe('repair availability', () => {
     })
 
     it('displays unable to book page', () => {
-      cy.wait('@availability')
-        .url()
-        .should('include', 'unable-to-book')
+      cy.wait('@availability');
+      cy.contains('Your repair could not be booked')
     });
 
   });

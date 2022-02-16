@@ -6,6 +6,7 @@ import useSWR from 'swr';
 import moment from 'moment';
 import {useRouter} from 'next/router';
 import Loader from "../loader";
+import UnableToBook from './unable-to-book';
 
 const RepairAvailability = ({handleChange, values, fromDate}) => {
   const [error, setError] = useState();
@@ -34,6 +35,9 @@ const RepairAvailability = ({handleChange, values, fromDate}) => {
   let nextAppointmentSearchFromDate;
 
   if (data) {
+    if (data.length == 0) {
+      return <UnableToBook/>;
+    }
     let startTimes = data.map(d => moment(d.startTime))
     nextAppointmentSearchFromDate = moment.max(startTimes).add(1, 'day').format('YYYY-MM-DD');
 
@@ -90,31 +94,27 @@ const RepairAvailability = ({handleChange, values, fromDate}) => {
           className="govuk-error-message">
           {error}
         </span>
-        {Object.keys(data).length > 0 ?
-          <div className="govuk-radios" onChange={onChange}>
-            {Object.keys(availability).map((date, i) => (
-              <div key={i} className='govuk-!-padding-bottom-4'>
-                <h3 className="govuk-heading-m govuk-!-padding-top-4">
-                  {date}
-                </h3>
-                {availability[date].map((timeSlot, ti)=>(
-                  <div className="govuk-radios__item" key={`${i}-${ti}`}>
-                    <input data-cy={`availability-slot-${i}-${ti}`} className="govuk-radios__input govuk-input--width-10"
-                      id={`${fieldName}-${i}-${ti}`} name={fieldName}
-                      type="radio" value={timeSlot.appointmentSlotKey}
-                      defaultChecked={values.availability?.startDateTime === timeSlot.startDateTime && values.availability?.endDateTime === timeSlot.endDateTime}/>
-                    <label className="govuk-label govuk-radios__label"
-                      htmlFor={`${fieldName}-${i}-${ti}`}>
-                      {timeSlot.timeString}
-                    </label>
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div>
-          :
-          router.push(`${router.asPath}`, 'unable-to-book')
-        }
+        <div className="govuk-radios" onChange={onChange}>
+          {Object.keys(availability).map((date, i) => (
+            <div key={i} className='govuk-!-padding-bottom-4'>
+              <h3 className="govuk-heading-m govuk-!-padding-top-4">
+                {date}
+              </h3>
+              {availability[date].map((timeSlot, ti)=>(
+                <div className="govuk-radios__item" key={`${i}-${ti}`}>
+                  <input data-cy={`availability-slot-${i}-${ti}`} className="govuk-radios__input govuk-input--width-10"
+                    id={`${fieldName}-${i}-${ti}`} name={fieldName}
+                    type="radio" value={timeSlot.appointmentSlotKey}
+                    defaultChecked={values.availability?.startDateTime === timeSlot.startDateTime && values.availability?.endDateTime === timeSlot.endDateTime}/>
+                  <label className="govuk-label govuk-radios__label"
+                    htmlFor={`${fieldName}-${i}-${ti}`}>
+                    {timeSlot.timeString}
+                  </label>
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
       </div>
       <div>
         {fromDate ? (
