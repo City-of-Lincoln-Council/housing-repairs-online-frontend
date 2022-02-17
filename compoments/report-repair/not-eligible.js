@@ -1,5 +1,6 @@
 import Details from '../details';
 import React from 'react';
+import ContactNumbers from '../contactNumbers';
 
 
 const NotEligible = () => {
@@ -13,12 +14,7 @@ const NotEligible = () => {
           someone’s health or safety or cause serious damage and destruction to
           property.
         </p>
-        <p>
-          Emergency Out of Hours Repairs - Telephone: <strong>01522 534747</strong>
-        </p>
-        <p>
-          Emergency In Hours Repairs - Telephone:  <strong>01522 873333</strong>
-        </p>
+        <ContactNumbers/>
         <Details summary="Opening times" testid="opening-times">
           <li>Monday 9am - 5pm</li>
           <li>Tuesday 9am - 5pm</li>

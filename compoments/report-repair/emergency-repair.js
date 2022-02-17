@@ -1,4 +1,5 @@
 import React from 'react';
+import ContactNumbers from '../contactNumbers';
 
 
 const EmergencyRepair = () => {
@@ -12,12 +13,7 @@ const EmergencyRepair = () => {
         someone’s health or safety or cause serious damage and destruction to
         property.
       </p>
-      <p>
-        Emergency Out of Hours Repairs - Telephone: <strong>01522 534747</strong>
-      </p>
-      <p>
-        Emergency In Hours Repairs - Telephone:  <strong>01522 873333</strong>
-      </p>
+      <ContactNumbers/>
       <p>
         Opening times:
       </p>

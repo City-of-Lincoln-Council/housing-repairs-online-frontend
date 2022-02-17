@@ -3,13 +3,9 @@ import Details from '../compoments/details';
 import TextLink from '../compoments/textLink';
 import React from 'react';
 import Link from 'next/link'
+import ContactNumbers from '../compoments/contactNumbers';
 
 export default function Home() {
-  const contactDetailsPageLink = (
-    <TextLink href="https://www.lincoln.gov.uk/contact-1/get-touch" target="_blank">
-      contact details page
-    </TextLink>
-  )
 
   return (
     <div className="govuk-grid-row govuk-body-m govuk-!-margin-top-7">
@@ -58,12 +54,7 @@ export default function Home() {
               someone’s health or safety or cause serious damage and destruction
               to property.
             </p>
-            <p>
-              Emergency Out of Hours Repairs, please call <strong>01522 534747</strong>
-            </p>
-            <p>
-              For emergencies in normal hours, please call <strong>01522 873333</strong>
-            </p>
+            <ContactNumbers/>
             <p>
               Opening times:
             </p>
