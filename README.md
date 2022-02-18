@@ -50,6 +50,8 @@ styles or using Lincoln.gov styles.
 To return to the original design, comment out 
 [line 3 in `globals.scss`](https://github.com/City-of-Lincoln-Council/housing-repairs-online-frontend/blob/f088657699c0b9617a8929329fe77004b98eaa72/styles/globals.scss#L3)
 
+To find out how these interface was designed, please read the [common service pattern](https://github.com/City-of-Lincoln-Council/housing-repairs-online-frontend/blob/main/Common%20service%20patern.pdf).
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
