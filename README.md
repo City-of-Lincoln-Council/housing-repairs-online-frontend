@@ -38,11 +38,17 @@ cd api/ && nvm use && yarn start
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/[route].js`. The page auto-updates as you edit the file.
+## Look and feel
+The app can be deployed using original 
+[Gov.uk design system](https://design-system.service.gov.uk/get-started/)
+styles or using Lincoln.gov styles.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/address.js`.
+| Original | Lincoln |
+| ---- | ---- |
+| ![Original](docs/original.png) | ![Lincoln](docs/lincoln.png) |
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+To return to the original design, comment out 
+[line 3 in `globals.scss`](https://github.com/City-of-Lincoln-Council/housing-repairs-online-frontend/blob/f088657699c0b9617a8929329fe77004b98eaa72/styles/globals.scss#L3)
 
 ## Learn More
 
@@ -58,7 +64,5 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 - Testing:
   - [Jest](https://jestjs.io/docs/getting-started) is used for unit testing `yarn test`
   - [Cypress](https://docs.cypress.io/) is used for integration testing `yarn test:integration`
-- Frontend components:
-  https://govuk-react.github.io/govuk-react/?path=/docs/welcome--page
 - Local dev
   https://github.com/Azure/static-web-apps-cli
