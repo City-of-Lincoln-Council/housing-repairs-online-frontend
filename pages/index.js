@@ -16,16 +16,11 @@ export default function Home() {
       <button
         type="button"
         onClick={() => {
-          throw new Error('Sentry Frontend Error');
+          throw new Error('Sentry Frontend Error - sentry branch');
         }}
       >
         Throw error
       </button>
-      <h1>
-        process.env.DUMMY_SENTRY_DSN: {process.env.DUMMY_SENTRY_DSN}
-        <br/>
-        process.env.NEXT_PUBLIC_DUMMY_SENTRY_DSN: {process.env.NEXT_PUBLIC_DUMMY_SENTRY_DSN}
-      </h1>
       <div className="govuk-grid-column-two-thirds">
         <h1 className={'govuk-heading-xl'}>Request a repair</h1>
         <h2 className={'govuk-heading-m'}>Before you start</h2>
