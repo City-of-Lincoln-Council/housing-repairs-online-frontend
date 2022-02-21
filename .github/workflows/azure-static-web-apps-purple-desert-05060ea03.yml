@@ -102,6 +102,8 @@ jobs:
           SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
           NODE_ENV: ${{ github.event_name == 'pull_request' && 'staging' || 'production' }}
+          DUMMY_SENTRY_DSN: "DUMMY_SENTRY_DSN-1111"
+          NEXT_PUBLIC_DUMMY_SENTRY_DSN: "NEXT_PUBLIC_DUMMY_SENTRY_DSN-2222"
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
