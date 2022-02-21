@@ -10,10 +10,6 @@ $red: #e95434;
   background-color: $green;
 }
 
-
-
-
-
 .govuk-button {
   font-weight: 700;
   background-color: $pink;
@@ -73,18 +69,23 @@ $red: #e95434;
     color: white;
   }
 }
+
 .govuk-header__container{
   border-color: $orange;
 }
+
 .govuk-tag {
   background-color: $orange;
 }
+
 .loader {
   border-left-color: $orange;
 }
+
 .govuk-link:link, .govuk-details__summary {
   color: $green;
 }
+
 .govuk-header__logotype {
   background-image: url("/assets/images/lincoln-city-logo-footer.svg");
   display: inline-block;
@@ -92,9 +93,11 @@ $red: #e95434;
   padding-top: 42px;
   background-repeat: no-repeat;
 }
+
 .govuk-header__link--service-name{
   margin-top: 6px;
 }
+
 .govuk-footer__copyright-logo{
   background-image: url("/assets/images/lincoln-city-logo-footer.svg");
 }

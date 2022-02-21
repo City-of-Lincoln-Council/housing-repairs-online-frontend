@@ -47,8 +47,8 @@ styles or using Lincoln.gov styles.
 | ---- | ---- |
 | ![Original](docs/original.png) | ![Lincoln](docs/lincoln.png) |
 
-To return to the original design, comment out 
-[line 3 in `globals.scss`](https://github.com/City-of-Lincoln-Council/housing-repairs-online-frontend/blob/f088657699c0b9617a8929329fe77004b98eaa72/styles/globals.scss#L3)
+To return to the original design, remove `@import "lincoln";` from
+[`globals.scss`](https://github.com/City-of-Lincoln-Council/housing-repairs-online-frontend/blob/f088657699c0b9617a8929329fe77004b98eaa72/styles/globals.scss#L3)
 
 To find out how these interface was designed, please read the [common service pattern](https://github.com/City-of-Lincoln-Council/housing-repairs-online-frontend/blob/main/Common%20service%20patern.pdf).
 
