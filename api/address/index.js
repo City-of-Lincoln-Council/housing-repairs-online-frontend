@@ -13,7 +13,6 @@ module.exports = async function (context, req) {
     await Sentry.flush(2000);
 
     status = 400;
-    results = e;
   }
 
   context.res = {

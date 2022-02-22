@@ -81,6 +81,7 @@ jobs:
           touch .sentryclirc
           echo "[auth]" >> .sentryclirc
           echo "token=${{ secrets.SENTRY_AUTH_TOKEN }}" >> .sentryclirc
+          cp .sentryclirc api/.sentryclirc
 
       - name: Build And Deploy
         id: builddeploy
