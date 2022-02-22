@@ -3,9 +3,6 @@ const path = require('path')
 const { withSentryConfig } = require('@sentry/nextjs');
 
 const moduleExports =  {
-  /* Add Your Scss File Folder Path Here */
-  // cssModules: true,
-
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
   },
@@ -25,11 +22,6 @@ const moduleExports =  {
   images: {
     loader: 'default'
   },
-
-  // sentry: {
-  //   disableServerWebpackPlugin: true,
-  //   disableClientWebpackPlugin: true,
-  // },
 };
 
 module.exports = withSentryConfig(moduleExports, {
