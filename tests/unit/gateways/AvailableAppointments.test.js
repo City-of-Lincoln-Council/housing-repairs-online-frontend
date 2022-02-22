@@ -9,8 +9,6 @@ describe('SearchProperties', () => {
 
   let mockGetRequest;
   let AvailableAppointmentsGateway;
-  let mockSentry;
-  let mockCaptureException;
 
   beforeAll(() => {
     mockGetRequest =  jest.fn().mockImplementation(({url, params}) => Promise.resolve({data: dummyData}));
@@ -42,19 +40,17 @@ describe('SearchProperties', () => {
   describe('when api is down', () =>{
     beforeAll(() => {
       mockGetRequest =  jest.fn().mockRejectedValue({status: 500});
-      mockCaptureException = jest.fn();
-      mockSentry = {captureException: mockCaptureException, flush: jest.fn()};
-      AvailableAppointmentsGateway = require('../../../api/gateways/AvailableAppointmentsGateway')(mockGetRequest, mockSentry);
+      AvailableAppointmentsGateway = require('../../../api/gateways/AvailableAppointmentsGateway')(mockGetRequest);
     });
 
-    test('an error gets raised', async () => {
+    test('the error gets returned', async () => {
       await AvailableAppointmentsGateway({
         repairLocation,
         repairProblem,
         repairIssue,
         locationId
       }).then((res)=>{
-        expect(res).toEqual(Error('Error searching'));
+        expect(res).toEqual({status: 500});
       });
     })
   });

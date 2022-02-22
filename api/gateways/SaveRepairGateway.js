@@ -1,5 +1,5 @@
 
-module.exports = (makePostRequest, sentry) => {
+module.exports = makePostRequest => {
   return async body => {
     let result;
 
@@ -8,12 +8,8 @@ module.exports = (makePostRequest, sentry) => {
       body
     }).then(response => {
       return response.data;
-    }).catch(async error => {
-      sentry.captureException(error);
-      await sentry.flush(2000);
-      if (error.status >= 400) {
-        return new Error('Error saving');
-      }
+    }).catch(error => {
+      return error;
     })
 
     return result;

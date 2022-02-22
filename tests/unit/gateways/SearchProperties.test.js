@@ -4,10 +4,6 @@ describe('SearchProperties', () => {
   let SearchPropertiesGateway;
   let mockGetRequest;
 
-  let mockSentry;
-  let mockCaptureException;
-
-
   describe('when api is up', () => {
     beforeAll(() => {
       mockGetRequest =  jest.fn().mockImplementation(({url, params}) => Promise.resolve({data: dummyData}));
@@ -27,14 +23,12 @@ describe('SearchProperties', () => {
 
   describe('when api is down', () =>{
     beforeAll(()=>{
-      mockGetRequest = jest.fn().mockRejectedValue({status: 500});
-      mockCaptureException = jest.fn();
-      mockSentry = {captureException: mockCaptureException, flush: jest.fn()};
-      SearchPropertiesGateway = require('../../../api/gateways/SearchPropertiesGateway')(mockGetRequest, mockSentry);
+      mockGetRequest = jest.fn().mockRejectedValue({status: 500})
+      SearchPropertiesGateway = require('../../../api/gateways/SearchPropertiesGateway')(mockGetRequest);
     })
-    test('an error gets raised', async () => {
+    test('the error gets returned', async () => {
       await SearchPropertiesGateway(postcode).then((res)=>{
-        expect(res).toEqual(Error('Error searching'));
+        expect(res).toEqual({status: 500});
       });
     })
   });
