@@ -13,7 +13,7 @@ module.exports = async function (context, req) {
     Sentry.captureException(e);
     await Sentry.flush(2000);
 
-    status = 400;
+    status = 500;
   }
 
   context.res = {
