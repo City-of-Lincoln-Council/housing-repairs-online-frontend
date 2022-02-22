@@ -13,7 +13,7 @@ export default function Home() {
 
   return (
     <div className="govuk-grid-row govuk-body-m govuk-!-margin-top-7">
-      <h1>{process.env.NODE_ENV}</h1>
+      <h1>{process.env.NEXT_PUBLIC_APP_ENV}</h1>
       <button
         type="button"
         onClick={() => {
