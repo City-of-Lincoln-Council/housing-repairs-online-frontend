@@ -19,6 +19,7 @@ module.exports = async function (context, req) {
     await Sentry.flush(2000);
 
     status = 500;
+    results = new Error('Error searching');
   }
 
   context.res = {
