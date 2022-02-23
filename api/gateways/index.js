@@ -8,6 +8,13 @@ const sentryParams = {
   dryRun: process.env.API_ENV ? true : false
 };
 
+const testParams = {
+  environment: process.env.API_ENV,
+  dryRun: process.env.API_ENV ? false : true,
+  test: 123,
+  url: process.env.REPAIRS_API
+}
+
 const apiRequester = require('./apiRequester')(axios);
 
 const searchPropertiesGateway = require('./SearchPropertiesGateway')(apiRequester.makeGetRequest);
@@ -18,5 +25,5 @@ module.exports = {
   searchPropertiesGateway,
   availableAppointmentsGateway,
   saveRepairGateway,
-  sentryParams
+  sentryParams, testParams
 };
