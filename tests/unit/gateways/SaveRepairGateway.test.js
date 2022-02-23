@@ -41,7 +41,7 @@ describe('SaveRepairGateway', () => {
       SaveRepairGateway = require('../../../api/gateways/SaveRepairGateway')(mockPostRequest);
     });
 
-    test('the error gets returned', async () => {
+    xtest('the error gets returned', async () => {
       await SaveRepairGateway({
         repairLocation,
         repairProblem,

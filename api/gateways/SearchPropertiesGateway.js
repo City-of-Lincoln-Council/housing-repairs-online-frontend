@@ -6,9 +6,7 @@ module.exports = makeGetRequest => {
       uri: `/addresses?postcode=${postcode}`
     }).then(response => {
       return response.data;
-    }).catch(error => {
-      return error;
-    })
+    });
 
     return result;
   }};

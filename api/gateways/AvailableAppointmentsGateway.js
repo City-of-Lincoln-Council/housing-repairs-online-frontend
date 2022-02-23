@@ -13,9 +13,7 @@ module.exports = makeGetRequest => {
       }
     }).then(response => {
       return response.data;
-    }).catch(error => {
-      return error;
-    })
+    });
 
     return result;
   }

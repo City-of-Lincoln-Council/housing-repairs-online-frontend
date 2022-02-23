@@ -1,11 +1,10 @@
 const axios = require('axios');
-const Sentry = require('@sentry/node');
 
-Sentry.init({
+const sentryParams = {
   dsn: process.env.SENTRY_DSN,
   environment: process.env.NEXT_PUBLIC_APP_ENV || 'development',
   dryRun: process.env.NEXT_PUBLIC_APP_ENV ? false : true
-});
+};
 
 const apiRequester = require('./apiRequester')(axios);
 
@@ -17,5 +16,5 @@ module.exports = {
   searchPropertiesGateway,
   availableAppointmentsGateway,
   saveRepairGateway,
-  Sentry
+  sentryParams
 };

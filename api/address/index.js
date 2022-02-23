@@ -1,6 +1,10 @@
-const {searchPropertiesGateway, Sentry} = require('../gateways');
+const Sentry = require('@sentry/node');
+
+const {searchPropertiesGateway, sentryParams} = require('../gateways');
 
 module.exports = async function (context, req) {
+  Sentry.init(sentryParams);
+
   context.log('JavaScript HTTP trigger function processed a request.');
 
   let status;

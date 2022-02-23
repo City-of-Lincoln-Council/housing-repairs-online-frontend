@@ -8,9 +8,7 @@ module.exports = makePostRequest => {
       body
     }).then(response => {
       return response.data;
-    }).catch(error => {
-      return error;
-    })
+    });
 
     return result;
   }
