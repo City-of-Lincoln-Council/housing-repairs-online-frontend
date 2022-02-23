@@ -20,12 +20,17 @@ module.exports = async function (context, req) {
     results = new Error('Error searching');
   }
 
+  const thing1 = process.env.API_ENV
+  const thing2 = process.env.NEXT_PUBLIC_APP_ENV
+  const thing3 = process.env.NODE_ENV
+
   context.res = {
     status: status,
     body: {
-      dsn: process.env.SENTRY_DSN,
-      environment: process.env.API_ENV || 'development',
-      dryRun: process.env.API_ENV ? false : true
+      test: 1234,
+      API_ENV: thing1,
+      NEXT_PUBLIC_APP_ENV: thing2,
+      NODE_ENV: thing3
     },
   };
 };

@@ -105,7 +105,7 @@ jobs:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
           NEXT_PUBLIC_SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
           NEXT_PUBLIC_APP_ENV: ${{ (github.event_name == 'pull_request' && 'staging') || ('production') }}
-          API_ENV: ${{ (github.event_name == 'pull_request' && 'staging') || ('production') }}
+          API_ENV: ${{ (github.event_name == 'pull_request' && 'staging') || 'production' }}
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
