@@ -8,12 +8,16 @@ const sentryParams = {
   dryRun: process.env.API_ENV ? false : true
 };
 
+const env = '----'+ process.env.API_ENV
+const url = '----'+ process.env.REPAIRS_API
+const next_env = '----'+ process.env.NEXT_PUBLIC_APP_ENV
+
 const testParams = {
-  environment: process.env.API_ENV,
+  environment: env,
   dryRun: process.env.API_ENV ? false : true,
   test: 123,
-  url: process.env.REPAIRS_API,
-  next_env: process.env.NEXT_PUBLIC_APP_ENV
+  url: url,
+  next_env: next_env
 }
 
 const apiRequester = require('./apiRequester')(axios);
