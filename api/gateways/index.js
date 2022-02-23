@@ -8,19 +8,23 @@ const sentryParams = {
   dryRun: process.env.API_ENV ? false : true
 };
 
-const env = '----'+ process.env.API_ENV
-const url = '----'+ process.env.REPAIRS_API
-const next_env = '----'+ process.env.NEXT_PUBLIC_APP_ENV
+const testParams = () => {
+  var env = process.env.API_ENV
+  var url = process.env.REPAIRS_API
+  var next_env = process.env.NEXT_PUBLIC_APP_ENV
 
-const testParams = {
-  environment: env,
-  dryRun: process.env.API_ENV ? false : true,
-  test: 123,
-  url: url,
-  next_env: next_env
+  return {
+    environment: '----'+ env,
+    dryRun: process.env.API_ENV ? false : true,
+    test: 123,
+    url: '----'+ url,
+    next_env: '----'+ next_env
+  }
 }
 
 const apiRequester = require('./apiRequester')(axios);
+
+const requestorTestParamsx = apiRequester.requestorTestParams;
 
 const searchPropertiesGateway = require('./SearchPropertiesGateway')(apiRequester.makeGetRequest);
 const availableAppointmentsGateway = require('./AvailableAppointmentsGateway')(apiRequester.makeGetRequest);
@@ -30,5 +34,5 @@ module.exports = {
   searchPropertiesGateway,
   availableAppointmentsGateway,
   saveRepairGateway,
-  sentryParams, testParams
+  sentryParams, testParams, requestorTestParamsx
 };

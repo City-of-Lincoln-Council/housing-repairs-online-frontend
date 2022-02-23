@@ -30,6 +30,19 @@ module.exports = axios => {
           axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${jwt}`;
           return axiosInstance.post(uri, body);
         })
+    },
+    requestorTestParams: () => {
+      const env = '----'+ process.env.API_ENV
+      const url = '----'+ process.env.REPAIRS_API
+      const next_env = '----'+ process.env.NEXT_PUBLIC_APP_ENV
+
+      return {
+        environment: env,
+        dryRun: process.env.API_ENV ? false : true,
+        test: 123,
+        url: url,
+        next_env: next_env
+      }
     }
   }
 }
