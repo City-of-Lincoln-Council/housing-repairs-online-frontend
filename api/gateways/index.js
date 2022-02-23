@@ -2,8 +2,8 @@ const axios = require('axios');
 
 const sentryParams = {
   dsn: process.env.SENTRY_DSN,
-  environment: process.env.NEXT_PUBLIC_APP_ENV || 'development',
-  dryRun: process.env.NEXT_PUBLIC_APP_ENV ? false : true
+  environment: process.env.API_ENV || 'development',
+  dryRun: process.env.API_ENV ? false : true
 };
 
 const apiRequester = require('./apiRequester')(axios);

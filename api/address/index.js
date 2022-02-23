@@ -22,6 +22,10 @@ module.exports = async function (context, req) {
 
   context.res = {
     status: status,
-    body: results,
+    body: {
+      dsn: process.env.SENTRY_DSN,
+      environment: process.env.API_ENV || 'development',
+      dryRun: process.env.API_ENV ? false : true
+    },
   };
 };
