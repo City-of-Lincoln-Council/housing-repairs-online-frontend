@@ -5,11 +5,11 @@ const axios = require('axios');
 const sentryParams = {
   dsn: process.env.SENTRY_DSN,
   environment: process.env.API_ENV || 'development',
-  dryRun: process.env.API_ENV ? false : true
+  dryRun: true
 };
 
 const testParams = () => {
-  var env = process.env.API_ENV
+  var env = process.env.AZURE_FUNCTIONS_ENVIRONMENT
   var url = process.env.REPAIRS_API
   var next_env = process.env.NEXT_PUBLIC_APP_ENV
 

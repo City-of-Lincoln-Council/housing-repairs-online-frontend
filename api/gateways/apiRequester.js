@@ -32,9 +32,8 @@ module.exports = axios => {
         })
     },
     requestorTestParams: () => {
-      const env = '----'+ process.env.API_ENV
+      const env = '----'+ process.env.AZURE_FUNCTIONS_ENVIRONMENT
       const url = '----'+ process.env.REPAIRS_API
-      const next_env = '----'+ process.env.NEXT_PUBLIC_APP_ENV
 
       return {
         environment: env,
