@@ -34,22 +34,4 @@ describe('SaveRepairGateway', () => {
     )
     expect(result).toEqual(dummyID)
   });
-
-  describe('when api is down', () =>{
-    beforeAll(() => {
-      mockPostRequest =  jest.fn().mockRejectedValue({status: 500});
-      SaveRepairGateway = require('../../../api/gateways/SaveRepairGateway')(mockPostRequest);
-    });
-
-    xtest('the error gets returned', async () => {
-      await SaveRepairGateway({
-        repairLocation,
-        repairProblem,
-        repairIssue,
-        locationId
-      }).then((res)=>{
-        expect(res).toEqual({status: 500});
-      });
-    })
-  });
 });

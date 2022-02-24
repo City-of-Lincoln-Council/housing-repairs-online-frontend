@@ -36,22 +36,4 @@ describe('SearchProperties', () => {
     )
     expect(result).toEqual(dummyData)
   });
-
-  describe('when api is down', () =>{
-    beforeAll(() => {
-      mockGetRequest =  jest.fn().mockRejectedValue({status: 500});
-      AvailableAppointmentsGateway = require('../../../api/gateways/AvailableAppointmentsGateway')(mockGetRequest);
-    });
-
-    xtest('the error gets returned', async () => {
-      await AvailableAppointmentsGateway({
-        repairLocation,
-        repairProblem,
-        repairIssue,
-        locationId
-      }).then((res)=>{
-        expect(res).toEqual({status: 500});
-      });
-    })
-  });
 });

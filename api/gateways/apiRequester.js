@@ -4,7 +4,7 @@ module.exports = axios => {
   return {
     makeGetRequest: ({uri, params ={}}) =>{
       var identifier = process.env.REPAIRS_API_IDENTIFIER
-      var baseUrl = process.env.REPAIRS_API_BASE_URL+'wrong';
+      var baseUrl = process.env.REPAIRS_API_BASE_URL;
       const axiosInstance = axios.create({
         baseURL: baseUrl
       })
@@ -20,7 +20,7 @@ module.exports = axios => {
 
     makePostRequest: ({uri, body ={}}) =>{
       var identifier = process.env.REPAIRS_API_IDENTIFIER
-      var baseUrl = process.env.REPAIRS_API_BASE_URL+'wrong';
+      var baseUrl = process.env.REPAIRS_API_BASE_URL;
       const axiosInstance = axios.create({
         baseURL: baseUrl
       })
