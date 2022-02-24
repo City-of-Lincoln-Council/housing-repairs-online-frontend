@@ -1,6 +1,6 @@
 const Sentry = require('@sentry/node');
 
-const {searchPropertiesGateway, sentryParams, testParams, requestorTestParamsx} = require('../gateways');
+const {searchPropertiesGateway, sentryParams} = require('../gateways');
 
 module.exports = async function (context, req) {
   Sentry.init(sentryParams);
@@ -22,9 +22,6 @@ module.exports = async function (context, req) {
 
   context.res = {
     status: status,
-    body: {
-      testParams: testParams(),
-      requestorTestParams: requestorTestParamsx(),
-    },
+    body: results,
   };
 };

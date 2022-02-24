@@ -30,18 +30,6 @@ module.exports = axios => {
           axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${jwt}`;
           return axiosInstance.post(uri, body);
         })
-    },
-    requestorTestParams: () => {
-      const env = '----'+ process.env.AZURE_FUNCTIONS_ENVIRONMENT
-      const url = '----'+ process.env.REPAIRS_API
-
-      return {
-        environment: env,
-        dryRun: process.env.API_ENV ? false : true,
-        test: 123,
-        url: url,
-        next_env: next_env
-      }
     }
   }
 }
