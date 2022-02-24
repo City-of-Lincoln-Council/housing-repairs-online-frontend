@@ -12,5 +12,5 @@ Sentry.init({
   dsn: SENTRY_DSN,
   tracesSampleRate: 1.0,
   environment: NEXT_PUBLIC_APP_ENV,
-  dryRun: (NODE_ENV == 'development')
+  dryRun: (NODE_ENV == 'development' || NEXT_PUBLIC_APP_ENV == 'test')
 });
