@@ -1,4 +1,3 @@
-[![housing repairs online frontend ](https://img.shields.io/endpoint?url=https://dashboard.cypress.io/badge/simple/1ezhh2/add-summary&style=flat-square&logo=cypress)](https://dashboard.cypress.io/projects/1ezhh2/runs)
 # Housing Repairs Online
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
