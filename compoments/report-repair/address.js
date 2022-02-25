@@ -6,13 +6,18 @@ import Button from '../button';
 import useSWR from 'swr'
 import {fetcher} from '../../helpers/fetcher';
 import Loader from '../loader';
+import Error from '../error';
 
 const Address = ({handleChange, values}) => {
   const [state, setState] = useState({error: {}, value: 'null'});
 
   const { data, error } = useSWR(`/api/address?postcode=${values.postcode}`, fetcher)
 
-  if (error) return <div>failed to load</div>
+  if (error) return <Error
+    name="summary"
+    heading="An error occurred while looking for your address"
+    body="Please try again later or call 01522 873333 to complete your repair request" />
+
   if (!data) return <Loader/>
 
   const addresses = data.map((a) => {

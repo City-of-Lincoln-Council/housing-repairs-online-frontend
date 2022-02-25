@@ -93,8 +93,8 @@ function ReportRepair() {
       setFormError(
         <Error
           name="summary"
-          heading="An error occurred while requesting your request"
-          body="Please call 01522 873333 to complete your repair request"></Error>
+          heading="An error occurred while processing your request"
+          body="Please call 01522 873333 to complete your repair request" />
       )
     })
   }

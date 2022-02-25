@@ -5,8 +5,9 @@ import {fetcher} from '../../helpers/fetcher';
 import useSWR from 'swr';
 import moment from 'moment';
 import {useRouter} from 'next/router';
-import Loader from "../loader";
+import Loader from '../loader';
 import UnableToBook from './unable-to-book';
+import Error from '../error';
 
 const RepairAvailability = ({handleChange, values, fromDate}) => {
   const [error, setError] = useState();
@@ -30,7 +31,11 @@ const RepairAvailability = ({handleChange, values, fromDate}) => {
   const apiUrl = `${baseURL}?${new URLSearchParams(params).toString()}`
   const { data, dataError } = useSWR(apiUrl, fetcher)
 
-  if (dataError) return <div>failed to load</div>
+  if (dataError) return <Error
+    name="summary"
+    heading="An error occurred while looking for available appointments"
+    body="Please try again later or call 01522 873333 to complete your repair request" />
+
   if (!data) return <Loader/>
 
   let availability = {};
